@@ -61,8 +61,7 @@ Abonnement requis.</description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <forum>https://forums.plex.tv</forum>
     <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
-    <email />
-    <source>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</source>
+    <email />  
     <summary lang="nl_NL">Directe integratie van Plex in Kodi</summary>
     <description lang="nl_NL">Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds opgeslagen in de databases voor video en muziek van Kodi (deze plugin wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!</description>
     <disclaimer lang="nl_NL">Gebruik op eigen risico</disclaimer>
@@ -140,8 +139,7 @@ Abonnement requis.</description>
         <language>en</language>
         <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
         <forum />
-        <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
-        <source />
+        <website />        
         <news>version 0.1.0
 - MySQL Integration
 - Fork from PlexKodiConnect (v.2.1.3)
@@ -161,8 +159,7 @@ Abonnement requis.</description>
         <language>en</language>
         <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
         <forum />
-        <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
-        <source />
+        <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>        
         <news>version 0.1.0
 - MySQL Integration
 - Fork from PlexKodiConnect (v.2.1.3)

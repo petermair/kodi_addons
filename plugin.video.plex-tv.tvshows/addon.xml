@@ -13,8 +13,7 @@
         <language>en</language>
         <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
         <forum></forum>
-        <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
-        <source></source>
+        <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>        
         <news>version 0.1.0
 - MySQL Integration
 - Fork from PlexKodiConnect (v.2.1.3)
