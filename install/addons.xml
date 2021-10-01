@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<addons><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.2.1">
+  <requires>    
+    <import addon="script.module.slyguy" />
+    <import addon="script.module.mairpeter" version="0.1.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py" provides="video">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <description lang="en">Disney+ is the exclusive home for your favorite movies and TV shows from Disney, Pixar, Marvel, Star Wars, and National Geographic.
+
+Subscription required.</description>
+<description lang="de">Filmabend bei Disney+! Jetzt streamen und Zugriff auf Blockbuster, Originals, fantastische Abenteuergeschichten, animierte Klassiker und die beliebtesten TV-Serien erhalten.
+
+Abonnement benötigt.</description>
+    <description lang="it">Disney+ è la casa esclusiva per i tuoi film e programmi TV preferiti di Disney, Pixar, Marvel, Star Wars e National Geographic.
+
+Abbonamento richiesto.</description>
+    <description lang="fr">Disney+ est la destination exclusive de vos films et séries TV préférés des univers Disney, Pixar, Marvel, Star Wars et National Geographic.
+
+Abonnement requis.</description>
+    <reuselanguageinvoker>true</reuselanguageinvoker>
+    <license />
+    <language />
+    <website />
+    <news />
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.0" provider-name="Mair Peter">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+
+    <import addon="script.module.requests" version="2.9.1" />
+    <import addon="script.module.defusedxml" version="0.5.0" />
+    <import addon="script.module.six" />
+    <import addon="plugin.video.plex-tv.movies" version="0.1.0" />
+    <import addon="plugin.video.plex-tv.tvshows" version="0.1.0" />
+    <import addon="script.module.mairpeter" version="0.1.0" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video audio image</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login">
+  </extension>
+  <extension point="kodi.context.item" library="contextmenu.py">
+      <item>
+        <label>30401</label>
+              <description>30416</description>
+              <visible>[!IsEmpty(ListItem.DBID) + !StringCompare(ListItem.DBID,-1) | !IsEmpty(ListItem.Property(plexid))]</visible>
+      </item>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Native Integration of Plex into Kodi</summary>
+    <description lang="en">Connect Kodi to your Plex Media Server. This plugin assumes that you manage all your videos with Plex (and none with Kodi). You might lose data already stored in the Kodi video and music databases (as this plugin directly changes them). Use at your own risk!</description>
+    <disclaimer lang="en">Use at your own risk</disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>https://forums.plex.tv</forum>
+    <website>https://github.com/PeterMair/plex-tv</website>
+    <email />
+    <source>https://github.com/PeterMair/plex-tv</source>
+    <summary lang="nl_NL">Directe integratie van Plex in Kodi</summary>
+    <description lang="nl_NL">Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds opgeslagen in de databases voor video en muziek van Kodi (deze plugin wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!</description>
+    <disclaimer lang="nl_NL">Gebruik op eigen risico</disclaimer>
+    <summary lang="fr_CA">Intégration native de Plex dans Kodi</summary>
+    <description lang="fr_CA">Connecter Kodi à votre Plex Media Server. Ce plugin assume que vous souhaitez gérer toutes vos vidéos avec Plex (et aucune avec Kodi). Vous pourriez perdre les données déjà stockées dans les bases de données vidéo et musique de Kodi (ce plugin les modifie directement). Utilisez à vos propres risques !</description>
+    <disclaimer lang="fr_CA">A utiliser à vos propres risques</disclaimer>
+    <summary lang="fr_FR">Intégration native de Plex dans Kodi</summary>
+    <description lang="fr_FR">Connecter Kodi à votre Plex Media Server. Ce plugin assume que vous souhaitez gérer toutes vos vidéos avec Plex (et aucune avec Kodi). Vous pourriez perdre les données déjà stockées dans les bases de données vidéo et musique de Kodi (ce plugin les modifie directement). Utilisez à vos propres risques !</description>
+    <disclaimer lang="fr_FR">A utiliser à vos propres risques</disclaimer>
+    <summary lang="de_DE">Komplette Integration von Plex in Kodi</summary>
+    <description lang="de_DE">Verbindet Kodi mit deinem Plex Media Server. Dieses Addon geht davon aus, dass du all deine Videos mit Plex verwaltest (und keine direkt mit Kodi). Du wirst möglicherweise Daten verlieren, die bereits in der Kodi Video- und/oder Musik-Datenbank gespeichert sind (da dieses Addon beide Datenbanken direkt verändert). Benutzung auf eigene Gefahr!</description>
+    <disclaimer lang="de_DE">Benutzung auf eigene Gefahr</disclaimer>
+    <summary lang="pt_PT">Integração nativa do Plex no Kodi</summary>
+    <description lang="pt_PT">Conectar o Kodi ao Servidor Plex Media. Este plugin assume que gerirá todos os vídeos com o Plex (e nenhum com Kodi). Poderá perder dados guardados nas bases de dados de vídeo e musica do Kodi (pois este plugin interfere diretamente com as mesmas). Use por risco de conta própria</description>
+    <disclaimer lang="pt_PT">Use por risco de conta própria</disclaimer>
+    <summary lang="pt_BR">Integração nativa do Plex no Kodi</summary>
+    <description lang="pt_BR">Conectar o Kodi ao Servidor Plex Media. Este plugin assume que gerirá todos os vídeos com o Plex (e nenhum com Kodi). Poderá perder dados guardados nas bases de dados de vídeo e musica do Kodi (pois este plugin interfere diretamente com as mesmas). Use por risco de conta própria</description>
+    <disclaimer lang="pt_BR">Use por risco de conta própria</disclaimer>
+    <summary lang="es_ES">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_ES">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_ES">Usar a su propio riesgo</disclaimer>
+    <summary lang="es_AR">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_AR">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_AR">Usar a su propio riesgo</disclaimer>
+    <summary lang="es_MX">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_MX">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_MX">Usar a su propio riesgo</disclaimer>
+    <summary lang="cs_CZ">Úplná integrace Plexu do Kodi</summary>
+    <description lang="cs_CZ">Připojte Kodi ke svému Plex Media Serveru. Tento doplněk předpokládá, že spravujete veškerá svá videa pomocí Plexu (nikoliv pomocí Kodi). Můžete přijít o data uložená ve video a hudební databázi Kodi (tento doplněk je přímo mění). Používejte na vlastní nebezpečí!</description>
+    <disclaimer lang="cs_CZ">Používejte na vlastní nebezpečí</disclaimer>
+    <summary lang="da_DK">Indbygget Integration af Plex i Kodi</summary>
+    <description lang="da_DK">Tilslut Kodi til din Plex Media Server. Dette plugin forudsætter, at du administrere alle dine videoer med Plex (og ikke med Kodi). Du kan miste data som allerede er gemt i Kodi video og musik-databaser (dette plugin ændrer direkte i dem). Brug på eget ansvar!</description>
+    <disclaimer lang="da_DK">Brug på eget ansvar</disclaimer>
+    <summary lang="it_IT">Integrazione nativa di Plex su Kodi</summary>
+    <description lang="it_IT">Connetti Kodi al tuo Plex Media Server. Questo plugin assume che tu gestisca tutti i video con Plex (e non con Kodi). Potresti perdere i dati dei film e della musica già memorizzati nel database di Kodi (questo plugin modifica direttamente il database stesso). Usa a tuo rischio e pericolo!</description>
+    <disclaimer lang="it_IT">Usa a tuo rischio e pericolo</disclaimer>
+    <summary lang="no_NO">Naturlig integrasjon av Plex til Kodi</summary>
+    <description lang="no_NO">Koble Kodi til din Plex Media Server. Denne plugin forventer at du organiserer alle dine videor med Plex (og ingen med Kodi). Du kan miste all data allerede lagret i Kodi video- og musikkdatabasene (da denne plugin umiddelbart forandrer dem). Bruk på egen risiko!</description>
+    <disclaimer lang="no_NO">Bruk på eget ansvar</disclaimer>
+    <summary lang="hu_HU">a Plex natív integrációja a Kodi-ba</summary>
+    <description lang="hu_HU">Csatlakoztassa a Kodi-t a Plex médiaszerveréhez. Ez a kiegészítő feltételezi, hogy az összes videóját a Plex-szel kezeli (és egyiket sem a Kodi-val). Elveszítheti a már a Kodi videó- és zene-adatbázisában tárolt adatokat (mivel ez a kiegészítő közvetlenül módosítja az adatbázisokat). Csak saját felelősségére használja!</description>
+    <disclaimer lang="hu_HU">Csak saját felelősségre használja</disclaimer>
+    <summary lang="ru_RU">Нативная интеграция сервера Plex в Kodi</summary>
+    <description lang="ru_RU">Подключите Kodi к своему серверу Plex. Плагин предполагает что вы управляете своими видео с помощью Plex (а не в Kodi). Вы можете потерять текущие базы данных музыки и видео в Kodi (так как плагин напрямую их изменяет). Используйте на свой страх и риск</description>
+    <disclaimer lang="ru_RU">Используйте на свой страх и риск</disclaimer>
+    <summary lang="uk_UA">Нативна інтеграція Plex в Kodi</summary>
+    <description lang="uk_UA">Підключає Kodi до серверу Plex. Цей плагін передбачає, що ви керуєте всіма своїми відео за допомогою Plex (і ніяк не Kodi). Ви можете втратити дані, які вже зберігаються у відео та музичних БД Kodi (оскільки цей плагін безпосередньо їх змінює). Використовуйте на свій страх і ризик!</description>
+    <disclaimer lang="uk_UA">Використовуйте на свій ризик</disclaimer>
+    <disclaimer lang="lv_LV">Lieto uz savu atbildību</disclaimer>
+    <summary lang="sv_SE">Inbyggd integrering av Plex i Kodi</summary>
+    <description lang="sv_SE">Anslut Kodi till din Plex Media Server. Detta tillägg antar att du hanterar alla dina filmer med Plex (och ingen med Kodi). Du kan förlora data redan sparad i Kodis video och musik databaser (eftersom detta tillägg direkt ändrar dem). Använd på egen risk!</description>
+    <disclaimer lang="sv_SE">Använd på egen risk</disclaimer>
+    <summary lang="lt_LT">Natūralioji „Plex“ integracija į „Kodi“</summary>
+    <description lang="lt_LT">Prijunkite „Kodi“ prie „Plex Medija Serverio“. Šiame papildinyje daroma prielaida, kad valdote visus savo vaizdo įrašus naudodami „Plex“ (ir nė vieno su „Kodi“). Galite prarasti jau saugomus „Kodi“ vaizdo įrašų ir muzikos duomenų bazių duomenis (kadangi šis papildinys juos tiesiogiai pakeičia). Naudokite savo pačių rizika!</description>
+    <disclaimer lang="lt_LT">Naudokite savo pačių rizika</disclaimer>
+    <summary lang="ko_KR">Plex를 Kodi에 기본 통합</summary>
+    <description lang="ko_KR">Kodi를 Plex Media Server에 연결합니다. 이 플러그인은 Plex로 모든 비디오를 관리하고 Kodi로는 관리하지 않는다고 가정합니다. Kodi 비디오 및 음악 데이터베이스에 이미 저장된 데이터가 손실 될 수 있습니다 (이 플러그인이 직접 변경하므로). 자신의 책임하에 사용하십시오!</description>
+    <disclaimer lang="ko_KR">자신의 책임하에 사용</disclaimer>
+            <news>version 0.1.0
+- MySQL Integration
+- Fork from PlexKodiConnect (v.2.1.3)
+</news>
+  </extension>
+</addon><addon id="plugin.video.plex-tv.movies" name="Plex TV Movies" version="0.1.0" provider-name="Mair Peter">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides />
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">PKC Dependency Add-On</summary>
+        <description lang="en">Plex TV add-on for movies</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <forum />
+        <website>https://github.com/PeterMair/plex-tv</website>
+        <source />
+        <news>version 0.1.0
+- MySQL Integration
+- Fork from PlexKodiConnect (v.2.1.3)
+</news>
+    </extension>
+</addon><addon id="plugin.video.plex-tv.tvshows" name="Plex TV Series" version="0.1.0" provider-name="Mair Peter">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0" />
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides />
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">PKC Dependency Add-On</summary>
+        <description lang="en">Plex TV add-on for tv shows</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <forum />
+        <website>https://github.com/PeterMair/plex-tv</website>
+        <source />
+        <news>version 0.1.0
+- MySQL Integration
+- Fork from PlexKodiConnect (v.2.1.3)
+</news>
+    </extension>
+</addon><addon id="repository.petermair" name="Peter Mair Repository" provider-name="Mair Peter" version="0.0.1">
+  <extension point="xbmc.addon.repository" name="Peter Mair Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/PeterMair/kodiaddons/main/install/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/PeterMair/kodiaddons/main/install/addons.xml.md5</checksum>      
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <description lang="en">Addons by Mair Peter</description>
+    <description lang="de">Addons von Mair Peter</description>
+    <description lang="it">Addons di Mair Peter</description>
+    <license />
+    <language />
+    <website>https://www.petermair.it</website>
+    <news />
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets> 
+  </extension>
+</addon></addons>
