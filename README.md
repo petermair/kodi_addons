@@ -15,7 +15,7 @@ This addon is not officially commissioned or supported by Amazon, Plex or Disney
 
 
 ## Setup instructions
-* install the repository as described in [these instructions](https://github.com/PeterMair/kodiaddons/tree/main/xbmc)
+* install the repository as described in [these instructions](https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/kodiaddons/tree/main/xbmc)
 * install **Plex, Amazon Prime and Disney+** video addon from MairPeter Repository
 
 ## Playback methods

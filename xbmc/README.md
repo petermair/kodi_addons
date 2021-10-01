@@ -1,7 +1,7 @@
 # Setup instractions
 
 * Install "Slyguy Common"-Addon from [Slyguy-Repository](https://www.matthuisman.nz/2020/02/slyguy-kodi-repository.html). 
-* Install [Repository](https://github.com/PeterMair/kodiaddons/blob/main/repository/repository.petermair/repository.petermair-0.0.1.zip?raw=true) and install Plugins from repository
+* Install [Repository](https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/kodiaddons/blob/main/repository/repository.petermair/repository.petermair-0.0.1.zip?raw=true) and install Plugins from repository
 
 ## SQLite3
 No changes needed
