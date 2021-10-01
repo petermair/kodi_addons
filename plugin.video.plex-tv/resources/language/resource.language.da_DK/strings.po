@@ -1,0 +1,1666 @@
+#  XBMC Media Center language file
+# Translators:
+# Croneter None <croneter@gmail.com>, 2017
+# Thomas H. <dontspampls@gmail.com>, 2019
+# coz2001 <sallerup2001@gmail.com>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex TV\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: da_DK\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Add-on settings
+msgctxt "#29999"
+msgid "Plex TV"
+msgstr "Plex TV"
+
+msgctxt "#30000"
+msgid "Server Address (IP)"
+msgstr "Server Adresse (IP)"
+
+msgctxt "#30001"
+msgid "Searching for PMS"
+msgstr "Søg efter PMS"
+
+msgctxt "#30002"
+msgid "Preferred playback method"
+msgstr "Foretrukken afspilningsmetode"
+
+# Warning displayed if Kodi setting is enabled. Be sure to escape the quotes
+# again! The exact wording can be found in the Kodi settings, player settings,
+# videos
+msgctxt "#30003"
+msgid ""
+"Warning: Kodi setting \"Play next video automatically\" is enabled. This "
+"could break Plex TV. Deactivate?"
+msgstr ""
+"Advarsel: Kodi indstillingen \"Afspil næste video automatisk\" er aktiveret."
+" Dette kan ødelægge Plex TV funktionalitet. Deaktiver? "
+
+msgctxt "#30004"
+msgid ""
+"The Kodi webserver is needed for artwork caching. Plex TV already set a strong, "
+"random password automatically if you haven't done so already. Please confirm"
+" the next dialog that you want to enable the webserver now with Yes."
+msgstr ""
+
+msgctxt "#30005"
+msgid "Username: "
+msgstr "Brugernavn: "
+
+# Sync notification displayed if there is still artwork to be cached to Kodi
+msgctxt "#30006"
+msgid "Caching %s Plex images"
+msgstr "Cache %s Plex billeder"
+
+# Sync notification displayed if syncing of major artwork is done
+msgctxt "#30007"
+msgid "Plex image caching done"
+msgstr "Plex billede caching er færdig"
+
+# Plex TV settings artwork: Enable notifications for artwork image sync
+msgctxt "#30008"
+msgid "Enable notifications for image caching"
+msgstr "Aktivér notifikationer for billedecaching"
+
+# Plex TV settings artwork: Enable image caching during Kodi playback
+msgctxt "#30009"
+msgid "Enable image caching during Kodi playback (restart Kodi!)"
+msgstr "Aktivér billedecaching under Kodi afspilning (kræver genstart)"
+
+# Plex TV settings - Artwork
+msgctxt "#30010"
+msgid "Approximate progress"
+msgstr "Omtrentlig proces"
+
+# Plex TV settings - Artwork
+msgctxt "#30011"
+msgid "Artwork left to cache:"
+msgstr "Grafik tilbage at cache:"
+
+# Button text
+msgctxt "#30012"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "#30013"
+msgid "Never show"
+msgstr "Vis aldrig"
+
+# Plex TV settings category
+msgctxt "#30014"
+msgid "Connection"
+msgstr "Forbindelse"
+
+# Pop-up notification if user tried to manually initiate fanart download
+msgctxt "#30015"
+msgid "Fanart download already running"
+msgstr "Fangrafik downlaod kører allerede"
+
+msgctxt "#30016"
+msgid "Device Name"
+msgstr "Enhedens navn"
+
+# Error message
+msgctxt "#30017"
+msgid "Unauthorized for PMS"
+msgstr "Uautoriseret til PMS"
+
+# Sync notification displayed for the number of fanart.tv lookups left
+msgctxt "#30018"
+msgid "Checking FanartTV for %s items"
+msgstr "Tjekker FanartTV for 1%s elementer"
+
+# Plex TV settings artwork options: status info
+msgctxt "#30019"
+msgid "FanartTV lookup completed"
+msgstr "FanartTV tjek gennemført"
+
+# Plex TV settings sync options
+msgctxt "#30020"
+msgid "Sync Plex playlists (reboot Kodi!)"
+msgstr "Synkronisér Plex playlists (genstart kræves)"
+
+# Plex TV settings sync options
+msgctxt "#30021"
+msgid "Only sync specific Plex playlists to Kodi"
+msgstr "Synkronisér kun specifikke Plex playlister til Kodi"
+
+# Plex TV settings category
+msgctxt "#30022"
+msgid "Advanced"
+msgstr "Avanceret"
+
+# Plex TV settings sync options
+msgctxt "#30023"
+msgid "Only sync specific Kodi playlists to Plex"
+msgstr "Synkronisér kun specifikke Kodi playlister til Plex"
+
+msgctxt "#30024"
+msgid "Username"
+msgstr "Brugernavn"
+
+msgctxt "#30025"
+msgid "Display message if PMS goes offline"
+msgstr "Vis besked hvis PMS går offline"
+
+# Plex TV settings sync options
+msgctxt "#30026"
+msgid "Prefix in Plex playlist name to trigger sync"
+msgstr "Præfiks i Plex playlistnavne som igangsætter synkronisering"
+
+# Plex TV settings sync options
+msgctxt "#30027"
+msgid "Prefix in Kodi playlist name to trigger sync"
+msgstr "Præfiks i Kodi playlistnavne som igangsætter synkronisering"
+
+# Plex TV settings artwork options: status info
+msgctxt "#30028"
+msgid "Plex TV-only image caching completed"
+msgstr "Plex TV billede caching er færdiggjort"
+
+# Warning shown when Plex TV switches to the Kodi default skin Estuary
+msgctxt "#30029"
+msgid ""
+"To ensure a smooth Plex TV experience, it is HIGHLY recommended to "
+"use Kodi's default skin \"Estuary\" for initial set-up and for possible "
+"database resets. Continue?"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Port Number"
+msgstr "Portnummer"
+
+msgctxt "#30031"
+msgid "I own this Plex Media Server"
+msgstr "Jeg ejer denne Plex Media Server"
+
+# Kodi context menu entry for movie and episode information screen
+msgctxt "#30032"
+msgid "Information"
+msgstr "Information"
+
+msgctxt "#30042"
+msgid "Refresh"
+msgstr "Opdater"
+
+msgctxt "#30043"
+msgid "Delete"
+msgstr "Slet"
+
+# Notification displayed if there is a LOT to be deleted
+msgctxt "#30052"
+msgid "Deleting"
+msgstr "Sletter"
+
+msgctxt "#30069"
+msgid "None"
+msgstr "Ingen"
+
+msgctxt "#30093"
+msgid "Mark Watched"
+msgstr "Markér som set"
+
+msgctxt "#30094"
+msgid "Mark Unwatched"
+msgstr "Markér som ikke set"
+
+msgctxt "#30095"
+msgid "Add to Favorites"
+msgstr "Føj til favoritter"
+
+msgctxt "#30096"
+msgid "Remove from Favorites"
+msgstr "Fjern fra favoritter"
+
+msgctxt "#30114"
+msgid "Offer delete after playback"
+msgstr "Tilbyd at slette efter afspilning"
+
+msgctxt "#30115"
+msgid "For Episodes"
+msgstr "Til episoder"
+
+msgctxt "#30116"
+msgid "For Movies"
+msgstr "Til film"
+
+msgctxt "#30125"
+msgid "Done"
+msgstr "Udført"
+
+# Error popup message text
+msgctxt "#30128"
+msgid "Play Error"
+msgstr "Afspilningsfejl"
+
+msgctxt "#30132"
+msgid "Warning"
+msgstr "Advarsel"
+
+msgctxt "#30135"
+msgid "Error"
+msgstr "Fejl"
+
+msgctxt "#30138"
+msgid "Search"
+msgstr "Søg"
+
+msgctxt "#30139"
+msgid "Enable Theme Music (Requires Restart)"
+msgstr "Aktiver temamusik (kræver genstart)"
+
+msgctxt "#30143"
+msgid "Always transcode if video bitrate is above"
+msgstr "Transcode hvis video bitrate er over"
+
+msgctxt "#30157"
+msgid "Enable Enhanced Images (eg CoverArt)"
+msgstr "Aktivér forbedret billeder (f.eks. CoverArt)"
+
+msgctxt "#30158"
+msgid "Metadata"
+msgstr "Metadata"
+
+msgctxt "#30160"
+msgid "Video Quality if Transcoding necessary"
+msgstr "Videokvalitet hvis trancoding er nødvendigt"
+
+msgctxt "#30161"
+msgid "Auto-adjust transcoding quality (deactivate for Chromecast)"
+msgstr ""
+
+msgctxt "#30165"
+msgid "Direct Play"
+msgstr "Direkte afspilning"
+
+msgctxt "#30166"
+msgid "Transcoding"
+msgstr "Transcoding"
+
+msgctxt "#30170"
+msgid "Recently Added TV Shows"
+msgstr "Senest tilføjede TV serier"
+
+msgctxt "#30171"
+msgid "In Progress TV Shows"
+msgstr "Igangværende TV serier"
+
+msgctxt "#30173"
+msgid "Channels"
+msgstr "Kanaler"
+
+msgctxt "#30174"
+msgid "Recently Added"
+msgstr "Senest tilføjet"
+
+msgctxt "#30177"
+msgid "In Progress Movies"
+msgstr "Igangværende film"
+
+msgctxt "#30178"
+msgid "In Progress Episodes"
+msgstr "Igangværende episoder"
+
+msgctxt "#30179"
+msgid "Next Episodes"
+msgstr "Næste afsnit"
+
+msgctxt "#30180"
+msgid "Favorite Movies"
+msgstr "Favorit film"
+
+msgctxt "#30181"
+msgid "Favorite Shows"
+msgstr "Favorit serie"
+
+msgctxt "#30182"
+msgid "Favorite Episodes"
+msgstr "Favorit episoder"
+
+msgctxt "#30189"
+msgid "Unwatched Movies"
+msgstr "Usete film"
+
+msgctxt "#30198"
+msgid "Search"
+msgstr "Søg"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30200"
+msgid ""
+"In the following window, enter the server's hostname (or IP) where your Plex"
+" media resides. Mind the case!"
+msgstr ""
+"I det næste video, indtast serverens hostnavn (eller IP) hvor dit Plex media"
+" ligger. Vær opmærksom på store og små bogstaver."
+
+# For setting up direct paths and adding network credentials - input window
+# for hostname
+msgctxt "#30201"
+msgid "Enter server hostname (or IP)"
+msgstr "Indtast server hostnavn (eller IP)"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30202"
+msgid ""
+"In the following window, enter the network protocol you would like to use. "
+"This is likely 'smb'."
+msgstr ""
+"I det næste vindue, indtast den netværksprotokol du gerne vil benytte. Det "
+"vil typisk være 'smb'."
+
+# For setting up direct paths and adding network credentials - input window
+# protocol
+msgctxt "#30203"
+msgid "Enter network protocol"
+msgstr "Indtast netværksprotokol"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30204"
+msgid "The hostname or IP '{0}' that you entered is not valid."
+msgstr "Hostnavnet eller IP'en '{0}' som du tastede."
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30205"
+msgid "The protocol '{0}' that you entered is not supported."
+msgstr "Den protkol '{0}' some du indtastede er ikke understøttet."
+
+# Video node naming for random e.g. movies
+msgctxt "#30227"
+msgid "Random"
+msgstr "Tilfældig"
+
+# Video node naming for e.g. movies
+msgctxt "#30230"
+msgid "Recommended"
+msgstr "Anbefalet"
+
+msgctxt "#30235"
+msgid "Extras"
+msgstr "Ekstra"
+
+msgctxt "#30243"
+msgid "Enable HTTPS"
+msgstr "Aktivér HTTPS"
+
+msgctxt "#30251"
+msgid "Recently added Home Videos"
+msgstr "Senest tilføjet hjemmevideoer"
+
+msgctxt "#30252"
+msgid "Recently added Photos"
+msgstr "Senest tilføjet billeder"
+
+msgctxt "#30253"
+msgid "Favorite Home Videos"
+msgstr "Favorit hjemmevideoer"
+
+msgctxt "#30254"
+msgid "Favorite Photos"
+msgstr "Favorit fotos"
+
+msgctxt "#30255"
+msgid "Favorite Albums"
+msgstr "Favorit albums"
+
+msgctxt "#30256"
+msgid "Recently added Music videos"
+msgstr "Senest tilføjet musik videoer"
+
+msgctxt "#30257"
+msgid "In progress Music videos"
+msgstr "Igangværende musikvideoer"
+
+msgctxt "#30258"
+msgid "Unwatched Music videos"
+msgstr "Usete musikvideoer"
+
+# Plex TV settings sub category under appearance tweaks
+msgctxt "#30302"
+msgid "Movies"
+msgstr "Film"
+
+# contextmenu entry
+msgctxt "#30401"
+msgid "Plex options"
+msgstr "Plex indstillinger"
+
+# contextmenu entry
+msgctxt "#30405"
+msgid "Add to Plex favorites"
+msgstr "Tilføj til Plex favoritter"
+
+# contextmenu entry
+msgctxt "#30406"
+msgid "Remove from Plex favorites"
+msgstr "Fjern fra Plex favoritter"
+
+# contextmenu entry
+msgctxt "#30407"
+msgid "Set custom song rating"
+msgstr "Angiv brugerdefineret sangbedømmelse"
+
+# contextmenu entry
+msgctxt "#30408"
+msgid "Plex addon settings"
+msgstr "Plex addon indstillinger"
+
+# contextmenu entry
+msgctxt "#30409"
+msgid "Delete item from server"
+msgstr "Slet element fra server"
+
+# contextmenu entry
+msgctxt "#30410"
+msgid "Refresh this item"
+msgstr "Opdatér siden"
+
+# contextmenu entry
+msgctxt "#30412"
+msgid "Force transcode"
+msgstr "Vælg transcode"
+
+# Error dialog text
+msgctxt "#30414"
+msgid ""
+"Could not delete the Plex item. Is item deletion enabled on the Plex Media "
+"Server?"
+msgstr ""
+"Kunne ikke slette Plex emnet. Er sletning aktiveret på Plex Media Server?"
+
+# contextmenu entry
+msgctxt "#30415"
+msgid "Start playback via PMS"
+msgstr "Start afspilning via PMS"
+
+msgctxt "#30416"
+msgid "Settings for the Plex Server"
+msgstr "Indstillinger for Plex-Server"
+
+msgctxt "#30417"
+msgid ""
+"Could not change the Kodi settings file {0}. Plex TV might not work correctly. "
+"Error: {1}"
+msgstr ""
+"Kunne ikke ændre Kodi settingsfilen {0}. Plex TV vil muligvis ikke fungere "
+"korrekt. Fejl: {1}"
+
+# Plex TV Settings - Connection
+msgctxt "#30500"
+msgid "Verify Host SSL Certificate (more secure)"
+msgstr "Bekræft værtens SSL certifikat (mere sikkert)"
+
+# Plex TV Settings - Connection
+msgctxt "#30501"
+msgid "Client SSL certificate"
+msgstr "Klient SSL certifikat"
+
+# Plex TV Settings - Artwork
+msgctxt "#30502"
+msgid "Sync Plex artwork from the PMS (recommended)"
+msgstr "Synkronisér Plex artwork fra PMS (anbefalet)"
+
+# Message shown if SSL HTTPS certificate fails
+msgctxt "#30503"
+msgid "SSL certificate failed to validate. Please check {0} for solutions."
+msgstr ""
+"SSL certifikat fejl. \n"
+"Se {0} for løsninger"
+
+# Plex TV Settings, category name
+msgctxt "#30506"
+msgid "Sync Options"
+msgstr "Synkroniseringsindstillinger"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30507"
+msgid "Show syncing progress"
+msgstr "Vis synkroniseringsfremskridt"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30508"
+msgid "Sync empty TV Shows"
+msgstr "Sync tomme TV serier"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30509"
+msgid "Enable Music Library"
+msgstr "Aktivér musikbibliotek"
+
+msgctxt "#30510"
+msgid "Direct stream music library"
+msgstr "Direkte stream fra musikbibliotek"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30511"
+msgid "Playback Mode"
+msgstr "Afspilningstilstand"
+
+# Plex TV Settings - Artwork
+msgctxt "#30512"
+msgid "Cache all artwork for a smooth Kodi experience"
+msgstr "Cache alt grafik for en mere flydende Kodi oplevelse"
+
+# Plex TV Settings - Artwork
+msgctxt "#30513"
+msgid "Limit artwork cache threads (recommended for rpi)"
+msgstr "Begræns tråde til grafikcaching (anbefalet på RPI)"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30514"
+msgid "Show all Plex extras instead of immediately playing trailers"
+msgstr "Vis alle Plex extras istedet for at afspille trailere med det samme"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30515"
+msgid "Maximum items to request from the server at once"
+msgstr "Maksimale elementer til at anmode serveren på én gang"
+
+# Plex TV Settings, category name
+msgctxt "#30516"
+msgid "Playback"
+msgstr "Afspilning"
+
+# Plex TV Settings - Connection
+msgctxt "#30517"
+msgid "Set network credentials for Direct Paths and direct play"
+msgstr "Sæt netværkslegitimationsoplysninger til Direct Paths og Direct Play"
+
+# Plex TV Settings - Playback
+msgctxt "#30518"
+msgid "Enable Plex Trailers (Plexpass is needed)"
+msgstr "Aktivér Plex trailere (Plexpass er nødvendig)"
+
+# Plex TV Settings - Playback
+msgctxt "#30519"
+msgid "Ask to play trailers"
+msgstr "Bed om at afspille trailere"
+
+# Plex TV Settings - Plex
+msgctxt "#30520"
+msgid "Skip PMS delete confirmation (use at your own risk)"
+msgstr "Spring over bekræftelse af sletning på PMS (brug på egen varsel)"
+
+# Plex TV Settings - Playback
+msgctxt "#30521"
+msgid "Jump back on resume (in seconds)"
+msgstr "Spring tid tilbage (i sekunder)"
+
+# Plex TV Settings - Playback
+msgctxt "#30522"
+msgid "Force transcode h265/HEVC"
+msgstr "Transcode h265/HEVC"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30523"
+msgid "Also show sync progress for playstate and user data"
+msgstr "Vis også synkronseringsproces for playstate og brugerdata"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30524"
+msgid "Select Plex libraries to sync"
+msgstr "Vælg Plex biblioteker der skal synkroniseres"
+
+# Plex TV Settings - Playback
+msgctxt "#30525"
+msgid "Skip intro"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30527"
+msgid "Ignore specials in next episodes"
+msgstr "Ignorere ekstra i næste episoder"
+
+msgctxt "#30528"
+msgid "Permanent users to add to the session"
+msgstr "Faste brugere at føje til samlingen"
+
+# Plex TV Settings - Advanced
+msgctxt "#30529"
+msgid "Startup delay (in seconds)"
+msgstr "Start forsinkelse (i sekunder)"
+
+msgctxt "#30531"
+msgid "Enable new content notification"
+msgstr "Aktivere nyt indhold notifikationer"
+
+msgctxt "#30532"
+msgid "Duration of the video library pop up (in seconds)"
+msgstr "Varigheden af den video bibliotek pop op (i sekunder)"
+
+msgctxt "#30533"
+msgid "Duration of the music library pop up (in seconds)"
+msgstr "Varigheden af den musikbibliotek pop op (i sekunder)"
+
+msgctxt "#30534"
+msgid "Server messages"
+msgstr "Server beskeder"
+
+# Plex TV Settings - Advanced
+msgctxt "#30535"
+msgid "Generate a new unique Plex device Id (e.g. to clone Kodi)"
+msgstr "Generér et nyt Plex enhedsid (f.eks. til kloning af Kodi)"
+
+# Plex TV Settings - Connection
+msgctxt "#30536"
+msgid "Users must log in every time Kodi restarts"
+msgstr "Brugerne skal logge ind hver gang Kodi genstarter"
+
+# Plex TV Settings warning
+msgctxt "#30537"
+msgid "RESTART KODI IF YOU MAKE ANY CHANGES"
+msgstr "GENSTART KODI, HVIS DU FORETAGER ÆNDRINGER"
+
+# Plex TV Settings warning
+msgctxt "#30538"
+msgid "Manual complete reset of Kodi database necessary, see \"Advanced\""
+msgstr ""
+"Manuel fuldstændig nulstilling af Kodi databasen er nødvendig - se "
+"\"advanceret\""
+
+# Plex TV Settings - Artwork
+msgctxt "#30539"
+msgid "Download additional art from FanArtTV"
+msgstr "Hent yderligere info fra FanArtTV"
+
+# Plex TV Settings - Artwork
+msgctxt "#30540"
+msgid "Download movie set/collection art from FanArtTV"
+msgstr "Download film sæt/samling info fra FanArtTV"
+
+# Plex TV Settings - Playback
+msgctxt "#30541"
+msgid "Transcoding: Auto-pick audio and subtitle stream using Plex defaults"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30542"
+msgid "Always pick best quality for trailers"
+msgstr "Altid vælge bedste kvalitet til anhængere"
+
+# Plex TV Settings - Artwork
+msgctxt "#30543"
+msgid "Prefer Kodi artwork for collections/sets"
+msgstr "Foretræk Kodi grafik til samlinger"
+
+msgctxt "#30544"
+msgid "Artwork"
+msgstr "Illustrationer"
+
+# Plex TV Settings - Playback
+msgctxt "#30545"
+msgid "Force transcode pictures"
+msgstr "Transcode billeder"
+
+# Welcome to Plex notification
+msgctxt "#33000"
+msgid "Welcome"
+msgstr "Velkommen!"
+
+# Error message
+msgctxt "#33001"
+msgid "Error connecting"
+msgstr "Fejl forbindelse"
+
+# Error message
+msgctxt "#33002"
+msgid "Server is unreachable"
+msgstr "Serveren er ikke tilgængelig"
+
+# Plex notification
+msgctxt "#33003"
+msgid "Server is online"
+msgstr "Serveren er online"
+
+# Plex notification when we need to transcode
+msgctxt "#33004"
+msgid "PMS enforced transcoding"
+msgstr ""
+
+# Plex notification when we need to use direct streaming (instead of
+# transcoding)
+msgctxt "#33005"
+msgid "PMS enforced direct streaming"
+msgstr ""
+
+# Error notification
+msgctxt "#33009"
+msgid "Invalid username or password"
+msgstr "Forkert brugernavn eller password"
+
+msgctxt "#33010"
+msgid "User is unauthorized for server {0}"
+msgstr "Bruger er uautoriseret på server {0}"
+
+msgctxt "#33011"
+msgid "Plex.tv did not provide us a valid list of Plex users, sorry."
+msgstr "Plex.tv gav os ikke en gyldig liste af Plexbrugere, beklager."
+
+# Dialog before playback
+msgctxt "#33013"
+msgid "Choose the audio stream"
+msgstr "Vælg lyd-stream"
+
+# Dialog before playback
+msgctxt "#33014"
+msgid "Choose the subtitles stream"
+msgstr "Vælg undertekster stream"
+
+# Dialog before playback
+msgctxt "#33016"
+msgid "Play trailers?"
+msgstr "afspil trailere?"
+
+# Error message
+msgctxt "#33032"
+msgid ""
+"Failed to generate a new device Id. See your logs for more information."
+msgstr ""
+"Det lykkedes ikke at generere en nyt enheds Id. Se dine logfiler for flere "
+"oplysninger."
+
+# Pop-up informing about Kodi restart
+msgctxt "#33033"
+msgid "Kodi will now restart to apply the changes."
+msgstr "Kodi vil nu genstarte for at gemme ændringer."
+
+# Confirmation dialog before item gets deleted from the PMS
+msgctxt "#33041"
+msgid ""
+"Delete file(s) from Plex Server? This will also delete the file(s) from "
+"disk!"
+msgstr ""
+"Slette fil(er) fra Plex Server? Dette vil også slette filen/filerne fra "
+"disken!"
+
+# Plex TV Settings - Playback
+msgctxt "#39000"
+msgid "- Number of trailers to play before a movie"
+msgstr "-Antallet af trailere før afspilning af en film"
+
+# Plex TV Settings - Playback
+msgctxt "#39001"
+msgid "Boost audio when transcoding"
+msgstr "Øge lyd når transcoding"
+
+# Plex TV Settings - Playback
+msgctxt "#39002"
+msgid "Burnt-in subtitle size"
+msgstr "Undertekst størrelse"
+
+# Plex TV Settings - Sync
+msgctxt "#39003"
+msgid "Number of simultaneous download threads"
+msgstr "Nummer af samtidige downloadtråde"
+
+# Plex TV Settings - Plex
+msgctxt "#39004"
+msgid "Enable Plex Companion (restart Kodi!)"
+msgstr "Aktivere Plex ledsager (genstart Kodi!)"
+
+# Plex TV Settings - Plex
+msgctxt "#39005"
+msgid "Plex Companion Port (change only if needed)"
+msgstr "Plex ledsager Port (ændring kun hvis nødvendigt)"
+
+# Plex TV Settings - Plex
+msgctxt "#39008"
+msgid "Plex Companion: Allows flinging media to Kodi through Plex"
+msgstr "Plex ledsager: Tillad skift af medier til Kodi gennem Plex"
+
+# Error message
+msgctxt "#39009"
+msgid "Could not login to plex.tv. Please try signing in again."
+msgstr "Kunne ikke logge ind på plex.tv. Prøv at logge igen."
+
+# Error message
+msgctxt "#39010"
+msgid "Problems connecting to plex.tv. Network or internet issue?"
+msgstr ""
+"Problemer med at forbinde til plex.tv. Netværk eller internet problem?"
+
+# Error message
+msgctxt "#39011"
+msgid "Could not find any Plex server in the network. Aborting..."
+msgstr "Kunne ikke finde nogen Plex serveren i netværket. Afbryder..."
+
+# Dialog text for choosing PMS
+msgctxt "#39012"
+msgid "Choose your Plex server"
+msgstr "Vælg din Plex server"
+
+# Error message
+msgctxt "#39013"
+msgid "Not yet authorized for Plex server "
+msgstr "Endnu ikke godkendt til Plex server "
+
+# Error message
+msgctxt "#39014"
+msgid "Please sign in to plex.tv."
+msgstr "Venligst log på plex.tv."
+
+# Error message
+msgctxt "#39015"
+msgid "Problems connecting to server. Pick another server?"
+msgstr "Problemer med at forbinde til serveren. Vælg en anden server?"
+
+# Pop-up on initial sync
+msgctxt "#39016"
+msgid ""
+"Disable Plex music library? (It is HIGHLY recommended to use Plex music only"
+" with direct paths for large music libraries. Kodi might crash otherwise)"
+msgstr ""
+"Deaktivere Plex musikbibliotek? (Det anbefales at bruge Plex musik med "
+"direkte adgang til store musikbiblioteker. Kodi kan gå ned, ellers)"
+
+# Pop-up on initial sync
+msgctxt "#39017"
+msgid ""
+"Would you now like to go to the plugin's settings to fine-tune Plex TV? You will"
+" need to RESTART Kodi!"
+msgstr ""
+"Ønsker du at finjustere Plex TV nu, gå til plugins for dette. Du skal genstarte "
+"Kodi!"
+
+# Plex TV Settings - Advanced
+msgctxt "#39018"
+msgid "Repair the Kodi database (force update all content)"
+msgstr "Reparér Kodi databasen (gennemtvinger opdatering af al indhold)"
+
+# Plex TV Settings - Advanced
+msgctxt "#39019"
+msgid "Reset the Kodi database and optionally reset Plex TV"
+msgstr "Nulstil Kodi databasen og valgfri nulstilling af Plex TV"
+
+# Plex TV Settings - Artwork
+msgctxt "#39020"
+msgid "Cache all images to Kodi texture cache now"
+msgstr "Cache alle billeder til Kodi texturecache nu"
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39022"
+msgid "local"
+msgstr "lokal"
+
+# Error message
+msgctxt "#39023"
+msgid "Failed to authenticate. Did you login to plex.tv?"
+msgstr "Kunne ikke godkendes. Loggede du ind på plex.tv?"
+
+# Plex TV Settings - Plex
+msgctxt "#39025"
+msgid "Automatically log into plex.tv on startup"
+msgstr "Automatisk log ind på plex.tv ved start"
+
+# Plex TV Settings - Sync
+msgctxt "#39026"
+msgid "Enable constant background sync"
+msgstr "Aktivere konstant baggrund sync"
+
+# Pop-up on initial sync
+msgctxt "#39028"
+msgid ""
+"CAUTION! If you choose \"Native\" mode , you might loose access to certain "
+"Plex features such as: Plex trailers and transcoding options. ALL Plex "
+"shares need to use direct paths (e.g. smb://myNAS/mymovie.mkv or "
+"\\\\myNAS/mymovie.mkv)!"
+msgstr ""
+"ADVARSEL: Hvis du vælger \"indbygget\"-tilstand, mister du muligvis adgang "
+"til bestemte Plex funktioner, såsom: Plex trailere og transcoding "
+"indstillinger. All Plex shares skal bruge direct paths, (f.eks. "
+"smb://myNAS/mymovie.mkv eller \\\\myNAS/mymovie.mkv)!"
+
+# Pop-up on initial sync
+msgctxt "#39029"
+msgid "Network credentials"
+msgstr "Legitimationsoplysninger til netværket"
+
+# Pop-up on initial sync
+msgctxt "#39030"
+msgid ""
+"Add network credentials to allow Kodi access to your content? Note: Skipping"
+" this step may generate a message during the initial scan of your content if"
+" Kodi can't locate your content."
+msgstr ""
+"Tilføje legitimationsoplysninger til netværket for at tillade Kodi adgang "
+"til dit indhold? Bemærk: Springes dette trin over kan det generere en "
+"meddelelse under den første scanning af dit indhold hvis Kodi ikke kan finde"
+" dit indhold."
+
+# Error message displayed when verifying Direct Path sync paths passed by Plex
+msgctxt "#39031"
+msgid ""
+"Kodi cannot locate the file %s. Please verify your Plex TV settings. Stop "
+"syncing?"
+msgstr ""
+"Kodi kan ikke finde filen %s. Bekræft venligst dine Plex TV indstillinger - stop"
+" synkronisering?"
+
+# Pop-up on initial sync
+msgctxt "#39033"
+msgid ""
+"Transform Plex UNC library paths \\\\myNas\\mymovie.mkv automatically to smb"
+" paths, smb://myNas/mymovie.mkv? (recommended)"
+msgstr ""
+"Omdan Plex UNC bibliotekstier \\\\myNAS\\mymovie.mkv automatisk til SMB "
+"stier, smb://myNas/mymovie.mkv? (anbefalet)"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39034"
+msgid "Replace Plex UNC paths \\\\myNas with smb://myNas"
+msgstr "Erstat Plex UNC stier \\\\myNas med smb://myNas"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39035"
+msgid ""
+"Replace Plex paths /volume1/media or \\\\myserver\\media with custom SMB "
+"paths smb://NAS/mystuff"
+msgstr ""
+"Erstat Plex stier /volume1/media eller \\\\myserver\\media med "
+"brugerdefinerede SMB stier smb://NAS/mystuff"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39036"
+msgid "Escape special characters in path (e.g. space to %20)"
+msgstr "Escape special characters in path (e.g. space to %20)"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39090"
+msgid "Safe characters for http(s), dav(s) and (s)ftp urls"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39037"
+msgid "Original Plex MOVIE path to replace:"
+msgstr "Oprindelige Plex film sti erstattes:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39038"
+msgid "Replace Plex MOVIE with:"
+msgstr "Erstatte Plex film med:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39039"
+msgid "Original Plex TV SHOWS path to replace:"
+msgstr "Oprindelige Plex TV shows sti erstattes:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39040"
+msgid "Replace Plex TV SHOWS with:"
+msgstr "Erstatte Plex TV SHOWS med:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39041"
+msgid "Original Plex MUSIC path to replace:"
+msgstr "Oprindelige Plex musik sti erstattes:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39042"
+msgid "Replace Plex MUSIC with:"
+msgstr "Erstatte Plex musik med:"
+
+# Pop-up on initial sync
+msgctxt "#39043"
+msgid ""
+"Go a step further and completely replace all original Plex library paths "
+"(/volume1/media) with custom SMB paths (smb://NAS/MyStuff)?"
+msgstr ""
+"Gå et skridt videre og erstat alle oprindelige Plex bibliotek stier (/ "
+"volume1/media) med brugerdefinerede SMB-stier (smb://NAS/MyStuff)?"
+
+# Pop-up on initial sync
+msgctxt "#39044"
+msgid ""
+"Please enter your custom smb paths in the settings under \"Sync Options\" "
+"and then restart Kodi"
+msgstr ""
+"Indtast venligst din brugerdefinerede smb stier i indstillingerne under "
+"\"synkroniseringsindstillinger\" og derefter genstarte Kodi"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39045"
+msgid "Original Plex PHOTO path to replace:"
+msgstr "Oprindelige Plex Foto sti erstattes:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39046"
+msgid "Replace Plex PHOTO with:"
+msgstr "Erstatte Plex foto med:"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39047"
+msgid "On Deck: Append show title to episode"
+msgstr "Senest tilføjet:  Vis titel til episode"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39048"
+msgid "On Deck: Append season- and episode-number SxxExx"
+msgstr "Senest tilføjet: Føj sæson - og episode-nummer SxxExx"
+
+# Plex TV Settings - Advanced
+msgctxt "#39049"
+msgid "Nothing works? Try a full reset!"
+msgstr "Intet virker? Prøv en fuld reset!"
+
+# Plex TV Settings - Connection
+msgctxt "#39050"
+msgid "Choose Plex Server from a list"
+msgstr "Vælg Plex server fra en liste"
+
+# Plex TV Settings - Sync
+msgctxt "#39051"
+msgid "Wait before sync new/changed PMS item [s]"
+msgstr "Vente før sync af nye/ændrede PMS element [s]"
+
+# Plex TV Settings - Sync
+msgctxt "#39052"
+msgid "Background Sync"
+msgstr "Baggrundssynkronisering"
+
+# Plex TV Settings - Sync
+msgctxt "#39053"
+msgid "Do a full library sync every x minutes"
+msgstr "Kør en fuld bibliotek synkronisering hvert x minut"
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39054"
+msgid "remote"
+msgstr "Fjern adgang"
+
+# Notification pop-up
+msgctxt "#39055"
+msgid "Searching for Plex Server"
+msgstr "Søg efter Plex Server"
+
+# Plex TV Settings - Customize paths
+msgctxt "#39056"
+msgid ""
+"Used by sync and when attempting Direct Paths. Restart Kodi on changes!"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39057"
+msgid "Customize Paths"
+msgstr "Tilpasse stier"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39059"
+msgid "Recently Added: Append show title to episode"
+msgstr "Senest tilføjet: Føj Vis titel til episode"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39060"
+msgid "Recently Added: Append season- and episode-number SxxExx"
+msgstr "Senest tilføjet: Føj sæson - og episode-nummer SxxExx"
+
+# Pop-up during initial sync
+msgctxt "#39061"
+msgid ""
+"Would you like to download additional artwork from FanArtTV in the "
+"background?"
+msgstr ""
+"Ønsker du at downloade ekstra illustrationer fra FanArtTV i baggrunden?"
+
+# Plex TV Settings - Sync
+msgctxt "#39062"
+msgid "Sync when screensaver is deactivated"
+msgstr "Sync når screensaver er deaktiveret"
+
+# Plex TV Settings - Playback
+msgctxt "#39063"
+msgid "Force Transcode Hi10P"
+msgstr "Transcode Hi10P"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39064"
+msgid "Recently Added: Also show already watched episodes"
+msgstr "Senest tilføjet: Vis allerede set episoder"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39065"
+msgid "Force-refresh Kodi skin on stopping playback"
+msgstr "Gennemtving genindlæsning af Kodi skin når afspilning stopper"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39066"
+msgid "Recently Added: Also show already watched movies"
+msgstr "Nyligt tilføjede: Vis også allerede sete film"
+
+# Plex TV Settings - Connection
+msgctxt "#39067"
+msgid "Your current Plex Media Server:"
+msgstr "Din nuværende Plex Media Server:"
+
+# Plex TV Settings - Connection
+msgctxt "#39068"
+msgid "Manually enter Plex Media Server address"
+msgstr "Indtast IP-adresse på Plex Media Server manuelt"
+
+# Plex TV Settings - Connection
+msgctxt "#39069"
+msgid "Current address:"
+msgstr "Nuværende adresse:"
+
+# Plex TV Settings - Connection
+msgctxt "#39070"
+msgid "Current port:"
+msgstr "Nuværende port:"
+
+# Plex TV Settings - Connection
+msgctxt "#39071"
+msgid "Current plex.tv status:"
+msgstr "Nuværende plex.tv status:"
+
+# Plex TV Settings - Connection
+msgctxt "#39072"
+msgid "Background sync connection:"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39073"
+msgid "Appearance Tweaks"
+msgstr "Udseende Tweaks"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39074"
+msgid "TV Shows"
+msgstr "TV-udsendelser"
+
+# Plex TV Settings - Sync
+msgctxt "#39075"
+msgid "Verify access to media files while synching"
+msgstr ""
+
+# Pop-up during initial sync
+msgctxt "#39076"
+msgid ""
+"If you use several Plex libraries of one kind, e.g. \"Kids Movies\" and "
+"\"Parents Movies\", be sure to check the Wiki: https://goo.gl/JFtQV9"
+msgstr ""
+"Hvis du bruger flere Plex biblioteker af en slags, fx \"Kids film\" og "
+"\"Forældre film\", skal du kontrollere Wiki: https://goo.gl/JFtQV9"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39077"
+msgid "Maximum number of videos to show in widgets"
+msgstr "Maximum antal af videoer vist i widgets"
+
+# Plex TV Settings - Plex
+msgctxt "#39078"
+msgid "Plex Companion Update Port (change only if needed)"
+msgstr "Plex ledsager opdaterede Port (ændring kun hvis nødvendigt)"
+
+# Error message
+msgctxt "#39079"
+msgid ""
+"Plex Companion could not open the GDM port. Please change it in the Plex TV "
+"settings."
+msgstr ""
+"Plex ledsager kunne ikke åbne GDM port. Du kan ændre den i Plex TV "
+"indstillinger."
+
+# Pop-up on initial sync.
+# Check that next translations for Add-on Paths and Direct Paths are
+# identical!
+msgctxt "#39080"
+msgid ""
+"Use Add-on Paths (default, easy) or Direct Paths? Choose Add-on Paths if "
+"you're unsure. Plex TV will not work if your Direct Paths setup is wrong!"
+msgstr ""
+"Brug Add-on Paths (standard, nemt) eller Direct Paths? Vælg Add-on Paths "
+"hvis du er usikker. Plex TV vil ikke fungerer hvis Direct Path er sat forkert "
+"op!"
+
+# Button text for choosing Plex TV mode
+msgctxt "#39081"
+msgid "Add-on Paths"
+msgstr "Add-on Paths"
+
+# Button text for choosing Plex TV mode
+msgctxt "#39082"
+msgid "Direct Paths"
+msgstr "Direct Paths"
+
+# Dialog for manually entering PMS
+msgctxt "#39083"
+msgid "Enter PMS IP or URL"
+msgstr "PMS IP eller URL"
+
+# Dialog for manually entering PMS
+msgctxt "#39084"
+msgid "Enter PMS port"
+msgstr "PMS port"
+
+# Plex TV settings - Appearance Tweaks
+msgctxt "#39085"
+msgid "Reload Kodi node files to apply all the settings below"
+msgstr ""
+"Reload Kodi node filer for alle indstillinger\n"
+"nedeunder"
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39089"
+msgid "Alexa connection status:"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39091"
+msgid "Timeout - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39092"
+msgid "IOError - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39093"
+msgid "Suspended - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39094"
+msgid "Managed Plex User - not connected"
+msgstr ""
+
+msgctxt "#39200"
+msgid "Log-out Plex Home User "
+msgstr "Log ud Plex hjemme bruger "
+
+msgctxt "#39201"
+msgid "Settings"
+msgstr "Indstillinger"
+
+msgctxt "#39204"
+msgid "Perform manual library sync"
+msgstr "Udføre manuel bibliotek synkronisering"
+
+# Error message
+msgctxt "#39205"
+msgid "Unable to run the sync, the add-on is not connected to a Plex server."
+msgstr ""
+"Ude af stand til at køre synkroniseringen, add-on er ikke forbundet med en "
+"Plex server."
+
+msgctxt "#39206"
+msgid ""
+"Plex might lock your account if you fail to log in too many times. Proceed "
+"anyway?"
+msgstr ""
+"Plex kan låse din konto, hvis dit login forsøg fejler for mange gange. Vil "
+"du fortsætte alligevel?"
+
+msgctxt "#39207"
+msgid "Resetting PMS connections, please wait"
+msgstr "Nulstille PMS forbindelser, vent"
+
+msgctxt "#39208"
+msgid "Failed to reset Plex TV. Try to restart Kodi."
+msgstr "Undladt at nulstille Plex TV. Prøv at genstarte Kodi."
+
+# Plex TV Settings - Plex
+msgctxt "#39209"
+msgid "Toggle plex.tv login (sign in or sign out)"
+msgstr "Igangsæt plex.tv login (log ind eller log ud)"
+
+msgctxt "#39210"
+msgid "Not yet connected to Plex Server"
+msgstr "Endnu ikke forbundet med Plex Server"
+
+msgctxt "#39211"
+msgid "Watch later"
+msgstr "Se senere"
+
+# Error message pop-up if {0} cannot be contacted. {0} will be replaced by
+# e.g. the PMS' name
+msgctxt "#39213"
+msgid "{0} offline"
+msgstr "{0} Offline"
+
+msgctxt "#39215"
+msgid "Enter your Plex Media Server's IP or URL, Examples are:"
+msgstr "Indtast din Plex Media Server IP eller URL, eksempler er:"
+
+msgctxt "#39217"
+msgid "Use HTTPS (SSL) connections? Answer should probably be yes."
+msgstr ""
+
+msgctxt "#39218"
+msgid "Error contacting PMS"
+msgstr "Fejl ved oprettelse af forbindelse til PMS"
+
+msgctxt "#39219"
+msgid "Abort (Yes) or save address anyway (No)?"
+msgstr "Afbryde (ja) eller gemme adresse alligevel (Nej)?"
+
+# String attached at the end to get something like "PMS Name is offline"
+msgctxt "#39220"
+msgid "connected"
+msgstr "Tilsluttet"
+
+msgctxt "#39221"
+msgid "plex.tv toggle successful"
+msgstr "Plex.tv skift vellykket"
+
+msgctxt "#39222"
+msgid "Look for missing fanart on FanartTV now"
+msgstr "Søg efter manglende fanart på FanartTV nu"
+
+msgctxt "#39223"
+msgid ""
+"Only look for missing fanart or refresh all fanart? The scan will take quite"
+" a while and happen in the background."
+msgstr ""
+"Søg kun efter manglende fanart eller Opdater alle fanart? Scanningen vil "
+"tage lang tid og sker i baggrunden."
+
+msgctxt "#39224"
+msgid "Refresh all"
+msgstr "Opdater alle"
+
+msgctxt "#39225"
+msgid "Missing only"
+msgstr "Mangler kun"
+
+# Message in the Plex TV settings if user has not logged in to plex.tv
+msgctxt "#39226"
+msgid "Not logged in to plex.tv"
+msgstr "Ikke logget på plex.tv"
+
+# Message in the Plex TV settings if user is logged in to plex.tv
+msgctxt "#39227"
+msgid "Logged in to plex.tv"
+msgstr "Logget på plex.tv"
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39228"
+msgid "Plex admin user"
+msgstr "Plex admin bruger"
+
+# Error message if user could not log in; the actual user name will be
+# appended at the end of the string
+msgctxt "#39229"
+msgid "Login failed with plex.tv for user"
+msgstr "Login fejlede med plex.tv for bruger"
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39230"
+msgid "Logged in Plex home user"
+msgstr "Log ind Plex home bruger"
+
+# Message in the Plex TV settings to change the logged in Plex home user
+msgctxt "#39231"
+msgid "Change logged in Plex home user"
+msgstr "Ændre loggede ind Plex home brugere"
+
+msgctxt "#39250"
+msgid ""
+"Running the image cache process can take some time. It will happen in the "
+"background. Are you sure you want continue?"
+msgstr ""
+"Kører image cache-processen kan tage lidt tid. Det sker i baggrunden. Er du "
+"sikker på du vil fortsætte?"
+
+msgctxt "#39251"
+msgid "Reset all existing cache data first?"
+msgstr "Nulstille alle eksisterende cache data først?"
+
+msgctxt "#39303"
+msgid "Problems trying to contact plex.tv. Try again later"
+msgstr "Problemer med at kontakte plex.tv. Prøv igen senere"
+
+msgctxt "#39304"
+msgid "Go to https://plex.tv/pin and enter the code: "
+msgstr "Gå til https://plex.tv/pin og Indtast koden: "
+
+msgctxt "#39305"
+msgid "Could not sign in to plex.tv. Try again later"
+msgstr "Kunne ikke logge på plex.tv, forsøg venligst igen senere"
+
+msgctxt "#39306"
+msgid ": Select User"
+msgstr ": Vælg bruger"
+
+msgctxt "#39307"
+msgid "Enter PIN for user "
+msgstr "Indtast PIN-kode for bruger "
+
+msgctxt "#39308"
+msgid "Could not log in user "
+msgstr "Kunne ikke logge brugeren på "
+
+msgctxt "#39309"
+msgid "Please try again."
+msgstr "Forsøg venligst igen."
+
+msgctxt "#39310"
+msgid "unknown"
+msgstr "Ukendt"
+
+msgctxt "#39311"
+msgid "or press No to not sign in."
+msgstr "eller tryk på Nej for ikke at logge på."
+
+msgctxt "#39400"
+msgid ""
+"Library sync thread has crashed. You should restart Kodi now. Please report "
+"this on the forum"
+msgstr ""
+"Biblioteket sync tråd er gået ned. Du skal genstarte Kodi nu. Bedes du "
+"rapportere det på forum"
+
+msgctxt "#39401"
+msgid ""
+"Detected Kodi database needs to be recreated for this version. This might "
+"take a while. Proceed?"
+msgstr ""
+"Registreret database skal genskabes i denne version af Emby for Kodi. Vil du"
+" fortsætte?"
+
+msgctxt "#39402"
+msgid " may not work correctly until the database is reset."
+msgstr " kan ikke fungerer korrekt indtil databasen bliver nulstillet."
+
+msgctxt "#39403"
+msgid ""
+"The current Kodi version is not supported by Plex TV. Please consult the Plex "
+"forum."
+msgstr ""
+"Den nuværende Kodi version er ikke understøttet af Plex TV. Hør Plex forummet "
+"ad."
+
+msgctxt "#39405"
+msgid "Plex playlists/nodes refreshed"
+msgstr "Plex afspilningslister/noder opdateret"
+
+msgctxt "#39406"
+msgid "Plex playlists/nodes refresh failed"
+msgstr "Plex afspilningslister/noder opdatering mislykkedes"
+
+msgctxt "#39408"
+msgid ""
+"Sync had to skip some items because they could not be processed. Kodi may be"
+" instable now!! Please post your Kodi logs to the Plex forum."
+msgstr ""
+"Sync måtte springe nogle emner, fordi de ikke kunne behandles. Kodi kan være"
+" ustabilt nu!! Bedes du sende dine Kodi logfiler til Plex forumet."
+
+msgctxt "#39409"
+msgid ""
+"The Plex Server did not like you asking for so much data at once and "
+"returned ERRORS. Try lowering the number of sync download threads in the "
+"settings. Skipped some items for now."
+msgstr ""
+"Plex-serveren kunne ikke lide du beder om så meget data på én gang og "
+"returnerede fejl. Prøv at sænke antallet af sync download tråde i "
+"indstillingerne. Spring nogle emner over for nu."
+
+msgctxt "#39410"
+msgid "ERROR in library sync"
+msgstr "FEJL i bibliotek synkronisering"
+
+msgctxt "#39500"
+msgid "On Deck"
+msgstr "Igangværende"
+
+msgctxt "#39501"
+msgid "Collections"
+msgstr "Samlinger"
+
+msgctxt "#39502"
+msgid "Plex TV On Deck (faster)"
+msgstr "Plex TV On Deck (hurtigere)"
+
+msgctxt "#39600"
+msgid ""
+"Are you sure you want to reset your local Kodi database? A re-sync of the "
+"Plex data will take time afterwards."
+msgstr ""
+"Vil du nulstille dine lokale Kodi database? Synkroniser Plex data igen vil "
+"tage tid bagefter."
+
+msgctxt "#39601"
+msgid "Could not stop the database from running. Please try again later."
+msgstr "Kunne ikke stoppe den kørende database. Prøv igen senere."
+
+msgctxt "#39603"
+msgid ""
+"Reset all Plex TV Addon settings? (this is usually NOT recommended "
+"and unnecessary!)"
+msgstr ""
+"Nulstil alle indstillinger for Plex TV Addon? (dette er normalt ikke"
+" anbefalet og unødvendigt!)"
+
+msgctxt "#39700"
+msgid "Amazon Alexa (Voice Recognition)"
+msgstr "Amazon Alexa (Stemme genkendelse)"
+
+msgctxt "#39701"
+msgid "Activate Alexa"
+msgstr "Aktivere Alexa"
+
+msgctxt "#39702"
+msgid "Browse by folder"
+msgstr "Søg via mappe"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Summary
+msgctxt "#39703"
+msgid "Native Integration of Plex into Kodi"
+msgstr "Indbygget Integration af Plex i Kodi"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Description
+msgctxt "#39704"
+msgid ""
+"Connect Kodi to your Plex Media Server. This plugin assumes that you manage "
+"all your videos with Plex (and none with Kodi). You might lose data already "
+"stored in the Kodi video and music databases (as this plugin directly "
+"changes them). Use at your own risk!"
+msgstr ""
+"Tilslut Kodi til din Plex Media Server. Dette plugin forudsætter, at du "
+"administrere alle dine videoer med Plex (og ikke med Kodi). Du kan miste "
+"data som allerede er gemt i Kodi video og musik-databaser (dette plugin "
+"ændrer direkte i dem). Brug på eget ansvar!"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Disclaimer
+msgctxt "#39705"
+msgid "Use at your own risk"
+msgstr "Brug på eget ansvar"
+
+# If user gets prompted to choose between several subtitles to burn in
+msgctxt "#39706"
+msgid "Don't burn-in any subtitle"
+msgstr ""
+
+# If user gets prompted to choose between several audio/subtitle tracks and
+# language is unknown
+msgctxt "#39707"
+msgid "unknown"
+msgstr "ukendt"
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "default" flag
+msgctxt "#39708"
+msgid "Default"
+msgstr "Default"
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "forced" flag
+msgctxt "#39709"
+msgid "Forced"
+msgstr "Tvunget"
+
+# If user gets prompted to choose between several subtitles the subtitle
+# cannot be downloaded (has no 'key' attribute from the PMS), the subtitle
+# needs to be burned in
+msgctxt "#39710"
+msgid "burn-in"
+msgstr "burn-in"
+
+# Dialog text if Plex TV detected a new Music library and Kodi needs to be
+# restarted
+msgctxt "#39711"
+msgid ""
+"New Plex music library detected. Sorry, but we need to restart Kodi now due "
+"to the changes made."
+msgstr ""
+"Nyt Plex musikbibliotek er opdaget. Beklager, men vi skal genstarte Kodi nu "
+"pga. ændringerne som er foretaget."
+
+# Shown during sync process
+msgctxt "#39712"
+msgid "downloaded"
+msgstr "downloadet"
+
+# Shown during sync process
+msgctxt "#39713"
+msgid "processed"
+msgstr "behandlet"
+
+# Shown during sync process
+msgctxt "#39714"
+msgid "Sync"
+msgstr "Synkronisér"
+
+# Shown during sync process
+msgctxt "#39715"
+msgid "Synching playlists"
+msgstr "Synkronisér playlister"
+
+# Error message if an xml, e.g. advancedsettings.xml cannot be parsed (xml is
+# screwed up; formated the wrong way). Do NOT replace {0} and {1}!
+msgctxt "#39716"
+msgid ""
+"Kodi cannot parse {0}. Plex TV will not function correctly. Please visit {1} and"
+" correct your file!"
+msgstr ""
+"Kodi kan ikke tolke {0}. Plex TV vil ikke fungerer korrekt. Tilgå {1} og ret din"
+" fil"
+
+# Shown once on first installation to comply with the terms of use of
+# themoviedb.org
+msgctxt "#39717"
+msgid "Plex TV uses free additional artwork from www.themoviedb.org. Many thanks!"
+msgstr ""
+"Plex TV bruger gratis supplerende grafik fra www.themoviedb.org - mange tak!"
+
+# Shown during very first Plex TV setup only
+msgctxt "#39718"
+msgid ""
+"Do you want to replace your custom user ratings with an indicator of how "
+"many versions of a media item you posses?"
+msgstr ""
+"Vil du erstatte din brugerdefinerede bedømmelser med en indikator for hvor "
+"mange versioner af en medieelement du har?"
+
+# In Plex TV Settings under Sync
+msgctxt "#39719"
+msgid "Replace user ratings with number of media versions"
+msgstr "Erstat brugerbedømmelser med antal af medieversioner"

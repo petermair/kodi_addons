@@ -1,0 +1,1670 @@
+#  XBMC Media Center language file
+# Translators:
+# Croneter None <croneter@gmail.com>, 2017
+# Michiel van Baak <michiel@vanbaak.info>, 2019
+# Panja0 <panja0@protonmail.com>, 2019
+# Nick Corthals <corthals.nick@gmail.com>, 2019
+# Rick van Soest <r.vansoest@gmail.com>, 2019
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex TV\n"
+"Report-Msgid-Bugs-To: croneter@gmail.com\n"
+"POT-Creation-Date: 2017-04-15 13:13+0000\n"
+"PO-Revision-Date: 2017-04-30 08:30+0000\n"
+"Last-Translator: Rick van Soest <r.vansoest@gmail.com>, 2019\n"
+"Language-Team: Dutch (Netherlands) (https://www.transifex.com/croneter/teams/73837/nl_NL/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl_NL\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+# Add-on settings
+msgctxt "#29999"
+msgid "Plex TV"
+msgstr "Plex TV"
+
+msgctxt "#30000"
+msgid "Server Address (IP)"
+msgstr "Server adres (IP)"
+
+msgctxt "#30001"
+msgid "Searching for PMS"
+msgstr "Plex Server zoeken"
+
+msgctxt "#30002"
+msgid "Preferred playback method"
+msgstr "Voorkeurs methode voor afspelen"
+
+# Warning displayed if Kodi setting is enabled. Be sure to escape the quotes
+# again! The exact wording can be found in the Kodi settings, player settings,
+# videos
+msgctxt "#30003"
+msgid ""
+"Warning: Kodi setting \"Play next video automatically\" is enabled. This "
+"could break Plex TV. Deactivate?"
+msgstr ""
+"Waarschuwing: De kodi instelling 'Automatisch volgende video afspelen' is "
+"actief. Dit kan voor problemen zorgen. Instelling deactiveren?"
+
+msgctxt "#30004"
+msgid ""
+"The Kodi webserver is needed for artwork caching. Plex TV already set a strong, "
+"random password automatically if you haven't done so already. Please confirm"
+" the next dialog that you want to enable the webserver now with Yes."
+msgstr ""
+
+msgctxt "#30005"
+msgid "Username: "
+msgstr "Gebruikersnaam: "
+
+# Sync notification displayed if there is still artwork to be cached to Kodi
+msgctxt "#30006"
+msgid "Caching %s Plex images"
+msgstr "Caching %s Plex afbeeldingen"
+
+# Sync notification displayed if syncing of major artwork is done
+msgctxt "#30007"
+msgid "Plex image caching done"
+msgstr "Cachen van Plex afbeeldingen afgerond"
+
+# Plex TV settings artwork: Enable notifications for artwork image sync
+msgctxt "#30008"
+msgid "Enable notifications for image caching"
+msgstr "Activeer notificaties voor afbeelding caching"
+
+# Plex TV settings artwork: Enable image caching during Kodi playback
+msgctxt "#30009"
+msgid "Enable image caching during Kodi playback (restart Kodi!)"
+msgstr "Afbeelding caching inschakelen tijdens Kodi weergave (herstart Kodi!)"
+
+# Plex TV settings - Artwork
+msgctxt "#30010"
+msgid "Approximate progress"
+msgstr "Geschatte voortgang"
+
+# Plex TV settings - Artwork
+msgctxt "#30011"
+msgid "Artwork left to cache:"
+msgstr "Artwork nog te cachen:"
+
+# Button text
+msgctxt "#30012"
+msgid "OK"
+msgstr "OK"
+
+msgctxt "#30013"
+msgid "Never show"
+msgstr "Nooit weergeven"
+
+# Plex TV settings category
+msgctxt "#30014"
+msgid "Connection"
+msgstr "Verbinding"
+
+# Pop-up notification if user tried to manually initiate fanart download
+msgctxt "#30015"
+msgid "Fanart download already running"
+msgstr "Het downloaden van fanart is al bezig"
+
+msgctxt "#30016"
+msgid "Device Name"
+msgstr "Apparaatnaam"
+
+# Error message
+msgctxt "#30017"
+msgid "Unauthorized for PMS"
+msgstr "Onbevoegd voor PMS"
+
+# Sync notification displayed for the number of fanart.tv lookups left
+msgctxt "#30018"
+msgid "Checking FanartTV for %s items"
+msgstr "FanartTV controleren op %s items"
+
+# Plex TV settings artwork options: status info
+msgctxt "#30019"
+msgid "FanartTV lookup completed"
+msgstr "FanartTV zoek actie voltooid"
+
+# Plex TV settings sync options
+msgctxt "#30020"
+msgid "Sync Plex playlists (reboot Kodi!)"
+msgstr "Synchroniseer Plex afspeellijsten (herstart Kodi!)"
+
+# Plex TV settings sync options
+msgctxt "#30021"
+msgid "Only sync specific Plex playlists to Kodi"
+msgstr "Synchroniseer alleen specifieke Plex afspeellijsten met Kodi"
+
+# Plex TV settings category
+msgctxt "#30022"
+msgid "Advanced"
+msgstr "Geavanceerd"
+
+# Plex TV settings sync options
+msgctxt "#30023"
+msgid "Only sync specific Kodi playlists to Plex"
+msgstr "Synchroniseer alleen specifieke Kodi afspeellijsten met Plex"
+
+msgctxt "#30024"
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgctxt "#30025"
+msgid "Display message if PMS goes offline"
+msgstr "Bericht weergeven als PMS offline gaat"
+
+# Plex TV settings sync options
+msgctxt "#30026"
+msgid "Prefix in Plex playlist name to trigger sync"
+msgstr "Voorvoegsel in Plex afspeellijst naam om synchronisatie te activeren"
+
+# Plex TV settings sync options
+msgctxt "#30027"
+msgid "Prefix in Kodi playlist name to trigger sync"
+msgstr "Voorvoegsel in Kodi afspeellijst naam om synchronisatie te activeren"
+
+# Plex TV settings artwork options: status info
+msgctxt "#30028"
+msgid "Plex TV-only image caching completed"
+msgstr "Plex TV afbeelding caching voltooid"
+
+# Warning shown when Plex TV switches to the Kodi default skin Estuary
+msgctxt "#30029"
+msgid ""
+"To ensure a smooth Plex TV experience, it is HIGHLY recommended to "
+"use Kodi's default skin \"Estuary\" for initial set-up and for possible "
+"database resets. Continue?"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Port Number"
+msgstr "Poortnummer"
+
+msgctxt "#30031"
+msgid "I own this Plex Media Server"
+msgstr "Ik beheer deze Plex Media Server"
+
+# Kodi context menu entry for movie and episode information screen
+msgctxt "#30032"
+msgid "Information"
+msgstr "Informatie"
+
+msgctxt "#30042"
+msgid "Refresh"
+msgstr "Vernieuwen"
+
+msgctxt "#30043"
+msgid "Delete"
+msgstr "Verwijderen"
+
+# Notification displayed if there is a LOT to be deleted
+msgctxt "#30052"
+msgid "Deleting"
+msgstr "Verwijderen"
+
+msgctxt "#30069"
+msgid "None"
+msgstr "Geen"
+
+msgctxt "#30093"
+msgid "Mark Watched"
+msgstr "Markeer als bekeken"
+
+msgctxt "#30094"
+msgid "Mark Unwatched"
+msgstr "Markeer als niet bekeken"
+
+msgctxt "#30095"
+msgid "Add to Favorites"
+msgstr "Toevoegen aan Favorieten"
+
+msgctxt "#30096"
+msgid "Remove from Favorites"
+msgstr "Verwijderen uit favorieten"
+
+msgctxt "#30114"
+msgid "Offer delete after playback"
+msgstr "Aanbieding verwijderen na het afspelen"
+
+msgctxt "#30115"
+msgid "For Episodes"
+msgstr "Voor Afleveringen"
+
+msgctxt "#30116"
+msgid "For Movies"
+msgstr "Voor films"
+
+msgctxt "#30125"
+msgid "Done"
+msgstr "Gedaan"
+
+# Error popup message text
+msgctxt "#30128"
+msgid "Play Error"
+msgstr "Fout bij afspelen"
+
+msgctxt "#30132"
+msgid "Warning"
+msgstr "Waarschuwing"
+
+msgctxt "#30135"
+msgid "Error"
+msgstr "Fout"
+
+msgctxt "#30138"
+msgid "Search"
+msgstr "Zoek"
+
+msgctxt "#30139"
+msgid "Enable Theme Music (Requires Restart)"
+msgstr "Inschakelen themamuziek (opnieuw opstarten noodzakelijk)"
+
+msgctxt "#30143"
+msgid "Always transcode if video bitrate is above"
+msgstr "Altijd transcoden als video bitrate hoger is dan"
+
+msgctxt "#30157"
+msgid "Enable Enhanced Images (eg CoverArt)"
+msgstr "Verbeterde afbeeldingen (bijvoorbeeld CoverArt) inschakelen"
+
+msgctxt "#30158"
+msgid "Metadata"
+msgstr "Metagegevens"
+
+msgctxt "#30160"
+msgid "Video Quality if Transcoding necessary"
+msgstr "Videokwaliteit als Transcoden nodig is"
+
+msgctxt "#30161"
+msgid "Auto-adjust transcoding quality (deactivate for Chromecast)"
+msgstr ""
+
+msgctxt "#30165"
+msgid "Direct Play"
+msgstr "Direct Play"
+
+msgctxt "#30166"
+msgid "Transcoding"
+msgstr "Transcoden"
+
+msgctxt "#30170"
+msgid "Recently Added TV Shows"
+msgstr "Onlangs toegevoegde TV-Shows"
+
+msgctxt "#30171"
+msgid "In Progress TV Shows"
+msgstr "Actieve TV-Shows"
+
+msgctxt "#30173"
+msgid "Channels"
+msgstr "Kanalen"
+
+msgctxt "#30174"
+msgid "Recently Added"
+msgstr "Onlangs toegevoegd"
+
+msgctxt "#30177"
+msgid "In Progress Movies"
+msgstr "Actieve Films"
+
+msgctxt "#30178"
+msgid "In Progress Episodes"
+msgstr "Actieve afleveringen"
+
+msgctxt "#30179"
+msgid "Next Episodes"
+msgstr "Komende afleveringen"
+
+msgctxt "#30180"
+msgid "Favorite Movies"
+msgstr "Favoriete films"
+
+msgctxt "#30181"
+msgid "Favorite Shows"
+msgstr "Favoriete tv-series"
+
+msgctxt "#30182"
+msgid "Favorite Episodes"
+msgstr "Favoriete afleveringen"
+
+msgctxt "#30189"
+msgid "Unwatched Movies"
+msgstr "Onbekeken films"
+
+msgctxt "#30198"
+msgid "Search"
+msgstr "Zoek"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30200"
+msgid ""
+"In the following window, enter the server's hostname (or IP) where your Plex"
+" media resides. Mind the case!"
+msgstr ""
+"Voer in het volgende venster de hostnaam (of IP) van de server in waar uw "
+"Plex media zich bevindt. Let op: hoofdlettergevoelig!"
+
+# For setting up direct paths and adding network credentials - input window
+# for hostname
+msgctxt "#30201"
+msgid "Enter server hostname (or IP)"
+msgstr "Voer de hostnaam van de server in (of IP)"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30202"
+msgid ""
+"In the following window, enter the network protocol you would like to use. "
+"This is likely 'smb'."
+msgstr ""
+"Voer in het volgende venster het netwerkprotocol in dat u wilt gebruiken. "
+"Dit is waarschijnlijk 'smb'."
+
+# For setting up direct paths and adding network credentials - input window
+# protocol
+msgctxt "#30203"
+msgid "Enter network protocol"
+msgstr "Voer het netwerkprotocol in"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30204"
+msgid "The hostname or IP '{0}' that you entered is not valid."
+msgstr "De hostnaam of IP '{0}' die u heeft ingevoerd is niet geldig."
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30205"
+msgid "The protocol '{0}' that you entered is not supported."
+msgstr "Het protocol '{0}' dat u hebt ingevoerd wordt niet ondersteund."
+
+# Video node naming for random e.g. movies
+msgctxt "#30227"
+msgid "Random"
+msgstr "Willekeurig"
+
+# Video node naming for e.g. movies
+msgctxt "#30230"
+msgid "Recommended"
+msgstr "Aanbevolen"
+
+msgctxt "#30235"
+msgid "Extras"
+msgstr "Extra's"
+
+msgctxt "#30243"
+msgid "Enable HTTPS"
+msgstr "HTTPS inschakelen"
+
+msgctxt "#30251"
+msgid "Recently added Home Videos"
+msgstr "Recent toegevoegde Thuis-video's"
+
+msgctxt "#30252"
+msgid "Recently added Photos"
+msgstr "Recent toegevoegde foto's"
+
+msgctxt "#30253"
+msgid "Favorite Home Videos"
+msgstr "Favoriete Thuis-Video's"
+
+msgctxt "#30254"
+msgid "Favorite Photos"
+msgstr "Favoriete foto's"
+
+msgctxt "#30255"
+msgid "Favorite Albums"
+msgstr "Favoriete Albums"
+
+msgctxt "#30256"
+msgid "Recently added Music videos"
+msgstr "Recent toegevoegde videoclips"
+
+msgctxt "#30257"
+msgid "In progress Music videos"
+msgstr "Actieve videoclips"
+
+msgctxt "#30258"
+msgid "Unwatched Music videos"
+msgstr "Ongeziene videoclips"
+
+# Plex TV settings sub category under appearance tweaks
+msgctxt "#30302"
+msgid "Movies"
+msgstr "Films"
+
+# contextmenu entry
+msgctxt "#30401"
+msgid "Plex options"
+msgstr "Plex opties"
+
+# contextmenu entry
+msgctxt "#30405"
+msgid "Add to Plex favorites"
+msgstr "Voeg toe aan Plex favorieten"
+
+# contextmenu entry
+msgctxt "#30406"
+msgid "Remove from Plex favorites"
+msgstr "Verwijderen uit Plex favorieten"
+
+# contextmenu entry
+msgctxt "#30407"
+msgid "Set custom song rating"
+msgstr "Aangepaste song beoordeling instellen"
+
+# contextmenu entry
+msgctxt "#30408"
+msgid "Plex addon settings"
+msgstr "Plex addon instellingen"
+
+# contextmenu entry
+msgctxt "#30409"
+msgid "Delete item from server"
+msgstr "Verwijderen item van server"
+
+# contextmenu entry
+msgctxt "#30410"
+msgid "Refresh this item"
+msgstr "Vernieuwen van dit item"
+
+# contextmenu entry
+msgctxt "#30412"
+msgid "Force transcode"
+msgstr "Forceer transcoden"
+
+# Error dialog text
+msgctxt "#30414"
+msgid ""
+"Could not delete the Plex item. Is item deletion enabled on the Plex Media "
+"Server?"
+msgstr ""
+"Kon het item niet verwijderen van Plex. Is het verwijderen van items "
+"ingeschakeld op de Plex Media Server?"
+
+# contextmenu entry
+msgctxt "#30415"
+msgid "Start playback via PMS"
+msgstr "Het afspelen starten via PMS"
+
+msgctxt "#30416"
+msgid "Settings for the Plex Server"
+msgstr "Instellingen voor de Plex Server"
+
+msgctxt "#30417"
+msgid ""
+"Could not change the Kodi settings file {0}. Plex TV might not work correctly. "
+"Error: {1}"
+msgstr ""
+"Kon het Kodi instellingen bestand niet wijzigen {0}. Plex TV werkt mogelijk niet"
+" correct. Fout: {1}"
+
+# Plex TV Settings - Connection
+msgctxt "#30500"
+msgid "Verify Host SSL Certificate (more secure)"
+msgstr "Controleer het Host SSL-certificaat (veiliger)"
+
+# Plex TV Settings - Connection
+msgctxt "#30501"
+msgid "Client SSL certificate"
+msgstr "SSL-clientcertificaat"
+
+# Plex TV Settings - Artwork
+msgctxt "#30502"
+msgid "Sync Plex artwork from the PMS (recommended)"
+msgstr "Synchroniseer Plex artwork van de PMS (aanbevolen)"
+
+# Message shown if SSL HTTPS certificate fails
+msgctxt "#30503"
+msgid "SSL certificate failed to validate. Please check {0} for solutions."
+msgstr ""
+"Validatie SSL certificaat niet gelukt. Controleer {0} voor oplossingen."
+
+# Plex TV Settings, category name
+msgctxt "#30506"
+msgid "Sync Options"
+msgstr "Synchronisatieopties"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30507"
+msgid "Show syncing progress"
+msgstr "Synchroniseren voortgang weergeven"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30508"
+msgid "Sync empty TV Shows"
+msgstr "Sync lege TV Shows"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30509"
+msgid "Enable Music Library"
+msgstr "Muziekbibliotheek inschakelen"
+
+msgctxt "#30510"
+msgid "Direct stream music library"
+msgstr "Direct stream muziekbibliotheek"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30511"
+msgid "Playback Mode"
+msgstr "Afspeelmodus"
+
+# Plex TV Settings - Artwork
+msgctxt "#30512"
+msgid "Cache all artwork for a smooth Kodi experience"
+msgstr "Sla alle artwork op in de cache zodat Kodi sneller reageert"
+
+# Plex TV Settings - Artwork
+msgctxt "#30513"
+msgid "Limit artwork cache threads (recommended for rpi)"
+msgstr "Beperk artwork cache threads (aanbevolen voor rpi)"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30514"
+msgid "Show all Plex extras instead of immediately playing trailers"
+msgstr "Toon alle Plex extra's in plaats van meteen trailers af te spelen"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30515"
+msgid "Maximum items to request from the server at once"
+msgstr "Maximaal aantal items om per request van de server op te halen"
+
+# Plex TV Settings, category name
+msgctxt "#30516"
+msgid "Playback"
+msgstr "Afspelen"
+
+# Plex TV Settings - Connection
+msgctxt "#30517"
+msgid "Set network credentials for Direct Paths and direct play"
+msgstr "Stel netwerk inloggegevens in voor directe paden en directe weergave"
+
+# Plex TV Settings - Playback
+msgctxt "#30518"
+msgid "Enable Plex Trailers (Plexpass is needed)"
+msgstr "Inschakelen van Plex Trailers (Plexpass is nodig)"
+
+# Plex TV Settings - Playback
+msgctxt "#30519"
+msgid "Ask to play trailers"
+msgstr "Vragen om trailers te tonen"
+
+# Plex TV Settings - Plex
+msgctxt "#30520"
+msgid "Skip PMS delete confirmation (use at your own risk)"
+msgstr ""
+"Geen confirmatie bij het verwijderen van Plex (gebruik op eigen risico)"
+
+# Plex TV Settings - Playback
+msgctxt "#30521"
+msgid "Jump back on resume (in seconds)"
+msgstr "Terugspringen bij verder kijken (in seconden)"
+
+# Plex TV Settings - Playback
+msgctxt "#30522"
+msgid "Force transcode h265/HEVC"
+msgstr "Forceer transcoden h265/HEVC"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30523"
+msgid "Also show sync progress for playstate and user data"
+msgstr ""
+"Toon ook de voortgang van de synchronisatie voor weergave status en "
+"gebruikersgegevens"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30524"
+msgid "Select Plex libraries to sync"
+msgstr "Selecteer Plex-bibliotheken om te synchroniseren"
+
+# Plex TV Settings - Playback
+msgctxt "#30525"
+msgid "Skip intro"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30527"
+msgid "Ignore specials in next episodes"
+msgstr "Specials in de volgende afleveringen negeren"
+
+msgctxt "#30528"
+msgid "Permanent users to add to the session"
+msgstr "Permanente gebruikers toe te voegen aan de sessie"
+
+# Plex TV Settings - Advanced
+msgctxt "#30529"
+msgid "Startup delay (in seconds)"
+msgstr "Opstartvertraging (in seconden)"
+
+msgctxt "#30531"
+msgid "Enable new content notification"
+msgstr "Schakel kennisgeving in nieuwe inhoud"
+
+msgctxt "#30532"
+msgid "Duration of the video library pop up (in seconds)"
+msgstr "Duur van de bibliotheek pop-up (in seconden)"
+
+msgctxt "#30533"
+msgid "Duration of the music library pop up (in seconds)"
+msgstr "Duur van de bibliotheek pop-up (in seconden)"
+
+msgctxt "#30534"
+msgid "Server messages"
+msgstr "Serverberichten"
+
+# Plex TV Settings - Advanced
+msgctxt "#30535"
+msgid "Generate a new unique Plex device Id (e.g. to clone Kodi)"
+msgstr "Genereer een nieuwe unieke Plex apparaat-id (b.v. om Kodi te klonen)"
+
+# Plex TV Settings - Connection
+msgctxt "#30536"
+msgid "Users must log in every time Kodi restarts"
+msgstr "Gebruiker moet bij elke Kodi herstart opnieuw inloggen"
+
+# Plex TV Settings warning
+msgctxt "#30537"
+msgid "RESTART KODI IF YOU MAKE ANY CHANGES"
+msgstr "BIJ AANPASSINGEN KODI HERSTARTEN"
+
+# Plex TV Settings warning
+msgctxt "#30538"
+msgid "Manual complete reset of Kodi database necessary, see \"Advanced\""
+msgstr ""
+"Handmatige volledige reset van de Kodi database noodzakelijk, zie "
+"\"Geavanceerd\""
+
+# Plex TV Settings - Artwork
+msgctxt "#30539"
+msgid "Download additional art from FanArtTV"
+msgstr "Download extra artwork van FanArtTV"
+
+# Plex TV Settings - Artwork
+msgctxt "#30540"
+msgid "Download movie set/collection art from FanArtTV"
+msgstr "Download film set/collectie artwork van FanArtTV"
+
+# Plex TV Settings - Playback
+msgctxt "#30541"
+msgid "Transcoding: Auto-pick audio and subtitle stream using Plex defaults"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30542"
+msgid "Always pick best quality for trailers"
+msgstr "Kies altijd beste kwaliteit voor trailers"
+
+# Plex TV Settings - Artwork
+msgctxt "#30543"
+msgid "Prefer Kodi artwork for collections/sets"
+msgstr "Prefereer Kodi artwork voor verzamelingen/sets"
+
+msgctxt "#30544"
+msgid "Artwork"
+msgstr "Illustraties"
+
+# Plex TV Settings - Playback
+msgctxt "#30545"
+msgid "Force transcode pictures"
+msgstr "Forceer transcoden van foto's"
+
+# Welcome to Plex notification
+msgctxt "#33000"
+msgid "Welcome"
+msgstr "Welkom"
+
+# Error message
+msgctxt "#33001"
+msgid "Error connecting"
+msgstr "Verbindingsfout"
+
+# Error message
+msgctxt "#33002"
+msgid "Server is unreachable"
+msgstr "Server is onbereikbaar"
+
+# Plex notification
+msgctxt "#33003"
+msgid "Server is online"
+msgstr "Server is online"
+
+# Plex notification when we need to transcode
+msgctxt "#33004"
+msgid "PMS enforced transcoding"
+msgstr ""
+
+# Plex notification when we need to use direct streaming (instead of
+# transcoding)
+msgctxt "#33005"
+msgid "PMS enforced direct streaming"
+msgstr ""
+
+# Error notification
+msgctxt "#33009"
+msgid "Invalid username or password"
+msgstr "Ongeldige gebruikersnaam of wachtwoord"
+
+msgctxt "#33010"
+msgid "User is unauthorized for server {0}"
+msgstr "Gebruiker is niet geautoriseerd voor server {0}"
+
+msgctxt "#33011"
+msgid "Plex.tv did not provide us a valid list of Plex users, sorry."
+msgstr ""
+"Plex.tv heeft ons geen geldige lijst van Plex gebruikers verstrekt, sorry."
+
+# Dialog before playback
+msgctxt "#33013"
+msgid "Choose the audio stream"
+msgstr "Kies het audio kanaal"
+
+# Dialog before playback
+msgctxt "#33014"
+msgid "Choose the subtitles stream"
+msgstr "Kies de ondertitels"
+
+# Dialog before playback
+msgctxt "#33016"
+msgid "Play trailers?"
+msgstr "Trailers afspelen?"
+
+# Error message
+msgctxt "#33032"
+msgid ""
+"Failed to generate a new device Id. See your logs for more information."
+msgstr ""
+"Genereren van nieuwe device id mislukt. Zie de logs voor meer informatie."
+
+# Pop-up informing about Kodi restart
+msgctxt "#33033"
+msgid "Kodi will now restart to apply the changes."
+msgstr "Kodi zal nu opnieuw opstarten om de wijzigingen toe te passen."
+
+# Confirmation dialog before item gets deleted from the PMS
+msgctxt "#33041"
+msgid ""
+"Delete file(s) from Plex Server? This will also delete the file(s) from "
+"disk!"
+msgstr ""
+"Bestand(en) van Plex Server verwijderen? Dit zal ook de bestanden van de "
+"schijf verwijderen!"
+
+# Plex TV Settings - Playback
+msgctxt "#39000"
+msgid "- Number of trailers to play before a movie"
+msgstr "- Aantal trailers voor een film afspelen"
+
+# Plex TV Settings - Playback
+msgctxt "#39001"
+msgid "Boost audio when transcoding"
+msgstr "Volume ophogen bij transcoden"
+
+# Plex TV Settings - Playback
+msgctxt "#39002"
+msgid "Burnt-in subtitle size"
+msgstr "Ondertitel grootte"
+
+# Plex TV Settings - Sync
+msgctxt "#39003"
+msgid "Number of simultaneous download threads"
+msgstr "Aantal gelijktijdige download threads"
+
+# Plex TV Settings - Plex
+msgctxt "#39004"
+msgid "Enable Plex Companion (restart Kodi!)"
+msgstr "Plex Companion inschakelen (herstart kodi!)"
+
+# Plex TV Settings - Plex
+msgctxt "#39005"
+msgid "Plex Companion Port (change only if needed)"
+msgstr "Plex Companion poort (alleen aanpassen indien nodig)"
+
+# Plex TV Settings - Plex
+msgctxt "#39008"
+msgid "Plex Companion: Allows flinging media to Kodi through Plex"
+msgstr "Plex Companion: Ondersteun afspelen van media via Kodi met Plex"
+
+# Error message
+msgctxt "#39009"
+msgid "Could not login to plex.tv. Please try signing in again."
+msgstr "Kan niet inloggen op plex.tv. Probeer opnieuw."
+
+# Error message
+msgctxt "#39010"
+msgid "Problems connecting to plex.tv. Network or internet issue?"
+msgstr ""
+"Problemen bij het verbinding met plex.tv. Netwerk of internet probleem?"
+
+# Error message
+msgctxt "#39011"
+msgid "Could not find any Plex server in the network. Aborting..."
+msgstr "Kon geen Plex servers in het netwerk vinden. Afgebroken..."
+
+# Dialog text for choosing PMS
+msgctxt "#39012"
+msgid "Choose your Plex server"
+msgstr "Kies uw Plex server"
+
+# Error message
+msgctxt "#39013"
+msgid "Not yet authorized for Plex server "
+msgstr "Nog niet ingelogd op de Plex server "
+
+# Error message
+msgctxt "#39014"
+msgid "Please sign in to plex.tv."
+msgstr "Log in op plex.tv."
+
+# Error message
+msgctxt "#39015"
+msgid "Problems connecting to server. Pick another server?"
+msgstr "Problemen bij het verbinden met de server. Kies een andere server?"
+
+# Pop-up on initial sync
+msgctxt "#39016"
+msgid ""
+"Disable Plex music library? (It is HIGHLY recommended to use Plex music only"
+" with direct paths for large music libraries. Kodi might crash otherwise)"
+msgstr ""
+"Plex muziek bibliotheek uitzetten? (Het is sterk aanbevolen om Plex muziek "
+"alleen met directe paden te gebruiken bij een grote bibliotheek. Kodi kan "
+"anders vastlopen)"
+
+# Pop-up on initial sync
+msgctxt "#39017"
+msgid ""
+"Would you now like to go to the plugin's settings to fine-tune Plex TV? You will"
+" need to RESTART Kodi!"
+msgstr "Plex TV plugin instellingen aanpassen? Kodi moet hierna herstart worden!"
+
+# Plex TV Settings - Advanced
+msgctxt "#39018"
+msgid "Repair the Kodi database (force update all content)"
+msgstr "Herstel de Kodi database (forceer update alle inhoud)"
+
+# Plex TV Settings - Advanced
+msgctxt "#39019"
+msgid "Reset the Kodi database and optionally reset Plex TV"
+msgstr "Reset de Kodi database en reset optioneel Plex TV"
+
+# Plex TV Settings - Artwork
+msgctxt "#39020"
+msgid "Cache all images to Kodi texture cache now"
+msgstr "Cache nu alle plaatjes in Kodi texture cache"
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39022"
+msgid "local"
+msgstr "lokaal"
+
+# Error message
+msgctxt "#39023"
+msgid "Failed to authenticate. Did you login to plex.tv?"
+msgstr "Authenticatie mislukt. Ingelogd bij plex.tv?"
+
+# Plex TV Settings - Plex
+msgctxt "#39025"
+msgid "Automatically log into plex.tv on startup"
+msgstr "Automatisch inloggen bij plex.tv bij het opstarten"
+
+# Plex TV Settings - Sync
+msgctxt "#39026"
+msgid "Enable constant background sync"
+msgstr "Constante achtergrond sync inschakelen"
+
+# Pop-up on initial sync
+msgctxt "#39028"
+msgid ""
+"CAUTION! If you choose \"Native\" mode , you might loose access to certain "
+"Plex features such as: Plex trailers and transcoding options. ALL Plex "
+"shares need to use direct paths (e.g. smb://myNAS/mymovie.mkv or "
+"\\\\myNAS/mymovie.mkv)!"
+msgstr ""
+"WAARSCHUWING! Als je kiest voor 'Native' mode, zal je bepaalde plex features"
+" missen. zoals: trailers en transcoding instellingen. Alle Plex paden moeten"
+" directe paden gebruiken (bijvoorbeeld smb://myNAS/mymovie.mkv of "
+"\\\\myNAS\\mymovie.mkv)!"
+
+# Pop-up on initial sync
+msgctxt "#39029"
+msgid "Network credentials"
+msgstr "Netwerk inloggegevens"
+
+# Pop-up on initial sync
+msgctxt "#39030"
+msgid ""
+"Add network credentials to allow Kodi access to your content? Note: Skipping"
+" this step may generate a message during the initial scan of your content if"
+" Kodi can't locate your content."
+msgstr ""
+"Netwerk inloggegevens toevoegen zodat Kodi bij de inhoud kan? Opmerking: "
+"Kodi zal een bericht tonen bij de eerste sync als deze stap overgeslagen "
+"word."
+
+# Error message displayed when verifying Direct Path sync paths passed by Plex
+msgctxt "#39031"
+msgid ""
+"Kodi cannot locate the file %s. Please verify your Plex TV settings. Stop "
+"syncing?"
+msgstr ""
+"Kodi kan het bestand %sniet vinden. Verifieer de Plex TV instellingen. Sync "
+"stoppen?"
+
+# Pop-up on initial sync
+msgctxt "#39033"
+msgid ""
+"Transform Plex UNC library paths \\\\myNas\\mymovie.mkv automatically to smb"
+" paths, smb://myNas/mymovie.mkv? (recommended)"
+msgstr ""
+"Vervang Plex UNC bibliotheek paden \\\\myNas\\mymovie.mkv automatisch met "
+"smb paden, smb://myNas/mymovie.mkv? (aangeraden)"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39034"
+msgid "Replace Plex UNC paths \\\\myNas with smb://myNas"
+msgstr "Vervang Plex UNC paden \\\\MyNas met smb://myNas"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39035"
+msgid ""
+"Replace Plex paths /volume1/media or \\\\myserver\\media with custom SMB "
+"paths smb://NAS/mystuff"
+msgstr ""
+"Vervang plex paden /volume1/media of \\\\myserver\\media met aangepaste SMB "
+"paden smb://NAS/mystuff"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39036"
+msgid "Escape special characters in path (e.g. space to %20)"
+msgstr "Pas speciale tekens aan in pad (b.v. spatie naar %20)"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39090"
+msgid "Safe characters for http(s), dav(s) and (s)ftp urls"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39037"
+msgid "Original Plex MOVIE path to replace:"
+msgstr "Oorspronkelijke Plex film pad om te vervangen:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39038"
+msgid "Replace Plex MOVIE with:"
+msgstr "Vervang Plex MOVIE met:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39039"
+msgid "Original Plex TV SHOWS path to replace:"
+msgstr "Vervang Plex TV SHOWS pad met:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39040"
+msgid "Replace Plex TV SHOWS with:"
+msgstr "Vervang Plex TV-SHOWS met:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39041"
+msgid "Original Plex MUSIC path to replace:"
+msgstr "Oorspronkelijke Plex muziek pad om te vervangen:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39042"
+msgid "Replace Plex MUSIC with:"
+msgstr "Vervang Plex MUZIEK met:"
+
+# Pop-up on initial sync
+msgctxt "#39043"
+msgid ""
+"Go a step further and completely replace all original Plex library paths "
+"(/volume1/media) with custom SMB paths (smb://NAS/MyStuff)?"
+msgstr ""
+"Een stap verder gaan en alle oorspronkelijke Plex bibliotheek paden (/ "
+"volume1/media) volledig vervangen door aangepaste SMB paden "
+"(smb://NAS/MyStuff)?"
+
+# Pop-up on initial sync
+msgctxt "#39044"
+msgid ""
+"Please enter your custom smb paths in the settings under \"Sync Options\" "
+"and then restart Kodi"
+msgstr ""
+"Voer uw aangepaste smb paden in de instellingen onder \"Sync Opties\" en "
+"herstart Kodi"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39045"
+msgid "Original Plex PHOTO path to replace:"
+msgstr "Oorspronkelijke Plex foto pad om te vervangen:"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39046"
+msgid "Replace Plex PHOTO with:"
+msgstr "Vervang Plex PHOTO met:"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39047"
+msgid "On Deck: Append show title to episode"
+msgstr "On Deck: Voeg show naam toe aan episode"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39048"
+msgid "On Deck: Append season- and episode-number SxxExx"
+msgstr "On Deck: Voeg seizoen en aflevering nummer toe SxxExx"
+
+# Plex TV Settings - Advanced
+msgctxt "#39049"
+msgid "Nothing works? Try a full reset!"
+msgstr "Niets werkt? Probeer een volledige reset!"
+
+# Plex TV Settings - Connection
+msgctxt "#39050"
+msgid "Choose Plex Server from a list"
+msgstr "Kies Plex server van een lijst"
+
+# Plex TV Settings - Sync
+msgctxt "#39051"
+msgid "Wait before sync new/changed PMS item [s]"
+msgstr "Tijd voordat nieuwe/gewijzigde items gesynct worden [s]"
+
+# Plex TV Settings - Sync
+msgctxt "#39052"
+msgid "Background Sync"
+msgstr "Achtergrond Sync"
+
+# Plex TV Settings - Sync
+msgctxt "#39053"
+msgid "Do a full library sync every x minutes"
+msgstr "Elke X minuten een volledige bibliotheek sync"
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39054"
+msgid "remote"
+msgstr "remote"
+
+# Notification pop-up
+msgctxt "#39055"
+msgid "Searching for Plex Server"
+msgstr "Plex Server zoeken"
+
+# Plex TV Settings - Customize paths
+msgctxt "#39056"
+msgid ""
+"Used by sync and when attempting Direct Paths. Restart Kodi on changes!"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39057"
+msgid "Customize Paths"
+msgstr "Aanpassen van paden"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39059"
+msgid "Recently Added: Append show title to episode"
+msgstr "Onlangs Toegevoegd: Voeg serie naam toe aan afleveringen"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39060"
+msgid "Recently Added: Append season- and episode-number SxxExx"
+msgstr "Onlangs Toegevoegd: Voeg seizoen en aflevering nummer toe SxxExx"
+
+# Pop-up during initial sync
+msgctxt "#39061"
+msgid ""
+"Would you like to download additional artwork from FanArtTV in the "
+"background?"
+msgstr "Extra artwork van FanArtTV in de background downloaden?"
+
+# Plex TV Settings - Sync
+msgctxt "#39062"
+msgid "Sync when screensaver is deactivated"
+msgstr "Sync als screensaver gedeactiveerd is"
+
+# Plex TV Settings - Playback
+msgctxt "#39063"
+msgid "Force Transcode Hi10P"
+msgstr "Forceer transcoden van Hi10P"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39064"
+msgid "Recently Added: Also show already watched episodes"
+msgstr "Onlangs Toegevoegd: Toon ook al bekeken afleveringen"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39065"
+msgid "Force-refresh Kodi skin on stopping playback"
+msgstr "Forceer Kodi thema reset bij afspelen stoppen"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39066"
+msgid "Recently Added: Also show already watched movies"
+msgstr "Pas toegevoegd: Toon tevens de reeds bekeken films."
+
+# Plex TV Settings - Connection
+msgctxt "#39067"
+msgid "Your current Plex Media Server:"
+msgstr "Huidige Plex Media Server:"
+
+# Plex TV Settings - Connection
+msgctxt "#39068"
+msgid "Manually enter Plex Media Server address"
+msgstr "Voer handmatig het Plex Media Server adres in"
+
+# Plex TV Settings - Connection
+msgctxt "#39069"
+msgid "Current address:"
+msgstr "Huidig adres:"
+
+# Plex TV Settings - Connection
+msgctxt "#39070"
+msgid "Current port:"
+msgstr "Huidige poort:"
+
+# Plex TV Settings - Connection
+msgctxt "#39071"
+msgid "Current plex.tv status:"
+msgstr "Huidige status van de plex.tv:"
+
+# Plex TV Settings - Connection
+msgctxt "#39072"
+msgid "Background sync connection:"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39073"
+msgid "Appearance Tweaks"
+msgstr "Uiterlijk aanpassingen"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39074"
+msgid "TV Shows"
+msgstr "TV series"
+
+# Plex TV Settings - Sync
+msgctxt "#39075"
+msgid "Verify access to media files while synching"
+msgstr ""
+
+# Pop-up during initial sync
+msgctxt "#39076"
+msgid ""
+"If you use several Plex libraries of one kind, e.g. \"Kids Movies\" and "
+"\"Parents Movies\", be sure to check the Wiki: https://goo.gl/JFtQV9"
+msgstr ""
+"Bij gebruik van meerdere plex libraries van hetzelfde type, bijvoorbeeld "
+"\"Kinder Films\" en \"Films voor volwassenen\" bekijk dan de Wiki: "
+"https://goo.gl/JFtQV9"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39077"
+msgid "Maximum number of videos to show in widgets"
+msgstr "Maximale aantal video's getoond in widgets"
+
+# Plex TV Settings - Plex
+msgctxt "#39078"
+msgid "Plex Companion Update Port (change only if needed)"
+msgstr "Plex Companion poort (alleen aanpassen indien nodig)"
+
+# Error message
+msgctxt "#39079"
+msgid ""
+"Plex Companion could not open the GDM port. Please change it in the Plex TV "
+"settings."
+msgstr ""
+"Plex Companion kon de GDM poort niet gebruiken. Wijzig deze in de Plex TV "
+"instellingen."
+
+# Pop-up on initial sync.
+# Check that next translations for Add-on Paths and Direct Paths are
+# identical!
+msgctxt "#39080"
+msgid ""
+"Use Add-on Paths (default, easy) or Direct Paths? Choose Add-on Paths if "
+"you're unsure. Plex TV will not work if your Direct Paths setup is wrong!"
+msgstr ""
+"Gebruik add-on paden (standaard, eenvoudig) of directe paden? Kies add-on "
+"paden als u niet zeker bent. Plex TV werkt niet als je instellingen voor directe"
+" paden verkeerd zijn!"
+
+# Button text for choosing Plex TV mode
+msgctxt "#39081"
+msgid "Add-on Paths"
+msgstr "Add-on paden"
+
+# Button text for choosing Plex TV mode
+msgctxt "#39082"
+msgid "Direct Paths"
+msgstr "Directe paden"
+
+# Dialog for manually entering PMS
+msgctxt "#39083"
+msgid "Enter PMS IP or URL"
+msgstr "Kies PMS IP of URL"
+
+# Dialog for manually entering PMS
+msgctxt "#39084"
+msgid "Enter PMS port"
+msgstr "Kies PMS poort"
+
+# Plex TV settings - Appearance Tweaks
+msgctxt "#39085"
+msgid "Reload Kodi node files to apply all the settings below"
+msgstr ""
+"Herlaad de Kodi node bestanden om alles onderstaande instellingen door te "
+"voeren"
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39089"
+msgid "Alexa connection status:"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39091"
+msgid "Timeout - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39092"
+msgid "IOError - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39093"
+msgid "Suspended - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39094"
+msgid "Managed Plex User - not connected"
+msgstr ""
+
+msgctxt "#39200"
+msgid "Log-out Plex Home User "
+msgstr "Log-out Plex Home gebruiker "
+
+msgctxt "#39201"
+msgid "Settings"
+msgstr "Instellingen"
+
+msgctxt "#39204"
+msgid "Perform manual library sync"
+msgstr "Handmatige sync uitvoeren"
+
+# Error message
+msgctxt "#39205"
+msgid "Unable to run the sync, the add-on is not connected to a Plex server."
+msgstr "Sync is niet gelukt, de add-on is niet verbonden met de Plex Server."
+
+msgctxt "#39206"
+msgid ""
+"Plex might lock your account if you fail to log in too many times. Proceed "
+"anyway?"
+msgstr ""
+"Plex kan uw account vergrendelen bij teveel foutieve login pogingen. Toch "
+"doorgaan?"
+
+msgctxt "#39207"
+msgid "Resetting PMS connections, please wait"
+msgstr "PMS verbindingen aan het resetten, een moment geduld a.u.b"
+
+msgctxt "#39208"
+msgid "Failed to reset Plex TV. Try to restart Kodi."
+msgstr "Plex TV reset niet gelukt. Herstart Kodi."
+
+# Plex TV Settings - Plex
+msgctxt "#39209"
+msgid "Toggle plex.tv login (sign in or sign out)"
+msgstr "Pas plex.tv login aan (aanmelden of afmelden)"
+
+msgctxt "#39210"
+msgid "Not yet connected to Plex Server"
+msgstr "Nog niet verbonden met Plex Server"
+
+msgctxt "#39211"
+msgid "Watch later"
+msgstr "Later bekijken"
+
+# Error message pop-up if {0} cannot be contacted. {0} will be replaced by
+# e.g. the PMS' name
+msgctxt "#39213"
+msgid "{0} offline"
+msgstr "{0} offline"
+
+msgctxt "#39215"
+msgid "Enter your Plex Media Server's IP or URL, Examples are:"
+msgstr "Voer Plex Media Server adres in. Voorbeelden zijn:"
+
+msgctxt "#39217"
+msgid "Use HTTPS (SSL) connections? Answer should probably be yes."
+msgstr ""
+
+msgctxt "#39218"
+msgid "Error contacting PMS"
+msgstr "Fout bij verbinden met PMS"
+
+msgctxt "#39219"
+msgid "Abort (Yes) or save address anyway (No)?"
+msgstr "Afbreken (Ja) of adres toch opslaan (Nee)?"
+
+# String attached at the end to get something like "PMS Name is offline"
+msgctxt "#39220"
+msgid "connected"
+msgstr "verbonden"
+
+msgctxt "#39221"
+msgid "plex.tv toggle successful"
+msgstr "plex.tv aanpassing succesvol"
+
+msgctxt "#39222"
+msgid "Look for missing fanart on FanartTV now"
+msgstr "Zoek nu naar missende fanart op FanartTV"
+
+msgctxt "#39223"
+msgid ""
+"Only look for missing fanart or refresh all fanart? The scan will take quite"
+" a while and happen in the background."
+msgstr ""
+"Alleen missende artwork zoeken of alles vernieuwen? De scan kan lang duren "
+"en zal op de achtergrond plaatsvinden."
+
+msgctxt "#39224"
+msgid "Refresh all"
+msgstr "Alles vernieuwen"
+
+msgctxt "#39225"
+msgid "Missing only"
+msgstr "Alleen ontbrekende"
+
+# Message in the Plex TV settings if user has not logged in to plex.tv
+msgctxt "#39226"
+msgid "Not logged in to plex.tv"
+msgstr "Niet ingelogd op plex.tv"
+
+# Message in the Plex TV settings if user is logged in to plex.tv
+msgctxt "#39227"
+msgid "Logged in to plex.tv"
+msgstr "Ingelogd op plex.tv"
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39228"
+msgid "Plex admin user"
+msgstr "Plex admin gebruiker"
+
+# Error message if user could not log in; the actual user name will be
+# appended at the end of the string
+msgctxt "#39229"
+msgid "Login failed with plex.tv for user"
+msgstr "Aanmelden met plex.tv mislukt voor gebruiker"
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39230"
+msgid "Logged in Plex home user"
+msgstr "Ingelogde Plex gebruiker"
+
+# Message in the Plex TV settings to change the logged in Plex home user
+msgctxt "#39231"
+msgid "Change logged in Plex home user"
+msgstr "Wijzig ingelogde Plex gebruiker"
+
+msgctxt "#39250"
+msgid ""
+"Running the image cache process can take some time. It will happen in the "
+"background. Are you sure you want continue?"
+msgstr ""
+"Uitvoeren van de afbeelding cache proces kan enige tijd duren. Het zal "
+"gebeuren in de achtergrond. Weet u zeker dat u wilt doorgaan?"
+
+msgctxt "#39251"
+msgid "Reset all existing cache data first?"
+msgstr "Alle bestaande gegevens van de cache eerst resetten?"
+
+msgctxt "#39303"
+msgid "Problems trying to contact plex.tv. Try again later"
+msgstr "Probleem met verbinding naar plex.tv. Probeer het later opnieuw"
+
+msgctxt "#39304"
+msgid "Go to https://plex.tv/pin and enter the code: "
+msgstr "Ga naar https://plex.tv/pin en voer de volgende code in: "
+
+msgctxt "#39305"
+msgid "Could not sign in to plex.tv. Try again later"
+msgstr "Kan niet aanmelden bij plex.tv. Probeer het later opnieuw"
+
+msgctxt "#39306"
+msgid ": Select User"
+msgstr ": Selecteer gebruiker"
+
+msgctxt "#39307"
+msgid "Enter PIN for user "
+msgstr "Voer pincode voor gebruiker "
+
+msgctxt "#39308"
+msgid "Could not log in user "
+msgstr "Kan de gebruiker niet inloggen "
+
+msgctxt "#39309"
+msgid "Please try again."
+msgstr "Probeer opnieuw."
+
+msgctxt "#39310"
+msgid "unknown"
+msgstr "onbekend"
+
+msgctxt "#39311"
+msgid "or press No to not sign in."
+msgstr "of druk op Nee als u niet wilt inloggen."
+
+msgctxt "#39400"
+msgid ""
+"Library sync thread has crashed. You should restart Kodi now. Please report "
+"this on the forum"
+msgstr "Sync is gecrashed. Herstart Kodi. Meldt dit probleem op het forum"
+
+msgctxt "#39401"
+msgid ""
+"Detected Kodi database needs to be recreated for this version. This might "
+"take a while. Proceed?"
+msgstr ""
+"Deze versie vereist een nieuwe database. Dit kan enige tijd duren. Doorgaan?"
+
+msgctxt "#39402"
+msgid " may not work correctly until the database is reset."
+msgstr ""
+" werkt mogelijk niet correct totdat de database opnieuw wordt ingesteld."
+
+msgctxt "#39403"
+msgid ""
+"The current Kodi version is not supported by Plex TV. Please consult the Plex "
+"forum."
+msgstr ""
+"De huidige Kodi versie wordt niet ondersteund door Plex TV. Raadpleeg het Plex "
+"forum."
+
+msgctxt "#39405"
+msgid "Plex playlists/nodes refreshed"
+msgstr "Plex afspeellijsten/nodes vernieuwd"
+
+msgctxt "#39406"
+msgid "Plex playlists/nodes refresh failed"
+msgstr "Plex afspeellijsten/nodes vernieuwen mislukt"
+
+msgctxt "#39408"
+msgid ""
+"Sync had to skip some items because they could not be processed. Kodi may be"
+" instable now!! Please post your Kodi logs to the Plex forum."
+msgstr ""
+"Sync diende een aantal bestanden over te slaan. Kodi werkt misschien niet "
+"langer stabiel. Gelieve uw Kodi log bestanden op het Plex forum te posten."
+
+msgctxt "#39409"
+msgid ""
+"The Plex Server did not like you asking for so much data at once and "
+"returned ERRORS. Try lowering the number of sync download threads in the "
+"settings. Skipped some items for now."
+msgstr ""
+"Plex gaf fouten terug door de gevraagde hoeveelheid data. Verminder het "
+"aantal sync threads in de instellingen. Sommige items zijn overgeslagen."
+
+msgctxt "#39410"
+msgid "ERROR in library sync"
+msgstr "FOUT in bibliotheek synchronisatie"
+
+msgctxt "#39500"
+msgid "On Deck"
+msgstr "On Deck"
+
+msgctxt "#39501"
+msgid "Collections"
+msgstr "Verzamelingen"
+
+msgctxt "#39502"
+msgid "Plex TV On Deck (faster)"
+msgstr "Plex TV On Deck (sneller)"
+
+msgctxt "#39600"
+msgid ""
+"Are you sure you want to reset your local Kodi database? A re-sync of the "
+"Plex data will take time afterwards."
+msgstr ""
+"Lokale database van Kodi resetten? Een hersynchronisatie is nodig en dit kan"
+" enige tijd duren."
+
+msgctxt "#39601"
+msgid "Could not stop the database from running. Please try again later."
+msgstr ""
+"Kon de database synchronisatie niet stoppen. Probeer het later nog eens."
+
+msgctxt "#39603"
+msgid ""
+"Reset all Plex TV Addon settings? (this is usually NOT recommended "
+"and unnecessary!)"
+msgstr ""
+"Reset alle instellingen van de Plex TV Addon? (dit is gewoonlijk "
+"niet aanbevolen en onnodig!)"
+
+msgctxt "#39700"
+msgid "Amazon Alexa (Voice Recognition)"
+msgstr "Amazon Alexa (spraakherkenning)"
+
+msgctxt "#39701"
+msgid "Activate Alexa"
+msgstr "Aktiveer Alexa"
+
+msgctxt "#39702"
+msgid "Browse by folder"
+msgstr "Per map bladeren"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Summary
+msgctxt "#39703"
+msgid "Native Integration of Plex into Kodi"
+msgstr "Directe integratie van Plex in Kodi"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Description
+msgctxt "#39704"
+msgid ""
+"Connect Kodi to your Plex Media Server. This plugin assumes that you manage "
+"all your videos with Plex (and none with Kodi). You might lose data already "
+"stored in the Kodi video and music databases (as this plugin directly "
+"changes them). Use at your own risk!"
+msgstr ""
+"Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al "
+"je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds "
+"opgeslagen in de databases voor video en muziek van Kodi (deze plugin "
+"wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Disclaimer
+msgctxt "#39705"
+msgid "Use at your own risk"
+msgstr "Gebruik op eigen risico"
+
+# If user gets prompted to choose between several subtitles to burn in
+msgctxt "#39706"
+msgid "Don't burn-in any subtitle"
+msgstr ""
+
+# If user gets prompted to choose between several audio/subtitle tracks and
+# language is unknown
+msgctxt "#39707"
+msgid "unknown"
+msgstr "onbekend"
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "default" flag
+msgctxt "#39708"
+msgid "Default"
+msgstr "Standaard"
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "forced" flag
+msgctxt "#39709"
+msgid "Forced"
+msgstr "Geforceerd"
+
+# If user gets prompted to choose between several subtitles the subtitle
+# cannot be downloaded (has no 'key' attribute from the PMS), the subtitle
+# needs to be burned in
+msgctxt "#39710"
+msgid "burn-in"
+msgstr "ingebrand"
+
+# Dialog text if Plex TV detected a new Music library and Kodi needs to be
+# restarted
+msgctxt "#39711"
+msgid ""
+"New Plex music library detected. Sorry, but we need to restart Kodi now due "
+"to the changes made."
+msgstr ""
+"Nieuwe Plex muziek bibliotheek gevonden. Sorry, maar kodi moet herstart "
+"worden om de wijzigingen te activeren."
+
+# Shown during sync process
+msgctxt "#39712"
+msgid "downloaded"
+msgstr "gedownload"
+
+# Shown during sync process
+msgctxt "#39713"
+msgid "processed"
+msgstr "verwerkt"
+
+# Shown during sync process
+msgctxt "#39714"
+msgid "Sync"
+msgstr "Sync"
+
+# Shown during sync process
+msgctxt "#39715"
+msgid "Synching playlists"
+msgstr "Afspeellijsten synchroniseren"
+
+# Error message if an xml, e.g. advancedsettings.xml cannot be parsed (xml is
+# screwed up; formated the wrong way). Do NOT replace {0} and {1}!
+msgctxt "#39716"
+msgid ""
+"Kodi cannot parse {0}. Plex TV will not function correctly. Please visit {1} and"
+" correct your file!"
+msgstr ""
+"Kodi kan {0} niet behandelen. Plex TV zal niet correct functioneren. Ga naar {1}"
+" en corrigeer bestand!"
+
+# Shown once on first installation to comply with the terms of use of
+# themoviedb.org
+msgctxt "#39717"
+msgid "Plex TV uses free additional artwork from www.themoviedb.org. Many thanks!"
+msgstr "Plex TV gebruikt gratis extra artwork van www.themoviedb.org. Bedankt!"
+
+# Shown during very first Plex TV setup only
+msgctxt "#39718"
+msgid ""
+"Do you want to replace your custom user ratings with an indicator of how "
+"many versions of a media item you posses?"
+msgstr ""
+"Wil je de custom ratings vervangen met het aantal media versies dat aanwezig"
+" is voor een item?"
+
+# In Plex TV Settings under Sync
+msgctxt "#39719"
+msgid "Replace user ratings with number of media versions"
+msgstr "Vervang ratings met aantal media versies"

@@ -1,0 +1,1585 @@
+#  XBMC Media Center language file
+# Translators:
+# Croneter None <croneter@gmail.com>, 2017
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Plex TV\n"
+"Report-Msgid-Bugs-To: croneter@gmail.com\n"
+"POT-Creation-Date: 2017-04-15 13:13+0000\n"
+"PO-Revision-Date: 2017-04-30 08:30+0000\n"
+"Last-Translator: Croneter None <croneter@gmail.com>, 2017\n"
+"Language-Team: Chinese (Taiwan) (https://www.transifex.com/croneter/teams/73837/zh_TW/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+# Add-on settings
+msgctxt "#29999"
+msgid "Plex TV"
+msgstr "Plex TV"
+
+msgctxt "#30000"
+msgid "Server Address (IP)"
+msgstr "伺服器位址(IP)"
+
+msgctxt "#30001"
+msgid "Searching for PMS"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Preferred playback method"
+msgstr "喜好的播放方式"
+
+# Warning displayed if Kodi setting is enabled. Be sure to escape the quotes
+# again! The exact wording can be found in the Kodi settings, player settings,
+# videos
+msgctxt "#30003"
+msgid ""
+"Warning: Kodi setting \"Play next video automatically\" is enabled. This "
+"could break Plex TV. Deactivate?"
+msgstr ""
+
+msgctxt "#30004"
+msgid ""
+"The Kodi webserver is needed for artwork caching. Plex TV already set a strong, "
+"random password automatically if you haven't done so already. Please confirm"
+" the next dialog that you want to enable the webserver now with Yes."
+msgstr ""
+
+msgctxt "#30005"
+msgid "Username: "
+msgstr "使用者: "
+
+# Sync notification displayed if there is still artwork to be cached to Kodi
+msgctxt "#30006"
+msgid "Caching %s Plex images"
+msgstr ""
+
+# Sync notification displayed if syncing of major artwork is done
+msgctxt "#30007"
+msgid "Plex image caching done"
+msgstr ""
+
+# Plex TV settings artwork: Enable notifications for artwork image sync
+msgctxt "#30008"
+msgid "Enable notifications for image caching"
+msgstr ""
+
+# Plex TV settings artwork: Enable image caching during Kodi playback
+msgctxt "#30009"
+msgid "Enable image caching during Kodi playback (restart Kodi!)"
+msgstr ""
+
+# Plex TV settings - Artwork
+msgctxt "#30010"
+msgid "Approximate progress"
+msgstr ""
+
+# Plex TV settings - Artwork
+msgctxt "#30011"
+msgid "Artwork left to cache:"
+msgstr ""
+
+# Button text
+msgctxt "#30012"
+msgid "OK"
+msgstr "確定"
+
+msgctxt "#30013"
+msgid "Never show"
+msgstr "不要顯示"
+
+# Plex TV settings category
+msgctxt "#30014"
+msgid "Connection"
+msgstr "連結"
+
+# Pop-up notification if user tried to manually initiate fanart download
+msgctxt "#30015"
+msgid "Fanart download already running"
+msgstr ""
+
+msgctxt "#30016"
+msgid "Device Name"
+msgstr "裝置名稱"
+
+# Error message
+msgctxt "#30017"
+msgid "Unauthorized for PMS"
+msgstr "Plex伺服器未被授權"
+
+# Sync notification displayed for the number of fanart.tv lookups left
+msgctxt "#30018"
+msgid "Checking FanartTV for %s items"
+msgstr ""
+
+# Plex TV settings artwork options: status info
+msgctxt "#30019"
+msgid "FanartTV lookup completed"
+msgstr ""
+
+# Plex TV settings sync options
+msgctxt "#30020"
+msgid "Sync Plex playlists (reboot Kodi!)"
+msgstr ""
+
+# Plex TV settings sync options
+msgctxt "#30021"
+msgid "Only sync specific Plex playlists to Kodi"
+msgstr ""
+
+# Plex TV settings category
+msgctxt "#30022"
+msgid "Advanced"
+msgstr "進階"
+
+# Plex TV settings sync options
+msgctxt "#30023"
+msgid "Only sync specific Kodi playlists to Plex"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Username"
+msgstr "使用者"
+
+msgctxt "#30025"
+msgid "Display message if PMS goes offline"
+msgstr "顯示\"伺服器未連線\""
+
+# Plex TV settings sync options
+msgctxt "#30026"
+msgid "Prefix in Plex playlist name to trigger sync"
+msgstr ""
+
+# Plex TV settings sync options
+msgctxt "#30027"
+msgid "Prefix in Kodi playlist name to trigger sync"
+msgstr ""
+
+# Plex TV settings artwork options: status info
+msgctxt "#30028"
+msgid "Plex TV-only image caching completed"
+msgstr ""
+
+# Warning shown when Plex TV switches to the Kodi default skin Estuary
+msgctxt "#30029"
+msgid ""
+"To ensure a smooth Plex TV experience, it is HIGHLY recommended to "
+"use Kodi's default skin \"Estuary\" for initial set-up and for possible "
+"database resets. Continue?"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Port Number"
+msgstr "埠號"
+
+msgctxt "#30031"
+msgid "I own this Plex Media Server"
+msgstr "我擁有這個伺服器"
+
+# Kodi context menu entry for movie and episode information screen
+msgctxt "#30032"
+msgid "Information"
+msgstr ""
+
+msgctxt "#30042"
+msgid "Refresh"
+msgstr "更新"
+
+msgctxt "#30043"
+msgid "Delete"
+msgstr "刪除"
+
+# Notification displayed if there is a LOT to be deleted
+msgctxt "#30052"
+msgid "Deleting"
+msgstr "刪除中"
+
+msgctxt "#30069"
+msgid "None"
+msgstr "無"
+
+msgctxt "#30093"
+msgid "Mark Watched"
+msgstr "設為「已觀看」"
+
+msgctxt "#30094"
+msgid "Mark Unwatched"
+msgstr "設為「未觀看」"
+
+msgctxt "#30095"
+msgid "Add to Favorites"
+msgstr "加到最愛"
+
+msgctxt "#30096"
+msgid "Remove from Favorites"
+msgstr "移除最愛"
+
+msgctxt "#30114"
+msgid "Offer delete after playback"
+msgstr "播放後刪除"
+
+msgctxt "#30115"
+msgid "For Episodes"
+msgstr "針對電視節目"
+
+msgctxt "#30116"
+msgid "For Movies"
+msgstr "針對電影"
+
+msgctxt "#30125"
+msgid "Done"
+msgstr "完成"
+
+# Error popup message text
+msgctxt "#30128"
+msgid "Play Error"
+msgstr "播放錯誤"
+
+msgctxt "#30132"
+msgid "Warning"
+msgstr "警告"
+
+msgctxt "#30135"
+msgid "Error"
+msgstr "錯誤"
+
+msgctxt "#30138"
+msgid "Search"
+msgstr "搜尋"
+
+msgctxt "#30139"
+msgid "Enable Theme Music (Requires Restart)"
+msgstr "啟用劇院音樂(須重啟)"
+
+msgctxt "#30143"
+msgid "Always transcode if video bitrate is above"
+msgstr "執行轉碼，如果傳輸率高於"
+
+msgctxt "#30157"
+msgid "Enable Enhanced Images (eg CoverArt)"
+msgstr "使用進階圖片(例: CoverArt)"
+
+msgctxt "#30158"
+msgid "Metadata"
+msgstr "元數據"
+
+msgctxt "#30160"
+msgid "Video Quality if Transcoding necessary"
+msgstr "轉碼影像品質"
+
+msgctxt "#30161"
+msgid "Auto-adjust transcoding quality (deactivate for Chromecast)"
+msgstr ""
+
+msgctxt "#30165"
+msgid "Direct Play"
+msgstr "直播"
+
+msgctxt "#30166"
+msgid "Transcoding"
+msgstr "轉碼中"
+
+msgctxt "#30170"
+msgid "Recently Added TV Shows"
+msgstr "最近添加的電視節目"
+
+msgctxt "#30171"
+msgid "In Progress TV Shows"
+msgstr "未看完的電視節目"
+
+msgctxt "#30173"
+msgid "Channels"
+msgstr "頻道"
+
+msgctxt "#30174"
+msgid "Recently Added"
+msgstr "最近加入"
+
+msgctxt "#30177"
+msgid "In Progress Movies"
+msgstr "未看完的電影"
+
+msgctxt "#30178"
+msgid "In Progress Episodes"
+msgstr "未看完的劇集"
+
+msgctxt "#30179"
+msgid "Next Episodes"
+msgstr "下一集"
+
+msgctxt "#30180"
+msgid "Favorite Movies"
+msgstr "最愛的電影"
+
+msgctxt "#30181"
+msgid "Favorite Shows"
+msgstr "最愛的電視節目"
+
+msgctxt "#30182"
+msgid "Favorite Episodes"
+msgstr "最愛的劇集"
+
+msgctxt "#30189"
+msgid "Unwatched Movies"
+msgstr "未觀看的電影"
+
+msgctxt "#30198"
+msgid "Search"
+msgstr "搜尋"
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30200"
+msgid ""
+"In the following window, enter the server's hostname (or IP) where your Plex"
+" media resides. Mind the case!"
+msgstr ""
+
+# For setting up direct paths and adding network credentials - input window
+# for hostname
+msgctxt "#30201"
+msgid "Enter server hostname (or IP)"
+msgstr ""
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30202"
+msgid ""
+"In the following window, enter the network protocol you would like to use. "
+"This is likely 'smb'."
+msgstr ""
+
+# For setting up direct paths and adding network credentials - input window
+# protocol
+msgctxt "#30203"
+msgid "Enter network protocol"
+msgstr ""
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30204"
+msgid "The hostname or IP '{0}' that you entered is not valid."
+msgstr ""
+
+# For setting up direct paths and adding network credentials
+msgctxt "#30205"
+msgid "The protocol '{0}' that you entered is not supported."
+msgstr ""
+
+# Video node naming for random e.g. movies
+msgctxt "#30227"
+msgid "Random"
+msgstr "隨機"
+
+# Video node naming for e.g. movies
+msgctxt "#30230"
+msgid "Recommended"
+msgstr "推薦"
+
+msgctxt "#30235"
+msgid "Extras"
+msgstr "附加功能"
+
+msgctxt "#30243"
+msgid "Enable HTTPS"
+msgstr "啟用 HTTPS"
+
+msgctxt "#30251"
+msgid "Recently added Home Videos"
+msgstr "最近添加的家庭視頻"
+
+msgctxt "#30252"
+msgid "Recently added Photos"
+msgstr "最近添加的照片"
+
+msgctxt "#30253"
+msgid "Favorite Home Videos"
+msgstr "最愛的家庭視頻"
+
+msgctxt "#30254"
+msgid "Favorite Photos"
+msgstr "最愛的照片"
+
+msgctxt "#30255"
+msgid "Favorite Albums"
+msgstr "最喜歡的專輯"
+
+msgctxt "#30256"
+msgid "Recently added Music videos"
+msgstr "最近添加的音樂視頻"
+
+msgctxt "#30257"
+msgid "In progress Music videos"
+msgstr "進行中的音樂視頻"
+
+msgctxt "#30258"
+msgid "Unwatched Music videos"
+msgstr "未觀看的音樂視頻"
+
+# Plex TV settings sub category under appearance tweaks
+msgctxt "#30302"
+msgid "Movies"
+msgstr "電影"
+
+# contextmenu entry
+msgctxt "#30401"
+msgid "Plex options"
+msgstr "Plex 選項"
+
+# contextmenu entry
+msgctxt "#30405"
+msgid "Add to Plex favorites"
+msgstr "加到 Plex 的最愛"
+
+# contextmenu entry
+msgctxt "#30406"
+msgid "Remove from Plex favorites"
+msgstr "從 Plex 的最愛移除"
+
+# contextmenu entry
+msgctxt "#30407"
+msgid "Set custom song rating"
+msgstr "設置自訂歌曲評級"
+
+# contextmenu entry
+msgctxt "#30408"
+msgid "Plex addon settings"
+msgstr "Plex 外掛程式設置"
+
+# contextmenu entry
+msgctxt "#30409"
+msgid "Delete item from server"
+msgstr "從伺服器中刪除項目"
+
+# contextmenu entry
+msgctxt "#30410"
+msgid "Refresh this item"
+msgstr "刷新這項"
+
+# contextmenu entry
+msgctxt "#30412"
+msgid "Force transcode"
+msgstr "強迫轉碼"
+
+# Error dialog text
+msgctxt "#30414"
+msgid ""
+"Could not delete the Plex item. Is item deletion enabled on the Plex Media "
+"Server?"
+msgstr "無法刪除Plex的項目, 請確認Plex伺服器是否已啟動刪除功能?"
+
+# contextmenu entry
+msgctxt "#30415"
+msgid "Start playback via PMS"
+msgstr "從 Plex 伺服器播放"
+
+msgctxt "#30416"
+msgid "Settings for the Plex Server"
+msgstr "Plex 伺服器的設置"
+
+msgctxt "#30417"
+msgid ""
+"Could not change the Kodi settings file {0}. Plex TV might not work correctly. "
+"Error: {1}"
+msgstr ""
+
+# Plex TV Settings - Connection
+msgctxt "#30500"
+msgid "Verify Host SSL Certificate (more secure)"
+msgstr "驗證主機 SSL 憑證 (更安全)"
+
+# Plex TV Settings - Connection
+msgctxt "#30501"
+msgid "Client SSL certificate"
+msgstr "用戶端 SSL 憑證"
+
+# Plex TV Settings - Artwork
+msgctxt "#30502"
+msgid "Sync Plex artwork from the PMS (recommended)"
+msgstr ""
+
+# Message shown if SSL HTTPS certificate fails
+msgctxt "#30503"
+msgid "SSL certificate failed to validate. Please check {0} for solutions."
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#30506"
+msgid "Sync Options"
+msgstr "同步處理選項"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30507"
+msgid "Show syncing progress"
+msgstr "顯示同步進度"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30508"
+msgid "Sync empty TV Shows"
+msgstr "同步空的電視影集"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30509"
+msgid "Enable Music Library"
+msgstr "啟動音樂資料庫"
+
+msgctxt "#30510"
+msgid "Direct stream music library"
+msgstr "直接串流音樂資料庫"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30511"
+msgid "Playback Mode"
+msgstr "播放模式"
+
+# Plex TV Settings - Artwork
+msgctxt "#30512"
+msgid "Cache all artwork for a smooth Kodi experience"
+msgstr ""
+
+# Plex TV Settings - Artwork
+msgctxt "#30513"
+msgid "Limit artwork cache threads (recommended for rpi)"
+msgstr "限制快取背景海報(對Raspberry Pi是必須的)"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30514"
+msgid "Show all Plex extras instead of immediately playing trailers"
+msgstr ""
+
+# Plex TV Settings - Sync Options
+msgctxt "#30515"
+msgid "Maximum items to request from the server at once"
+msgstr "同時對伺服器請求最多的項目數"
+
+# Plex TV Settings, category name
+msgctxt "#30516"
+msgid "Playback"
+msgstr "播放"
+
+# Plex TV Settings - Connection
+msgctxt "#30517"
+msgid "Set network credentials for Direct Paths and direct play"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30518"
+msgid "Enable Plex Trailers (Plexpass is needed)"
+msgstr "啟用Plex 預告片(需Plexpass資格)"
+
+# Plex TV Settings - Playback
+msgctxt "#30519"
+msgid "Ask to play trailers"
+msgstr "播放預告片"
+
+# Plex TV Settings - Plex
+msgctxt "#30520"
+msgid "Skip PMS delete confirmation (use at your own risk)"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30521"
+msgid "Jump back on resume (in seconds)"
+msgstr "恢復播放時跳回秒數"
+
+# Plex TV Settings - Playback
+msgctxt "#30522"
+msgid "Force transcode h265/HEVC"
+msgstr "播放 h265/HEVC 時，強迫轉碼"
+
+# Plex TV Settings - Sync Options
+msgctxt "#30523"
+msgid "Also show sync progress for playstate and user data"
+msgstr ""
+
+# Plex TV Settings - Sync Options
+msgctxt "#30524"
+msgid "Select Plex libraries to sync"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30525"
+msgid "Skip intro"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30527"
+msgid "Ignore specials in next episodes"
+msgstr "播放下一集時忽略特輯"
+
+msgctxt "#30528"
+msgid "Permanent users to add to the session"
+msgstr "多使用者永久加入會話(session)"
+
+# Plex TV Settings - Advanced
+msgctxt "#30529"
+msgid "Startup delay (in seconds)"
+msgstr "啟動延遲 (以秒為單位)"
+
+msgctxt "#30531"
+msgid "Enable new content notification"
+msgstr "啟用「新的內容」通知"
+
+msgctxt "#30532"
+msgid "Duration of the video library pop up (in seconds)"
+msgstr "彈出視訊資料庫持續時間 (以秒為單位)"
+
+msgctxt "#30533"
+msgid "Duration of the music library pop up (in seconds)"
+msgstr "彈出的音樂資料庫持續時間 (以秒為單位)"
+
+msgctxt "#30534"
+msgid "Server messages"
+msgstr "伺服器訊息："
+
+# Plex TV Settings - Advanced
+msgctxt "#30535"
+msgid "Generate a new unique Plex device Id (e.g. to clone Kodi)"
+msgstr ""
+
+# Plex TV Settings - Connection
+msgctxt "#30536"
+msgid "Users must log in every time Kodi restarts"
+msgstr "重開Kodi時使用者必須重新登入"
+
+# Plex TV Settings warning
+msgctxt "#30537"
+msgid "RESTART KODI IF YOU MAKE ANY CHANGES"
+msgstr "如果您進行任何更改，請重開Kodi"
+
+# Plex TV Settings warning
+msgctxt "#30538"
+msgid "Manual complete reset of Kodi database necessary, see \"Advanced\""
+msgstr ""
+
+# Plex TV Settings - Artwork
+msgctxt "#30539"
+msgid "Download additional art from FanArtTV"
+msgstr "從 FanArtTV 下載額外的背景海報"
+
+# Plex TV Settings - Artwork
+msgctxt "#30540"
+msgid "Download movie set/collection art from FanArtTV"
+msgstr "從 FanArtTV 下載電影合輯海報"
+
+# Plex TV Settings - Playback
+msgctxt "#30541"
+msgid "Transcoding: Auto-pick audio and subtitle stream using Plex defaults"
+msgstr ""
+
+# Plex TV Settings - Playback
+msgctxt "#30542"
+msgid "Always pick best quality for trailers"
+msgstr "總是挑選最好品質的預告片"
+
+# Plex TV Settings - Artwork
+msgctxt "#30543"
+msgid "Prefer Kodi artwork for collections/sets"
+msgstr ""
+
+msgctxt "#30544"
+msgid "Artwork"
+msgstr "背景海報"
+
+# Plex TV Settings - Playback
+msgctxt "#30545"
+msgid "Force transcode pictures"
+msgstr "強制圖片轉碼"
+
+# Welcome to Plex notification
+msgctxt "#33000"
+msgid "Welcome"
+msgstr "歡迎"
+
+# Error message
+msgctxt "#33001"
+msgid "Error connecting"
+msgstr "連線錯誤"
+
+# Error message
+msgctxt "#33002"
+msgid "Server is unreachable"
+msgstr "無法連到伺服器"
+
+# Plex notification
+msgctxt "#33003"
+msgid "Server is online"
+msgstr "伺服器已上線"
+
+# Plex notification when we need to transcode
+msgctxt "#33004"
+msgid "PMS enforced transcoding"
+msgstr ""
+
+# Plex notification when we need to use direct streaming (instead of
+# transcoding)
+msgctxt "#33005"
+msgid "PMS enforced direct streaming"
+msgstr ""
+
+# Error notification
+msgctxt "#33009"
+msgid "Invalid username or password"
+msgstr "無效的使用者名稱或密碼"
+
+msgctxt "#33010"
+msgid "User is unauthorized for server {0}"
+msgstr ""
+
+msgctxt "#33011"
+msgid "Plex.tv did not provide us a valid list of Plex users, sorry."
+msgstr ""
+
+# Dialog before playback
+msgctxt "#33013"
+msgid "Choose the audio stream"
+msgstr "選擇音軌"
+
+# Dialog before playback
+msgctxt "#33014"
+msgid "Choose the subtitles stream"
+msgstr "選擇字幕"
+
+# Dialog before playback
+msgctxt "#33016"
+msgid "Play trailers?"
+msgstr "播放預告嗎？"
+
+# Error message
+msgctxt "#33032"
+msgid ""
+"Failed to generate a new device Id. See your logs for more information."
+msgstr "無法產生新的設備辨識碼。查看日誌以瞭解更多資訊。"
+
+# Pop-up informing about Kodi restart
+msgctxt "#33033"
+msgid "Kodi will now restart to apply the changes."
+msgstr "Kodi將立即重啟，以套用更改的設定。"
+
+# Confirmation dialog before item gets deleted from the PMS
+msgctxt "#33041"
+msgid ""
+"Delete file(s) from Plex Server? This will also delete the file(s) from "
+"disk!"
+msgstr "從Plex上刪除檔案？這也將會從磁碟中刪除檔案 ！"
+
+# Plex TV Settings - Playback
+msgctxt "#39000"
+msgid "- Number of trailers to play before a movie"
+msgstr "- 預先播放預告片的數量"
+
+# Plex TV Settings - Playback
+msgctxt "#39001"
+msgid "Boost audio when transcoding"
+msgstr "轉碼時提高音訊"
+
+# Plex TV Settings - Playback
+msgctxt "#39002"
+msgid "Burnt-in subtitle size"
+msgstr "設定字幕大小"
+
+# Plex TV Settings - Sync
+msgctxt "#39003"
+msgid "Number of simultaneous download threads"
+msgstr ""
+
+# Plex TV Settings - Plex
+msgctxt "#39004"
+msgid "Enable Plex Companion (restart Kodi!)"
+msgstr "啟用Plex Companion (重啟Kodi！)"
+
+# Plex TV Settings - Plex
+msgctxt "#39005"
+msgid "Plex Companion Port (change only if needed)"
+msgstr "Plex Companion 埠 (僅在需要時更改)"
+
+# Plex TV Settings - Plex
+msgctxt "#39008"
+msgid "Plex Companion: Allows flinging media to Kodi through Plex"
+msgstr "Plex Companion︰允許透過Plex傳送媒體到Kodi"
+
+# Error message
+msgctxt "#39009"
+msgid "Could not login to plex.tv. Please try signing in again."
+msgstr "無法登錄到 plex.tv。請重試。"
+
+# Error message
+msgctxt "#39010"
+msgid "Problems connecting to plex.tv. Network or internet issue?"
+msgstr "連接到 plex.tv 有問題。網路或互聯網的問題？"
+
+# Error message
+msgctxt "#39011"
+msgid "Could not find any Plex server in the network. Aborting..."
+msgstr "在網路中找不到任何Plex伺服器。中止..."
+
+# Dialog text for choosing PMS
+msgctxt "#39012"
+msgid "Choose your Plex server"
+msgstr "選擇您的Plex伺服器"
+
+# Error message
+msgctxt "#39013"
+msgid "Not yet authorized for Plex server "
+msgstr "尚未為Plex伺服器授權 "
+
+# Error message
+msgctxt "#39014"
+msgid "Please sign in to plex.tv."
+msgstr "請登錄到 plex.tv。"
+
+# Error message
+msgctxt "#39015"
+msgid "Problems connecting to server. Pick another server?"
+msgstr "連接到伺服器時出現問題。選擇另一台伺服器？"
+
+# Pop-up on initial sync
+msgctxt "#39016"
+msgid ""
+"Disable Plex music library? (It is HIGHLY recommended to use Plex music only"
+" with direct paths for large music libraries. Kodi might crash otherwise)"
+msgstr "禁用Plex音樂資料庫嗎？(強烈建議使用Plex音樂時，大型音樂資料庫只用直接路徑。否則Kodi可能會崩潰)"
+
+# Pop-up on initial sync
+msgctxt "#39017"
+msgid ""
+"Would you now like to go to the plugin's settings to fine-tune Plex TV? You will"
+" need to RESTART Kodi!"
+msgstr "你現在想轉到外掛程式的設置進行微調 Plex TV 嗎？您將需要重新開啟Kodi ！"
+
+# Plex TV Settings - Advanced
+msgctxt "#39018"
+msgid "Repair the Kodi database (force update all content)"
+msgstr ""
+
+# Plex TV Settings - Advanced
+msgctxt "#39019"
+msgid "Reset the Kodi database and optionally reset Plex TV"
+msgstr ""
+
+# Plex TV Settings - Artwork
+msgctxt "#39020"
+msgid "Cache all images to Kodi texture cache now"
+msgstr ""
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39022"
+msgid "local"
+msgstr "本地"
+
+# Error message
+msgctxt "#39023"
+msgid "Failed to authenticate. Did you login to plex.tv?"
+msgstr "未能通過身份驗證。您沒有登錄到 plex.tv 嗎？"
+
+# Plex TV Settings - Plex
+msgctxt "#39025"
+msgid "Automatically log into plex.tv on startup"
+msgstr "在啟動時自動登入到 plex.tv"
+
+# Plex TV Settings - Sync
+msgctxt "#39026"
+msgid "Enable constant background sync"
+msgstr "啟用持續的背景同步"
+
+# Pop-up on initial sync
+msgctxt "#39028"
+msgid ""
+"CAUTION! If you choose \"Native\" mode , you might loose access to certain "
+"Plex features such as: Plex trailers and transcoding options. ALL Plex "
+"shares need to use direct paths (e.g. smb://myNAS/mymovie.mkv or "
+"\\\\myNAS/mymovie.mkv)!"
+msgstr ""
+
+# Pop-up on initial sync
+msgctxt "#39029"
+msgid "Network credentials"
+msgstr "網路憑據"
+
+# Pop-up on initial sync
+msgctxt "#39030"
+msgid ""
+"Add network credentials to allow Kodi access to your content? Note: Skipping"
+" this step may generate a message during the initial scan of your content if"
+" Kodi can't locate your content."
+msgstr "添加網路憑據，以允許科迪訪問您的內容嗎？注︰ 跳過這一步在初始掃描期間可能產生一個訊息，如果Kodi找不到您的內容。"
+
+# Error message displayed when verifying Direct Path sync paths passed by Plex
+msgctxt "#39031"
+msgid ""
+"Kodi cannot locate the file %s. Please verify your Plex TV settings. Stop "
+"syncing?"
+msgstr ""
+
+# Pop-up on initial sync
+msgctxt "#39033"
+msgid ""
+"Transform Plex UNC library paths \\\\myNas\\mymovie.mkv automatically to smb"
+" paths, smb://myNas/mymovie.mkv? (recommended)"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39034"
+msgid "Replace Plex UNC paths \\\\myNas with smb://myNas"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39035"
+msgid ""
+"Replace Plex paths /volume1/media or \\\\myserver\\media with custom SMB "
+"paths smb://NAS/mystuff"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39036"
+msgid "Escape special characters in path (e.g. space to %20)"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39090"
+msgid "Safe characters for http(s), dav(s) and (s)ftp urls"
+msgstr ""
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39037"
+msgid "Original Plex MOVIE path to replace:"
+msgstr "要替換的Plex原始電影路徑︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39038"
+msgid "Replace Plex MOVIE with:"
+msgstr "取代Plex電影路徑，用︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39039"
+msgid "Original Plex TV SHOWS path to replace:"
+msgstr "要被替換的 Plex 原始電視路徑︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39040"
+msgid "Replace Plex TV SHOWS with:"
+msgstr "替換Plex電視路徑為︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39041"
+msgid "Original Plex MUSIC path to replace:"
+msgstr "要替換的Plex原始音樂路徑︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39042"
+msgid "Replace Plex MUSIC with:"
+msgstr "取代Plex音樂路徑，用︰"
+
+# Pop-up on initial sync
+msgctxt "#39043"
+msgid ""
+"Go a step further and completely replace all original Plex library paths "
+"(/volume1/media) with custom SMB paths (smb://NAS/MyStuff)?"
+msgstr "進一步完全用自訂SMB路徑(smb://NAS/MyStuff) 替換所有Plex資料庫路徑(/volume1/媒體) 嗎？"
+
+# Pop-up on initial sync
+msgctxt "#39044"
+msgid ""
+"Please enter your custom smb paths in the settings under \"Sync Options\" "
+"and then restart Kodi"
+msgstr "請輸入您自訂的smb路徑在\"設置\"下的\"同步選項\"，然後重新開啟kodi"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39045"
+msgid "Original Plex PHOTO path to replace:"
+msgstr "要替換的Plex原始照片路徑︰"
+
+# Plex TV Settings - Customize Paths
+msgctxt "#39046"
+msgid "Replace Plex PHOTO with:"
+msgstr "取代Plex照片路徑，用︰"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39047"
+msgid "On Deck: Append show title to episode"
+msgstr "上架︰增加顯示電視節目集標題"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39048"
+msgid "On Deck: Append season- and episode-number SxxExx"
+msgstr "上架︰增加季和集編號 SxxExx"
+
+# Plex TV Settings - Advanced
+msgctxt "#39049"
+msgid "Nothing works? Try a full reset!"
+msgstr "完全掛點？試著完全重置 ！"
+
+# Plex TV Settings - Connection
+msgctxt "#39050"
+msgid "Choose Plex Server from a list"
+msgstr ""
+
+# Plex TV Settings - Sync
+msgctxt "#39051"
+msgid "Wait before sync new/changed PMS item [s]"
+msgstr "在同步前等待\"新增或修改\" Plex媒體伺服器項目完成"
+
+# Plex TV Settings - Sync
+msgctxt "#39052"
+msgid "Background Sync"
+msgstr "背景同步"
+
+# Plex TV Settings - Sync
+msgctxt "#39053"
+msgid "Do a full library sync every x minutes"
+msgstr "每隔 x 分鐘做完整資料庫同步"
+
+# Appended to a listed PMS if it is in the same LAN network as Plex TV
+msgctxt "#39054"
+msgid "remote"
+msgstr "遠端"
+
+# Notification pop-up
+msgctxt "#39055"
+msgid "Searching for Plex Server"
+msgstr "正在搜索Plex伺服器"
+
+# Plex TV Settings - Customize paths
+msgctxt "#39056"
+msgid ""
+"Used by sync and when attempting Direct Paths. Restart Kodi on changes!"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39057"
+msgid "Customize Paths"
+msgstr "自訂路徑"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39059"
+msgid "Recently Added: Append show title to episode"
+msgstr "最近添加︰ 追加顯示集標題"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39060"
+msgid "Recently Added: Append season- and episode-number SxxExx"
+msgstr "最近添加︰ 追加和本集編號 SxxExx"
+
+# Pop-up during initial sync
+msgctxt "#39061"
+msgid ""
+"Would you like to download additional artwork from FanArtTV in the "
+"background?"
+msgstr "你想在背景從 FanArtTV 下載更多圖片？"
+
+# Plex TV Settings - Sync
+msgctxt "#39062"
+msgid "Sync when screensaver is deactivated"
+msgstr "停用螢幕保護程式時同步"
+
+# Plex TV Settings - Playback
+msgctxt "#39063"
+msgid "Force Transcode Hi10P"
+msgstr "播放Hi10P 時強迫轉碼"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39064"
+msgid "Recently Added: Also show already watched episodes"
+msgstr "最近添加︰ 一併顯示已觀看"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39065"
+msgid "Force-refresh Kodi skin on stopping playback"
+msgstr ""
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39066"
+msgid "Recently Added: Also show already watched movies"
+msgstr ""
+
+# Plex TV Settings - Connection
+msgctxt "#39067"
+msgid "Your current Plex Media Server:"
+msgstr "您當前的Plex媒體伺服器︰"
+
+# Plex TV Settings - Connection
+msgctxt "#39068"
+msgid "Manually enter Plex Media Server address"
+msgstr ""
+
+# Plex TV Settings - Connection
+msgctxt "#39069"
+msgid "Current address:"
+msgstr "當前位址︰"
+
+# Plex TV Settings - Connection
+msgctxt "#39070"
+msgid "Current port:"
+msgstr "當前埠︰"
+
+# Plex TV Settings - Connection
+msgctxt "#39071"
+msgid "Current plex.tv status:"
+msgstr "plex.tv 狀態︰"
+
+# Plex TV Settings - Connection
+msgctxt "#39072"
+msgid "Background sync connection:"
+msgstr ""
+
+# Plex TV Settings, category name
+msgctxt "#39073"
+msgid "Appearance Tweaks"
+msgstr "外觀微調"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39074"
+msgid "TV Shows"
+msgstr "電視節目"
+
+# Plex TV Settings - Sync
+msgctxt "#39075"
+msgid "Verify access to media files while synching"
+msgstr ""
+
+# Pop-up during initial sync
+msgctxt "#39076"
+msgid ""
+"If you use several Plex libraries of one kind, e.g. \"Kids Movies\" and "
+"\"Parents Movies\", be sure to check the Wiki: https://goo.gl/JFtQV9"
+msgstr "如果您使用多個同類的Plex資料庫，例如\"兒童電影\"和\"父母電影\"，務必參閱 Wiki: HTTPs://goo.gl/JFtQV9"
+
+# Plex TV Settings - Appearance Tweaks
+msgctxt "#39077"
+msgid "Maximum number of videos to show in widgets"
+msgstr ""
+
+# Plex TV Settings - Plex
+msgctxt "#39078"
+msgid "Plex Companion Update Port (change only if needed)"
+msgstr "Plex Companion更新埠(僅在需要時更改)"
+
+# Error message
+msgctxt "#39079"
+msgid ""
+"Plex Companion could not open the GDM port. Please change it in the Plex TV "
+"settings."
+msgstr "Plex Companion不能打開 GDM 埠。請在 Plex TV 設置中更改它。"
+
+# Pop-up on initial sync.
+# Check that next translations for Add-on Paths and Direct Paths are
+# identical!
+msgctxt "#39080"
+msgid ""
+"Use Add-on Paths (default, easy) or Direct Paths? Choose Add-on Paths if "
+"you're unsure. Plex TV will not work if your Direct Paths setup is wrong!"
+msgstr ""
+
+# Button text for choosing Plex TV mode
+msgctxt "#39081"
+msgid "Add-on Paths"
+msgstr ""
+
+# Button text for choosing Plex TV mode
+msgctxt "#39082"
+msgid "Direct Paths"
+msgstr ""
+
+# Dialog for manually entering PMS
+msgctxt "#39083"
+msgid "Enter PMS IP or URL"
+msgstr ""
+
+# Dialog for manually entering PMS
+msgctxt "#39084"
+msgid "Enter PMS port"
+msgstr ""
+
+# Plex TV settings - Appearance Tweaks
+msgctxt "#39085"
+msgid "Reload Kodi node files to apply all the settings below"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39089"
+msgid "Alexa connection status:"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39091"
+msgid "Timeout - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39092"
+msgid "IOError - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39093"
+msgid "Suspended - not connected"
+msgstr ""
+
+# Plex TV Settings - Connection - Background sync connection status
+msgctxt "#39094"
+msgid "Managed Plex User - not connected"
+msgstr ""
+
+msgctxt "#39200"
+msgid "Log-out Plex Home User "
+msgstr "登出Plex Home用戶 "
+
+msgctxt "#39201"
+msgid "Settings"
+msgstr "設置"
+
+msgctxt "#39204"
+msgid "Perform manual library sync"
+msgstr "手動執行資料庫同步"
+
+# Error message
+msgctxt "#39205"
+msgid "Unable to run the sync, the add-on is not connected to a Plex server."
+msgstr "外掛未連接到Plex伺服器，同步無法執行．"
+
+msgctxt "#39206"
+msgid ""
+"Plex might lock your account if you fail to log in too many times. Proceed "
+"anyway?"
+msgstr "如果你多次登錄失敗，Plex可能會鎖定您的帳戶。是否繼續？"
+
+msgctxt "#39207"
+msgid "Resetting PMS connections, please wait"
+msgstr "重置 PMS 連線，請稍候"
+
+msgctxt "#39208"
+msgid "Failed to reset Plex TV. Try to restart Kodi."
+msgstr "重置 Plex TV 失敗。嘗試重開Kodi。"
+
+# Plex TV Settings - Plex
+msgctxt "#39209"
+msgid "Toggle plex.tv login (sign in or sign out)"
+msgstr ""
+
+msgctxt "#39210"
+msgid "Not yet connected to Plex Server"
+msgstr "尚未連接到Plex伺服器"
+
+msgctxt "#39211"
+msgid "Watch later"
+msgstr "稍後再看"
+
+# Error message pop-up if {0} cannot be contacted. {0} will be replaced by
+# e.g. the PMS' name
+msgctxt "#39213"
+msgid "{0} offline"
+msgstr ""
+
+msgctxt "#39215"
+msgid "Enter your Plex Media Server's IP or URL, Examples are:"
+msgstr "輸入您的Plex媒體伺服器的 IP 或 URL，例子︰"
+
+msgctxt "#39217"
+msgid "Use HTTPS (SSL) connections? Answer should probably be yes."
+msgstr ""
+
+msgctxt "#39218"
+msgid "Error contacting PMS"
+msgstr "PMS連線錯誤"
+
+msgctxt "#39219"
+msgid "Abort (Yes) or save address anyway (No)?"
+msgstr "中止 (Yes) 或保存位址 (No)？"
+
+# String attached at the end to get something like "PMS Name is offline"
+msgctxt "#39220"
+msgid "connected"
+msgstr "已連結"
+
+msgctxt "#39221"
+msgid "plex.tv toggle successful"
+msgstr "plex.tv 切換成功"
+
+msgctxt "#39222"
+msgid "Look for missing fanart on FanartTV now"
+msgstr ""
+
+msgctxt "#39223"
+msgid ""
+"Only look for missing fanart or refresh all fanart? The scan will take quite"
+" a while and happen in the background."
+msgstr "只搜尋缺失的背景海報或刷新所有的背景海報嗎？掃描在背景執行，將需要相當一段時間。"
+
+msgctxt "#39224"
+msgid "Refresh all"
+msgstr "刷新所有"
+
+msgctxt "#39225"
+msgid "Missing only"
+msgstr "僅缺失部分"
+
+# Message in the Plex TV settings if user has not logged in to plex.tv
+msgctxt "#39226"
+msgid "Not logged in to plex.tv"
+msgstr ""
+
+# Message in the Plex TV settings if user is logged in to plex.tv
+msgctxt "#39227"
+msgid "Logged in to plex.tv"
+msgstr ""
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39228"
+msgid "Plex admin user"
+msgstr ""
+
+# Error message if user could not log in; the actual user name will be
+# appended at the end of the string
+msgctxt "#39229"
+msgid "Login failed with plex.tv for user"
+msgstr ""
+
+# Message in the Plex TV settings to display the plex.tv username
+msgctxt "#39230"
+msgid "Logged in Plex home user"
+msgstr ""
+
+# Message in the Plex TV settings to change the logged in Plex home user
+msgctxt "#39231"
+msgid "Change logged in Plex home user"
+msgstr ""
+
+msgctxt "#39250"
+msgid ""
+"Running the image cache process can take some time. It will happen in the "
+"background. Are you sure you want continue?"
+msgstr "在背景執行圖像暫存，可能需要花費一些時間。確實要繼續嗎？"
+
+msgctxt "#39251"
+msgid "Reset all existing cache data first?"
+msgstr "優先重置暫存中的現有資料？"
+
+msgctxt "#39303"
+msgid "Problems trying to contact plex.tv. Try again later"
+msgstr "連接 plex.tv 有問題。請稍後再試"
+
+msgctxt "#39304"
+msgid "Go to https://plex.tv/pin and enter the code: "
+msgstr "請到 https://plex.tv/pin，然後輸入代碼︰ "
+
+msgctxt "#39305"
+msgid "Could not sign in to plex.tv. Try again later"
+msgstr "無法登錄到 plex.tv。請稍後再試"
+
+msgctxt "#39306"
+msgid ": Select User"
+msgstr "︰ 選擇使用者"
+
+msgctxt "#39307"
+msgid "Enter PIN for user "
+msgstr "為使用者輸入 PIN "
+
+msgctxt "#39308"
+msgid "Could not log in user "
+msgstr "使用者無法登錄 "
+
+msgctxt "#39309"
+msgid "Please try again."
+msgstr "請重試。"
+
+msgctxt "#39310"
+msgid "unknown"
+msgstr "未知"
+
+msgctxt "#39311"
+msgid "or press No to not sign in."
+msgstr "或按No，不登入。"
+
+msgctxt "#39400"
+msgid ""
+"Library sync thread has crashed. You should restart Kodi now. Please report "
+"this on the forum"
+msgstr "資料庫同步執行緒已經掛點。立刻重啟Kodi。請將此狀況回報論壇"
+
+msgctxt "#39401"
+msgid ""
+"Detected Kodi database needs to be recreated for this version. This might "
+"take a while. Proceed?"
+msgstr "檢測到此版本需要重新創建Kodi資料庫。這可能需要一段時間。是否繼續？"
+
+msgctxt "#39402"
+msgid " may not work correctly until the database is reset."
+msgstr " 可能無法正常運行，直到重置資料庫。"
+
+msgctxt "#39403"
+msgid ""
+"The current Kodi version is not supported by Plex TV. Please consult the Plex "
+"forum."
+msgstr ""
+
+msgctxt "#39405"
+msgid "Plex playlists/nodes refreshed"
+msgstr "已刷新Plex 播放清單/節點"
+
+msgctxt "#39406"
+msgid "Plex playlists/nodes refresh failed"
+msgstr "Plex 播放清單/節點刷新失敗"
+
+msgctxt "#39408"
+msgid ""
+"Sync had to skip some items because they could not be processed. Kodi may be"
+" instable now!! Please post your Kodi logs to the Plex forum."
+msgstr "同步不得不跳過某些項目，因為他們無法處理。Kodi現在可能不穩定!! 請張貼kodi日誌到Plex論壇。"
+
+msgctxt "#39409"
+msgid ""
+"The Plex Server did not like you asking for so much data at once and "
+"returned ERRORS. Try lowering the number of sync download threads in the "
+"settings. Skipped some items for now."
+msgstr "Plex伺服器不喜歡你一次要求這麼多資料，並返回錯誤。嘗試降低同步下載中的執行緒數設置。跳過一些項目。"
+
+msgctxt "#39410"
+msgid "ERROR in library sync"
+msgstr "資料庫同步錯誤"
+
+msgctxt "#39500"
+msgid "On Deck"
+msgstr "上架"
+
+msgctxt "#39501"
+msgid "Collections"
+msgstr "收藏"
+
+msgctxt "#39502"
+msgid "Plex TV On Deck (faster)"
+msgstr ""
+
+msgctxt "#39600"
+msgid ""
+"Are you sure you want to reset your local Kodi database? A re-sync of the "
+"Plex data will take time afterwards."
+msgstr "你確定你想要重置您的本地Kodi資料庫？再重新同步 Plex 資料需要時間。"
+
+msgctxt "#39601"
+msgid "Could not stop the database from running. Please try again later."
+msgstr "不能停止運行中的資料庫。請稍後再試。"
+
+msgctxt "#39603"
+msgid ""
+"Reset all Plex TV Addon settings? (this is usually NOT recommended "
+"and unnecessary!)"
+msgstr "重置所有的 Plex TV 外掛程式設置嗎？(不推薦且沒有必要！)"
+
+msgctxt "#39700"
+msgid "Amazon Alexa (Voice Recognition)"
+msgstr "亞馬遜 Alexa (語音辨識)"
+
+msgctxt "#39701"
+msgid "Activate Alexa"
+msgstr "啟動 Alexa"
+
+msgctxt "#39702"
+msgid "Browse by folder"
+msgstr "依資料夾流覽"
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Summary
+msgctxt "#39703"
+msgid "Native Integration of Plex into Kodi"
+msgstr ""
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Description
+msgctxt "#39704"
+msgid ""
+"Connect Kodi to your Plex Media Server. This plugin assumes that you manage "
+"all your videos with Plex (and none with Kodi). You might lose data already "
+"stored in the Kodi video and music databases (as this plugin directly "
+"changes them). Use at your own risk!"
+msgstr ""
+
+# For use with addon.xml (Plex TV metadata for Kodi, e.g. description)
+# Addon Disclaimer
+msgctxt "#39705"
+msgid "Use at your own risk"
+msgstr ""
+
+# If user gets prompted to choose between several subtitles to burn in
+msgctxt "#39706"
+msgid "Don't burn-in any subtitle"
+msgstr ""
+
+# If user gets prompted to choose between several audio/subtitle tracks and
+# language is unknown
+msgctxt "#39707"
+msgid "unknown"
+msgstr ""
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "default" flag
+msgctxt "#39708"
+msgid "Default"
+msgstr ""
+
+# If user gets prompted to choose between several subtitles and Plex adds the
+# "forced" flag
+msgctxt "#39709"
+msgid "Forced"
+msgstr ""
+
+# If user gets prompted to choose between several subtitles the subtitle
+# cannot be downloaded (has no 'key' attribute from the PMS), the subtitle
+# needs to be burned in
+msgctxt "#39710"
+msgid "burn-in"
+msgstr ""
+
+# Dialog text if Plex TV detected a new Music library and Kodi needs to be
+# restarted
+msgctxt "#39711"
+msgid ""
+"New Plex music library detected. Sorry, but we need to restart Kodi now due "
+"to the changes made."
+msgstr ""
+
+# Shown during sync process
+msgctxt "#39712"
+msgid "downloaded"
+msgstr ""
+
+# Shown during sync process
+msgctxt "#39713"
+msgid "processed"
+msgstr ""
+
+# Shown during sync process
+msgctxt "#39714"
+msgid "Sync"
+msgstr ""
+
+# Shown during sync process
+msgctxt "#39715"
+msgid "Synching playlists"
+msgstr ""
+
+# Error message if an xml, e.g. advancedsettings.xml cannot be parsed (xml is
+# screwed up; formated the wrong way). Do NOT replace {0} and {1}!
+msgctxt "#39716"
+msgid ""
+"Kodi cannot parse {0}. Plex TV will not function correctly. Please visit {1} and"
+" correct your file!"
+msgstr ""
+
+# Shown once on first installation to comply with the terms of use of
+# themoviedb.org
+msgctxt "#39717"
+msgid "Plex TV uses free additional artwork from www.themoviedb.org. Many thanks!"
+msgstr ""
+
+# Shown during very first Plex TV setup only
+msgctxt "#39718"
+msgid ""
+"Do you want to replace your custom user ratings with an indicator of how "
+"many versions of a media item you posses?"
+msgstr ""
+
+# In Plex TV Settings under Sync
+msgctxt "#39719"
+msgid "Replace user ratings with number of media versions"
+msgstr ""

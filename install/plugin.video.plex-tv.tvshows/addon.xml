@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.plex-tv.tvshows" name="Plex TV Series" version="0.1.0" provider-name="Mair Peter">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides></provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">PKC Dependency Add-On</summary>
+        <description lang="en">Plex TV add-on for tv shows</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <forum></forum>
+        <website>https://github.com/PeterMair/plex-tv</website>
+        <source></source>
+        <news>version 0.1.0
+- MySQL Integration
+- Fork from PlexKodiConnect (v.2.1.3)
+</news>
+    </extension>
+</addon>

@@ -1,0 +1,5 @@
+_###*
+*.pyo
+machine_guid
+/resources/media/Thumbs.db
+repository/create_repository.*

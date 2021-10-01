@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.petermair" name="Peter Mair Repository" provider-name="Mair Peter" version="0.0.1">
+  <extension point="xbmc.addon.repository" name="Peter Mair Repository">
+    <dir>
+      <info compressed="false">https://raw.githubusercontent.com/PeterMair/kodiaddons/main/repository/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/PeterMair/kodiaddons/main/repository/addons.xml.md5</checksum>      
+    </dir>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <description lang="en">Addons by Mair Peter</description>
+    <description lang="de">Addons von Mair Peter</description>
+    <description lang="it">Addons di Mair Peter</description>
+    <license></license>
+    <language></language>
+    <website>https://www.petermair.it</website>
+    <news></news>
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets> 
+  </extension>
+</addon>

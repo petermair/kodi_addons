@@ -1,0 +1,1 @@
+create_repository.py ../plugin.video.disneyplus ../plugin.video.plex-tv ../plugin.video.plex-tv.movies ../plugin.video.plex-tv.tvshows ../repository.mairpeter
