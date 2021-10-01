@@ -2,8 +2,8 @@
 <addon id="repository.petermair" name="Peter Mair Repository" provider-name="Mair Peter" version="0.0.1">
   <extension point="xbmc.addon.repository" name="Peter Mair Repository">
     <dir>
-      <info compressed="false">https://raw.githubusercontent.com/PeterMair/kodiaddons/main/install/addons.xml</info>
-      <checksum>https://raw.githubusercontent.com/PeterMair/kodiaddons/main/install/addons.xml.md5</checksum>      
+      <info compressed="false">https://raw.githubusercontent.com/PeterMair/kodi_addons/main/install/addons.xml</info>
+      <checksum>https://raw.githubusercontent.com/PeterMair/kodi_addons/main/install/addons.xml.md5</checksum>      
     </dir>
   </extension>
   <extension point="xbmc.addon.metadata">
