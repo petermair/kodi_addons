@@ -3,7 +3,8 @@
   <extension point="xbmc.addon.repository" name="Peter Mair Repository">
     <dir>
       <info compressed="false">https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/addons.xml</info>
-      <checksum>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/addons.xml.md5</checksum>      
+      <checksum>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/addons.xml.md5</checksum>  
+      <datadir zip="true">https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/</datadir>    
     </dir>
   </extension>
   <extension point="xbmc.addon.metadata">
