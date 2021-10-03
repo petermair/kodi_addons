@@ -258,7 +258,7 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
         if fullSync==False:
             db.beginTransaction()
                 
-        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s' AND profilid='%s'" % (slug, parentid,userdata.get('profile_id')))
+        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s' AND profileid='%s'" % (slug, parentid,userdata.get('profile_id')))
         db_addFolder(folderid, parentid, type, slug, content_class, label, ordernr)
         db_FolderSync(folderid, parentid, dt,SYNC_COLLECTION_MINUTES)
         
