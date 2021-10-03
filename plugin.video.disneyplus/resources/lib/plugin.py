@@ -12,6 +12,7 @@ from .constants import *
 from .language import _
 
 import time
+from xbmcaddon import Addon
 
 import warnings
 import json
@@ -40,7 +41,7 @@ def index(**kwargs):
     else:
         db = api.db
         
-        data = db.select("folderhierarchy h", ("h.foldersid", "h.parentid"), "WHERE h.parentid = '%s' ORDER BY ordernr" % DB_ZERO)       
+        data = db.select("folderhierarchy h", ("h.foldersid", "h.parentid"), "WHERE h.parentid = '%s' AND h.profileid='%s' ORDER BY ordernr" % (DB_ZERO,userdata.get('profile_id')))       
         if len(data)==0:            
             InitialSync()                        
 
@@ -57,9 +58,9 @@ def db_addFolder(id, parentid, type, slug, contentclass, title, ordernr):
         "WHERE id='"+id+"'"
     )
     db.replace("folderhierarchy",
-      ("foldersid", "parentid","ordernr","active"),
-      (id, parentid, ordernr,1),
-      "WHERE foldersid='"+id+"' AND parentid='"+parentid+"'"
+      ("foldersid", "parentid","profileid","ordernr","active"),
+      (id, parentid, userdata.get('profile_id'), ordernr,1),
+      "WHERE foldersid='"+id+"' AND parentid='"+parentid+"' AND profileid='"+userdata.get('profile_id')+"'"
     )
 
 def db_FolderSync(id, parentid, lastsync, syncminutes):
@@ -71,6 +72,8 @@ def db_FolderSync(id, parentid, lastsync, syncminutes):
     )
     
 def InitialDBSetup():
+    ADDON_VERSION = Addon().getAddonInfo('version')
+    dbversion = 1
     api.db.beginTransaction
     api.db.createTable(
         "version",
@@ -80,6 +83,11 @@ def InitialDBSetup():
         ),
         ("version",)
     )
+    v = api.db.select("version",("MAX(dbversion)",))
+    if len(v)>0:
+        dbversion = v[0][0]
+    if dbversion == None:
+        dbversion = 1    
 
     api.db.createTable(
         "art",
@@ -102,15 +110,19 @@ def InitialDBSetup():
         ("id",)
     )
 
+    if int(dbversion)<2: ##
+        api.db.execute("DROP TABLE IF EXISTS folderhierarchy")
+
     api.db.createTable(
         "folderhierarchy",
         (
-            {"fieldname": "foldersid","fieldtype": "varchar", "fieldsize": 40, "notnull": True},            
+            {"fieldname": "foldersid","fieldtype": "varchar", "fieldsize": 40, "notnull": True},                       
             {"fieldname": "parentid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
+            {"fieldname": "profileid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
             {"fieldname": "ordernr",  "fieldtype": "int",     "fieldsize": 11, "notnull": True},   
-            {"fieldname": "active",   "fieldtype": "int",     "fieldsize":  11, "notnull": False},         
+            {"fieldname": "active",   "fieldtype": "int",     "fieldsize":  11, "notnull": False},                     
         ),
-        ("foldersid","parentid")
+        ("foldersid","parentid","profileid")
     )
 
     api.db.createTable(
@@ -171,6 +183,8 @@ def InitialDBSetup():
         ),
         ("id", )
     )
+
+    api.db.replace("version",("version","dbversion"),(ADDON_VERSION, '2'),"WHERE version='%s'" % ADDON_VERSION)
     
     api.db.commit
 
@@ -208,7 +222,7 @@ def SyncManually(folderid, parentid,**kwargs):
     
     db = api.db    
     
-    rows = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid", ("f.type","f.slug","f.contentclass","f.title","h.ordernr"),"WHERE h.foldersid='%s' AND h.parentid='%s'" % (folderid, parentid))
+    rows = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid", ("f.type","f.slug","f.contentclass","f.title","h.ordernr"),"WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s'" % (folderid, parentid, userdata.get('profile_id')))
     db.beginTransaction()
     for data in rows:
         _dialog = xbmcgui.DialogProgress()
@@ -244,7 +258,7 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
         if fullSync==False:
             db.beginTransaction()
                 
-        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s'" % (slug, parentid))
+        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s' AND profilid='%s'" % (slug, parentid,userdata.get('profile_id')))
         db_addFolder(folderid, parentid, type, slug, content_class, label, ordernr)
         db_FolderSync(folderid, parentid, dt,SYNC_COLLECTION_MINUTES)
         
@@ -283,10 +297,9 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
                     dialog.update(100 * o / len(data), line1=title)
                 except: ## Kodi v.19
                     dialog.update(100 * o / len(data), message=title)
-            db_addFolder(set_id, folderid, type, "", ref_type, title, ordernr)                        
-            ordernr = ordernr + 1
+            db_addFolder(set_id, folderid, type, "", ref_type, title, o)                                    
             if fullSync == True:
-                syncsets(set_id, folderid, set_id, ref_type, 1, fullSync=True, ordernr=ordernr)
+                syncsets(set_id, folderid, set_id, ref_type, 1, fullSync=True, ordernr=0)
         if fullSync == False:
             db.commit()
 
@@ -394,7 +407,7 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
     dosync = fullSync or (page>1)
     dt = time.time()
     dt = int(dt)    
-    parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")
+    parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid AND h.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")
     if dosync == False:                        
         dosync = len(parent) == 0
         for p in parent:
@@ -431,7 +444,7 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
                 dialog.update(50, message=title)
 
         if data['meta']['offset'] == 0:
-            db.update("folderhierarchy",("active",),(0,),"WHERE parentid='%s'" % folderid)
+            db.update("folderhierarchy",("active",),(0,),"WHERE parentid='%s' AND profileid='%s'" % (folderid,userdata.get('profile_id')))
         
         db_addFolder(folderid, parentid, "CuratedSet", "", set_type,title, ordernr)
         db_FolderSync(folderid, parentid, dt, refresh)
@@ -466,7 +479,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
 
     data = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid LEFT JOIN art ON f.id=art.mediaid AND art.arttype='fanart'",
             ("f.id", "f.type", "f.slug", "f.contentclass", "f.title","art.url", "h.ordernr"),
-            "WHERE h.foldersid='%s' AND h.parentid='%s' LIMIT 1" % (folderid, parentid) 
+            "WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s' LIMIT 1" % (folderid, parentid,userdata.get('profile_id')) 
             )
     for parentdata in data:    
         id = parentdata[0]
@@ -487,7 +500,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
     
     data = db.select("folderhierarchy h INNER JOIN folders f ON h.foldersid=f.id",
        ("f.id", "f.title", "f.type", "f.slug", "f.contentclass", "h.parentid"),
-       "WHERE h.parentid='%s' AND h.foldersid!=h.parentid AND h.active=1 ORDER BY h.ordernr" % (folderid)
+       "WHERE h.parentid='%s' AND h.foldersid!=h.parentid AND h.active=1 AND h.profileid='%s' ORDER BY h.ordernr" % (folderid,userdata.get('profile_id'))
     )
 
     for row in data:        
@@ -915,7 +928,8 @@ def sync_series(folderid, series_id, fullSync = False):
     dt = int(dt)
     
     if dosync == False:        
-        parent = db.select("folders f INNER JOIN folderhierarchy h ON h.parentid=f.id", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='%s'" % series_id)
+        parent = db.select("folders f INNER JOIN folderhierarchy h ON h.parentid=f.id AND h.profileid='%s'" % (userdata.get('profile_id'),), 
+        ("f.id","f.lastsync","f.syncminutes"), "WHERE id='%s'" % series_id)
         dosync = (len(parent) == 0)
         for p in parent:            
             if (int(p[1] or 0)+int(p[2] or 0)*60<dt):

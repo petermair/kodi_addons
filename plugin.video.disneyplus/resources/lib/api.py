@@ -27,9 +27,10 @@ ERROR_MAP = {
 
 
 
-class API(object):
-    def __init__(self): 
-        self._db = load.loadDB("disneyplus")
+class API(object):      
+
+    def __init__(self):
+        self._db = None
         
     def new_session(self):
         self._session = Session(HEADERS, timeout=30)
@@ -38,6 +39,7 @@ class API(object):
 
     def  __del__(self):
         self._db.disconnect()
+        self._db = None
 
     @mem_cache.cached(60*60, key='config')
     def get_config(self):
@@ -53,6 +55,8 @@ class API(object):
 
     @property
     def db(self):
+        if self._db == None:
+            self._db = load.loadDB("disneyplus")
         return self._db
 
     def _set_authentication(self, token):

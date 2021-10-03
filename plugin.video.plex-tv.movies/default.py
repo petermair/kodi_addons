@@ -55,6 +55,6 @@ def play():
 
 
 if __name__ == '__main__':
-    LOG.info('PKC add-on for movies started')
+    LOG.info('Plex TV add-on for movies started')
     play()
-    LOG.info('PKC add-on for movies stopped')
+    LOG.info('Plex TV add-on for movies stopped')
