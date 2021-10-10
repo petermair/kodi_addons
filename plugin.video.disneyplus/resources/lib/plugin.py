@@ -484,17 +484,9 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
 
 def _process_rows(folderid, parentid, rows, content_class=None,fullSync = False):
     db = api.db
-    
-
     fullSync = (str(fullSync)=="True")
-
     items = []
-
     ordernr = 0
-    
-
-    
-
     for row in rows:
         item = None
         content_type = row.get('type')
