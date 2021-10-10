@@ -59,7 +59,7 @@ Modify [advancedsettings.xml](https://kodi.wiki/view/MySQL/Setting_up_Kodi#MySQL
         <database>primevideo</database>
         <port>3306</port>
         <user>kodi</user>
-        <pass>***</pass>
-    </disneyplusdatabase>
+        <pass>***</pass>    
     </amazonprimedatabase>
+    </advancedsettings>
 ````
