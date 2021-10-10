@@ -5,6 +5,7 @@ from slyguy.log import log
 from slyguy.exceptions import PluginError
 from slyguy.constants import KODI_VERSION
 from slyguy.drm import is_wv_secure
+
 import xbmcgui
 
 from .api import API
@@ -12,10 +13,7 @@ from .constants import *
 from .language import _
 
 import time
-from xbmcaddon import Addon
 
-import warnings
-import json
 api = API()
 
 SYNC_COLLECTION_MINUTES = 7 * 24 * 60
@@ -28,7 +26,7 @@ SYNC_MOVIE_MINUTES = 1 * 24 * 60
 def before_dispatch():
     api.new_session()
     plugin.logged_in = api.logged_in
-    InitialDBSetup()
+    
 
 @plugin.route('')
 def index(**kwargs):
@@ -38,7 +36,7 @@ def index(**kwargs):
         folder.add_item(label=_(_.LOGIN, _bold=True), path=plugin.url_for(login), bookmark=False)
         folder.add_item(label=_.SETTINGS, path=plugin.url_for(plugin.ROUTE_SETTINGS), _kiosk=False, bookmark=False)
         return folder
-    else:
+    else:        
         db = api.db
         
         data = db.select("folderhierarchy h", ("h.foldersid", "h.parentid"), "WHERE h.parentid = '%s' AND h.profileid='%s' ORDER BY ordernr" % (DB_ZERO,userdata.get('profile_id')))       
@@ -71,122 +69,7 @@ def db_FolderSync(id, parentid, lastsync, syncminutes):
       "WHERE id='"+id+"'"
     )
     
-def InitialDBSetup():
-    ADDON_VERSION = Addon().getAddonInfo('version')
-    dbversion = 1
-    api.db.beginTransaction
-    api.db.createTable(
-        "version",
-        (
-            {"fieldname": "version",   "fieldtype": "varchar", "fieldsize": 20, "notnull": True},            
-            {"fieldname": "dbversion", "fieldtype": "varchar", "fieldsize": 20, "notnull": False},
-        ),
-        ("version",)
-    )
-    v = api.db.select("version",("MAX(dbversion)",))
-    if len(v)>0:
-        dbversion = v[0][0]
-    if dbversion == None:
-        dbversion = 1    
 
-    api.db.createTable(
-        "art",
-        (
-            {"fieldname": "mediaid", "fieldtype": "varchar", "fieldsize":  40, "notnull": True},            
-            {"fieldname": "arttype", "fieldtype": "varchar", "fieldsize":  36, "notnull": True},
-            {"fieldname": "url",     "fieldtype": "varchar", "fieldsize": 250, "notnull": True},
-        ),
-        ("mediaid","arttype")
-    )
-    
-    api.db.createTable(
-        "episodes",
-        (
-            {"fieldname": "id",        "fieldtype": "varchar", "fieldsize": 40, "notnull": True},            
-            {"fieldname": "seasonsid", "fieldtype": "varchar", "fieldsize": 36, "notnull": True},
-            {"fieldname": "season",    "fieldtype": "int",     "fieldsize": 11, "notnull": True},
-            {"fieldname": "episode",   "fieldtype": "int",     "fieldsize": 11, "notnull": True},
-        ),
-        ("id",)
-    )
-
-    if int(dbversion)<2: ##
-        api.db.execute("DROP TABLE IF EXISTS folderhierarchy")
-
-    api.db.createTable(
-        "folderhierarchy",
-        (
-            {"fieldname": "foldersid","fieldtype": "varchar", "fieldsize": 40, "notnull": True},                       
-            {"fieldname": "parentid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
-            {"fieldname": "profileid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
-            {"fieldname": "ordernr",  "fieldtype": "int",     "fieldsize": 11, "notnull": True},   
-            {"fieldname": "active",   "fieldtype": "int",     "fieldsize":  11, "notnull": False},                     
-        ),
-        ("foldersid","parentid","profileid")
-    )
-
-    api.db.createTable(
-        "folders",
-        (
-            {"fieldname": "id",           "fieldtype": "varchar", "fieldsize":  40, "notnull": True},            
-            {"fieldname": "type",         "fieldtype": "varchar", "fieldsize":  36, "notnull": True},
-            {"fieldname": "slug",         "fieldtype": "varchar", "fieldsize":  50, "notnull": True},
-            {"fieldname": "contentclass","fieldtype": "varchar", "fieldsize":   50, "notnull": True},
-            {"fieldname": "title",        "fieldtype": "varchar", "fieldsize": 200, "notnull": True},
-            {"fieldname": "lastsync",     "fieldtype": "bigint",  "fieldsize":  20, "notnull": False},
-            {"fieldname": "syncminutes",  "fieldtype": "int",     "fieldsize":  11, "notnull": False},            
-        ),
-        ("id",)
-    )
-
-    api.db.createTable(
-        "movies",
-        (
-            {"fieldname": "id",              "fieldtype": "varchar", "fieldsize":  40, "notnull": True},            
-            {"fieldname": "title",           "fieldtype": "varchar", "fieldsize": 206, "notnull": True},
-            {"fieldname": "plot",            "fieldtype": "longtext","fieldsize":   0, "notnull": False},
-            {"fieldname": "mediatype",       "fieldtype": "varchar", "fieldsize":  50, "notnull": True},
-            {"fieldname": "duration",        "fieldtype": "int",     "fieldsize": 200, "notnull": False},
-            {"fieldname": "releasedate",     "fieldtype": "varchar", "fieldsize":  20, "notnull": False},
-            {"fieldname": "releaseyear",     "fieldtype": "int",     "fieldsize":  11, "notnull": False},
-            {"fieldname": "url",             "fieldtype": "varchar", "fieldsize": 250, "notnull": False},
-            {"fieldname": "encodedfamilyid", "fieldtype": "varchar", "fieldsize":  40, "notnull": False},
-        ),
-        ("id", )
-    )
-
-    api.db.createTable(
-        "seasons",
-        (
-            {"fieldname": "id",                   "fieldtype": "varchar", "fieldsize":  40, "notnull": True},            
-            {"fieldname": "seriesid",             "fieldtype": "varchar", "fieldsize":  36, "notnull": True},
-            {"fieldname": "title",                "fieldtype": "varchar", "fieldsize": 200, "notnull": True},
-            {"fieldname": "seasonsequencenumber", "fieldtype": "int",     "fieldsize":  11, "notnull": True},
-            {"fieldname": "plot",                 "fieldtype": "longtext","fieldsize":   0, "notnull": False},
-            {"fieldname": "mediatype",            "fieldtype": "varchar", "fieldsize":  50, "notnull": True},
-            {"fieldname": "releaseyear",          "fieldtype": "int",     "fieldsize":  11, "notnull": False},
-            {"fieldname": "releasedate",          "fieldtype": "varchar", "fieldsize":  20, "notnull": False},            
-        ),
-        ("id", )
-    )
-
-    api.db.createTable(
-        "series",
-        (
-            {"fieldname": "id",                   "fieldtype": "varchar", "fieldsize":  40, "notnull": True},                        
-            {"fieldname": "title",                "fieldtype": "varchar", "fieldsize": 200, "notnull": True},
-            {"fieldname": "encodedseriesid",      "fieldtype": "varchar", "fieldsize":  50, "notnull": True},
-            {"fieldname": "plot",                 "fieldtype": "longtext","fieldsize":   0, "notnull": False},
-            {"fieldname": "mediatype",            "fieldtype": "varchar", "fieldsize":  50, "notnull": True},
-            {"fieldname": "releaseyear",          "fieldtype": "int",     "fieldsize":  11, "notnull": False},
-            {"fieldname": "releasedate",          "fieldtype": "varchar", "fieldsize":  20, "notnull": False},            
-        ),
-        ("id", )
-    )
-
-    api.db.replace("version",("version","dbversion"),(ADDON_VERSION, '2'),"WHERE version='%s'" % ADDON_VERSION)
-    
-    api.db.commit
 
 @plugin.route()
 def InitialSync(**kwargs):    
@@ -213,9 +96,9 @@ def InitialSync(**kwargs):
     syncsets(folderid=WATCHLIST_SET_ID, parentid=DB_ZERO, set_id=WATCHLIST_SET_ID, set_type=WATCHLIST_SET_TYPE, fullSync=True, odernr=6, dialog=_dialog)    
     db.commit()
     db.beginTransaction()
-    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=True, odernr=7, dialog=_dialog)    
-    _dialog.close
+    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=True, odernr=7, dialog=_dialog)        
     db.commit()
+    _dialog.close
 
 @plugin.route()
 def SyncManually(folderid, parentid,**kwargs):
@@ -244,14 +127,15 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
     dt = time.time()
     dt = int(dt)    
     if dosync == False:        
-        parent = db.select("folders", ("id","lastsync","syncminutes"), "WHERE id='%s'" % folderid)
-        dosync = (len(parent) == 0)
+        parent = db.select("folders", ("id","lastsync","syncminutes"), "WHERE id='%s'" % folderid)  
+        data = db.select("folderhierarchy",('*',),"WHERE parentid='%s' AND profileid='%s' LIMIT 1" % (parentid,userdata.get('profile_id')))      
+        dosync = (len(data) == 0)
         for p in parent:            
             if (int(p[1] or 0)+int(p[2] or 0)*60<dt):
                 dosync = True    
     if dosync == True:            
         type = 'PersonalizedCollection' if slug == 'home' else 'StandardCollection'
-        data = api.collection_by_slug(slug, content_class, type)                    
+        data = api.collection_by_slug(slug, content_class, type)                     
 
         folderid = data["collectionId"]        
         label = label or _get_text(data['text'], 'title', 'collection')
@@ -407,9 +291,10 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
     dosync = fullSync or (page>1)
     dt = time.time()
     dt = int(dt)    
-    parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid AND h.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")
+    parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid AND h.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")    
     if dosync == False:                        
-        dosync = len(parent) == 0
+        data = db.select("folderhierarchy",('*',),"WHERE parentid='%s' AND profileid='%s' LIMIT 1" % (parentid,userdata.get('profile_id')))      
+        dosync = (len(data) == 0)
         for p in parent:
             if (int(p[1] or 0)+int(p[2] or 0)*60<dt):
                 dosync = True  
@@ -476,7 +361,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
     title = "Disney+"
 
     db = api.db
-
+    ordernr = 1
     data = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid LEFT JOIN art ON f.id=art.mediaid AND art.arttype='fanart'",
             ("f.id", "f.type", "f.slug", "f.contentclass", "f.title","art.url", "h.ordernr"),
             "WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s' LIMIT 1" % (folderid, parentid,userdata.get('profile_id')) 
@@ -488,12 +373,12 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
         content_class = parentdata[3]
         title = parentdata[4]
         ordernr = int(parentdata[6])
-        if (type == 'CuratedSet'):
-            syncsets(id, parentid, id, content_class, page=1, fullSync="False", ordernr =ordernr)
-        elif type == 'StandardCollection':
-            synccollection(folderid, parentid, slug, content_class, title, fullSync="False", ordernr =ordernr)  
-        elif type =='DmcSeries':            
-            sync_series(folderid, id, fullSync = "False")
+    if (type == 'CuratedSet'):
+        syncsets(id, parentid, id, content_class, page=1, fullSync="False", ordernr =ordernr)
+    elif type == 'StandardCollection':
+        synccollection(folderid, parentid, slug, content_class, title, fullSync="False", ordernr =ordernr)  
+    elif type =='DmcSeries':            
+        sync_series(folderid, id, fullSync = "False")
 
     folder = plugin.Folder(title)
 
@@ -840,8 +725,7 @@ def _parse_video(row):
     else:                
         item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=row['family']['encodedFamilyId']))))
         item.context.append((_.EXTRAS, "Container.Update({})".format(plugin.url_for(extras, family_id=row['family']['encodedFamilyId']))))
-        item.context.append((_.SUGGESTED, "Container.Update({})".format(plugin.url_for(suggested, family_id=row['family']['encodedFamilyId']))))
-        pass
+        item.context.append((_.SUGGESTED, "Container.Update({})".format(plugin.url_for(suggested, family_id=row['family']['encodedFamilyId']))))        
 
     return item
 
@@ -1040,9 +924,7 @@ def full_details(family_id=None, series_id=None,**kwargs):
     elif family_id:
         data = api.video_bundle(family_id)
         sync_video(data["video"])
-        item = _parse_video(data['video'])    
-
-    warnings.warn(json.dumps(data))
+        item = _parse_video(data['video'])        
 
     gui.info(item)
 

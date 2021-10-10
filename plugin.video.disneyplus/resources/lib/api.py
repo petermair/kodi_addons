@@ -148,8 +148,7 @@ class API(object):
         elif data.get('status') == 400:
             raise APIError(_(error, msg=data.get('message')))
 
-    def _json_call(self, endpoint):
-        cursor = self._db.cursor    
+    def _json_call(self, endpoint):        
         self._set_token()
         data = self._session.get(endpoint).json()
         self._check_errors(data)
