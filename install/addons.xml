@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.0" provider-name="mairpeter">
+<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.1" provider-name="mairpeter">
   <requires>
     <import addon="xbmc.python" version="2.24.0" />
     <import addon="script.module.beautifulsoup4" version="4.6.2" />
