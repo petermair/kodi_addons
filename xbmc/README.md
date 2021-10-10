@@ -49,3 +49,17 @@ Modify [advancedsettings.xml](https://kodi.wiki/view/MySQL/Setting_up_Kodi#MySQL
     </disneyplusdatabase>
     </advancedsettings>
 ````
+
+*   Amazon Prime:
+````xml
+    <advancedsettings>
+    <amazonprimedatabase>
+        <type>mysql</type>
+        <host>***.***.***.***</host>
+        <database>primevideo</database>
+        <port>3306</port>
+        <user>kodi</user>
+        <pass>***</pass>    
+    </amazonprimedatabase>
+    </advancedsettings>
+````
