@@ -389,8 +389,7 @@ class PrimeVideo(Singleton):
                                             catalogdata = res["catalogMetadata"]
                                             content = catalogdata["catalog"]["type"].lower()
                                             if content=="episode": 
-                                                content = "series"  
-                                                warnings.warn(json.dumps(item))
+                                                content = "series"                                                  
                                     except:
                                         ## Bool
                                         pass
@@ -556,12 +555,9 @@ class PrimeVideo(Singleton):
                     compactgti = episode["compactGTI"]
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
-                else:
-                    warnings.warn(json.dumps(episode))
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
                 updateseries = True                          
-
 
             for season in state["seasons"][state["pageTitleId"]]:
                 ##season = state["seasons"][state["pageTitleId"]][seasonid]
