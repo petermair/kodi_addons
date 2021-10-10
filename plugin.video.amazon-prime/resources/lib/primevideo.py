@@ -156,9 +156,9 @@ class PrimeVideo(Singleton):
             except: pass
         for i, s in enumerate(self._TextCleanPatterns):
             self._TextCleanPatterns[i][0] = re.compile(s[0])
-        
-
+        db_Setup()
     
+
     
     def _BeautifyText(self, title):
         """ Correct stylistic errors in Amazon's titles """
@@ -264,9 +264,11 @@ class PrimeVideo(Singleton):
         
         NotifyUser(getString(30252).format(page))
 
-        # Too many instances to track, append the episode finder to about every query and cross fingers
+        
         if requestURL is not None:
-            requestURL += ('&' if '?' in requestURL else '?') + 'episodeListSize=9999'
+            # Too many instances to track, append the episode finder to about every query and cross fingers
+            ##requestURL += ('&' if '?' in requestURL else '?') + 'episodeListSize=9999'
+            pass
         else: 
             data = db.select("series",("id",),"WHERE id='%s'" % (db.escape(path)))
             if len(data)>0:
@@ -341,112 +343,135 @@ class PrimeVideo(Singleton):
                                                 (('*className*' in x) and ('atv.wps.PaginatorNext' == x['*className*'])) or
                                                 (('__type' in x) and ('PaginatorNext' in x['__type']))), None)
                 if nexturl != None:
-                    ## Avoid deadlock
-                    db.commit()
-                    db.beginTransaction()
+                    ## Avoid deadlock                    
                     self.parseCollection(path, nexturl, iorder, page + 1)
 
 
     def parseItem(self, item, parent, offset):
         g = Globals()
         db = g.db() 
-        itemid = self.genID(item["titleID"])
-        subdetailurl =""
-        verb = ""
-        iorder = offset
-        content = "folder"        
-        verb = "pv/browse/"+itemid   
-        if "href" in item:
-            subdetailurl = item["href"]            
-        elif "link"  in item:
-            subdetailurl = item["link"]["url"]
-        if "title" in item: 
-            title = item["title"]
-        if "heading" in item: ## Series
-            title = item["heading"]    
-        compactgti = self.ExtractURN(subdetailurl)
-        if compactgti != None:
-            content = "series"
-            if "playbackAction" in item:
-                if "runtime" in item["playbackAction"]:
+        if "items" in item: 
+            for i in item["items"]:
+                self.parseItem(i, parent, 1)
+        if "titleID" in item:
+            itemid = self.genID(item["titleID"])
+            subdetailurl =""
+            verb = ""
+            iorder = offset
+            content = "folder"        
+            verb = "pv/browse/"+itemid   
+            if "href" in item:
+                subdetailurl = item["href"]            
+            elif "link"  in item:
+                subdetailurl = item["link"]["url"]
+            if "title" in item: 
+                title = item["title"]
+            if "heading" in item: ## Series
+                title = item["heading"]  
+            catalogdata=[]  
+            compactgti = self.ExtractURN(subdetailurl)
+            if compactgti != None:
+                ## find type from DB
+                if not db.exists("movies","WHERE id='%s'" %(db.escape(itemid),)):
+                    if not db.exists("seasons","WHERE id='%s'" %(db.escape(itemid),)):
+                        if "heading" in item: ## Series
+                            series = db.select("series",("id",),"WHERE title = '%s'" % (db.escape(title)))
+                            if len(series)>0:
+                                seriesid = series[0][0]
+                                content = "series"
+                                verb = "pv/browse/"+seriesid
+                            else:
+                                pbres = getURLData('catalog/GetPlaybackResources', itemid, silent=True, extra=True, useCookie=True,
+                                    opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')
+                                for res in pbres:
+                                    try:
+                                        if "catalogMetadata" in res :
+                                            catalogdata = res["catalogMetadata"]
+                                            content = catalogdata["catalog"]["type"].lower()
+                                            if content=="episode": 
+                                                content = "series"  
+                                                warnings.warn(json.dumps(item))
+                                    except:
+                                        ## Bool
+                                        pass
+                    else:
+                        content = "series"
+                        data = db.select("seasons",("seriesid",),"WHERE id='%s'" % (db.escape(itemid),))
+                        seriesid = data[0][0]
+                        
+                else:
                     content = "movie"
-            if ("runTime" in item) or ("runtime" in item):
-                    content = "movie"
+                    catalogdata=[]
 
-        
+            if content == "movie":            
+                verb = '?mode=PlayVideo&name={}&asin={}{}'.format(compactgti, itemid, "")                        
+                if len(catalogdata)>0:
+                    movie = catalogdata        
+                    isPrime = False                
+                    rt = plot = ry = None
+                    if "catalog" in movie:
+                        catalog = movie["catalog"]
+                        if "runtimeSeconds" in catalog:
+                            rt = catalog["runtimeSeconds"]                                    
+                        if "entitlements" in catalog:
+                            isPrime = "prime" in catalog["entitlements"]
+                        if "releaseYear" in catalog:
+                            ry = catalog["releaseYear"]
+                        if "synopsis" in catalog:
+                            plot = catalog["synopsis"]
+                                
+                    db.replace("movies",
+                    ("id","isprime","releaseyear","title","duration","plot"),
+                    (itemid, int(isPrime), ry, title, rt, plot),
+                    "WHERE id='%s'"  % (db.escape(itemid),)
+                    )
+                    db_setSync(itemid)
+            elif content=="series":            
+                if len(catalogdata)>0:
+                    episode = catalogdata
+                    
+                    if  not "family" in episode:
+                        return None
 
-        if content == "movie":            
-            verb = '?mode=PlayVideo&name={}&asin={}{}'.format(compactgti, itemid, "")
-            ## ToDo: can be lazy-loaded?   
-            ## Initialize plot
-            if not db.exists("movies","WHERE id='%s'" %(db.escape(itemid))):
-                movie = getURLData('catalog/GetPlaybackResources', itemid, silent=True, extra=True, useCookie=True,
-                    opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')[1]["catalogMetadata"]            
-                isPrime = False                
-                rt = plot = ry = None
-                if "catalog" in movie:
-                    catalog = movie["catalog"]
-                    if "runtimeSeconds" in catalog:
-                        rt = catalog["runtimeSeconds"]                                    
-                    if "entitlements" in catalog:
-                        isPrime = "prime" in catalog["entitlements"]
-                    if "releaseYear" in catalog:
-                        ry = catalog["releaseYear"]
-                    if "synopsis" in catalog:
-                        plot = catalog["synopsis"]
-                            
-                db.replace("movies",
-                ("id","isprime","releaseyear","title","duration","plot"),
-                (itemid, int(isPrime), ry, title, rt, plot),
-                "WHERE id='%s'"  % (db.escape(itemid),)
-                )
-        if content=="series":
-            data = db.select("seasons",("seriesid",), "WHERE id='%s'" % (db.escape(itemid),))
-            if len(data)==0:
-                episode = getURLData('catalog/GetPlaybackResources', itemid, silent=True, extra=True, useCookie=True,
-                    opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')[1]["catalogMetadata"]                            
-                if  not "family" in episode:
-                    return None
-
-                family = episode["family"]
-                for tv in family["tvAncestors"]:
-                    if tv["catalog"]["type"]=="SHOW":
-                        db.replace("series",("id", "title"), 
-                            (tv["catalog"]["id"], tv["catalog"]["title"]),
-                            "where id='%s'" % (db.escape(tv["catalog"]["id"]),)
-                        )
-                        itemid =  tv["catalog"]["id"]  
-                        title = tv["catalog"]["title"] 
-                verb = "/pv/browse/"+itemid
-            else:
-                itemid = data[0][0]
-            if itemid == None: ## LiveEvent
+                    family = episode["family"]
+                    for tv in family["tvAncestors"]:
+                        if tv["catalog"]["type"]=="SHOW":
+                            db.replace("series",("id", "title"), 
+                                (tv["catalog"]["id"], tv["catalog"]["title"]),
+                                "where id='%s'" % (db.escape(tv["catalog"]["id"]),)
+                            )
+                            itemid =  tv["catalog"]["id"]  
+                            title = tv["catalog"]["title"] 
+                    verb = "pv/browse/"+itemid
+                else:
+                    itemid = seriesid            
+            elif content != "folder":
+                warnings.warn("UNKNOWN CATALOG-TYPE!!!")
+                warnings.warn(json.dumps(catalogdata))
                 return
 
 
-        if "imageSrc" in item:
-            img = self.RedefineImage(item["imageSrc"], 640)
-            db_setArt(itemid, "thumb", img)            
-            img = self.RedefineImage(item["imageSrc"])
-            db_setArt(itemid, "fanart", img)    
-        elif "image" in item:
-            img = self.RedefineImage(item["image"]["url"], 640)
-            db_setArt(itemid, "thumb", img)   
-            img = self.RedefineImage(item["image"]["url"])
-            db_setArt(itemid, "fanart", img)                   
-                                             
-        if "synopsis" in item:
-            synopsis = item["synopsis"]
-        db_addFolder(            
-            itemid,
-            parent,
-            verb,
-            title,
-            subdetailurl,
-            iorder,
-            1,
-            content
-        )        
+            if "imageSrc" in item:
+                img = self.RedefineImage(item["imageSrc"], 640)
+                db_setArt(itemid, "thumb", img)            
+                img = self.RedefineImage(item["imageSrc"])
+                db_setArt(itemid, "fanart", img)    
+            elif "image" in item:
+                img = self.RedefineImage(item["image"]["url"], 640)
+                db_setArt(itemid, "thumb", img)   
+                img = self.RedefineImage(item["image"]["url"])
+                db_setArt(itemid, "fanart", img)                   
+                                                
+            db_addFolder(            
+                itemid,
+                parent,
+                verb,
+                title,
+                subdetailurl,
+                iorder,
+                1,
+                content
+            )        
     	
     def getDetails(self, cnt):
         if "state" in cnt:
@@ -531,6 +556,8 @@ class PrimeVideo(Singleton):
                     compactgti = episode["compactGTI"]
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
+                else:
+                    warnings.warn(json.dumps(episode))
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
                 updateseries = True                          
@@ -555,7 +582,7 @@ class PrimeVideo(Singleton):
             detail["releaseYear"],detail["synopsis"]),
             "WHERE id='%s'" % (detail["catalogId"])
             )
-            db_addFolder(detail["catalogId"],seriesid,"/pv/browse/"+detail["catalogId"],detail["title"],
+            db_addFolder(detail["catalogId"],seriesid,"pv/browse/"+detail["catalogId"],detail["title"],
             link,detail["seasonNumber"],1, "season")
 
             db_setSync(detail["catalogId"])        
@@ -568,8 +595,9 @@ class PrimeVideo(Singleton):
         db = g.db()        
         data = db.select("episodes",("id", "seasonsid", "seriesid"),"WHERE id='%s'" % (db.escape(id),))
         if len(data)==0:
-            episode = getURLData('catalog/GetPlaybackResources', id, silent=True, extra=True, useCookie=True,
-                    opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')[1]["catalogMetadata"]            
+            urldata = getURLData('catalog/GetPlaybackResources', id, silent=True, extra=True, useCookie=True,
+                    opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')            
+            episode = urldata[1]["catalogMetadata"]
             family = episode["family"]
             for tv in family["tvAncestors"]:
                 if tv["catalog"]["type"]=="SHOW":
@@ -610,7 +638,7 @@ class PrimeVideo(Singleton):
 
     def _UpdateProfiles(self, data):
         db = g.db()
-        db.beginTransaction()
+        
         if 'cerberus' in data:
             p = data['cerberus']['activeProfile']
             dt = time.time()
@@ -638,12 +666,9 @@ class PrimeVideo(Singleton):
                         'metadata': {'artmeta': {'icon': p['avatarUrl']}},
                         'verb': 'pv/profiles/switch/{}'.format(p['id']),
                         'endpoint': p['switchLink'],
-                    }
-        db.commit()
+                    }        
 
-    def Route(self, verb, path):
-        warnings.warn(verb)
-        warnings.warn(path)
+    def Route(self, verb, path):        
         if 'search' == verb: g.pv.Search()
         elif 'browse' == verb: g.pv.Browse(path)
         elif 'refresh' == verb: g.pv.Refresh(path)
@@ -657,10 +682,13 @@ class PrimeVideo(Singleton):
         path = path.split('/')
 
         def List():
+            db = g.db()
             """ List all inactive profiles """
             # Hit a fast endpoint to grab and update CSRF tokens
             home = GrabJSON(self._g.BaseUrl + '/gp/video/profiles')
+            db.beginTransaction()
             self._UpdateProfiles(home)
+            db.commit()
             for k, p in self._catalog['profiles'].items():
                 if 'active' == k or k == self._catalog['profiles']['active']:
                     continue
@@ -668,6 +696,7 @@ class PrimeVideo(Singleton):
             xbmcplugin.endOfDirectory(self._g.pluginhandle, succeeded=True, cacheToDisc=False, updateListing=False)
 
         def Switch():
+            db = g.db()
             """ Switch to an inactive profile """
             # Sometimes the switch just fails due to CSRF, possibly due to problems on Amazon's servers,
             # so we patiently try a few times
@@ -675,7 +704,9 @@ class PrimeVideo(Singleton):
                 endpoint = self._catalog['profiles'][path[1]]['endpoint']
                 Log('{} {}'.format(self._g.BaseUrl + endpoint['partialURL'], endpoint['query']))
                 home = GrabJSON(self._g.BaseUrl + endpoint['partialURL'], endpoint['query'])
+                db.beginTransaction()
                 self._UpdateProfiles(home)
+                db.commit()
                 if path[1] == self._catalog['profiles']['active']:
                     break
                 sleep(3)
@@ -763,7 +794,7 @@ class PrimeVideo(Singleton):
                 cn += 1
                 id = self.genID(self._BeautifyText(link['text']))
                 ordernr = ordernr +1
-                db_addFolder(id, "root", "pv/browse/"+id, self._BeautifyText(link['text']), link['href'],ordernr, 1, "root")
+                db_addFolder(id, "root", "pv/browse/"+id, self._BeautifyText(link['text']), link['href'],ordernr, 1, "folder")
         except:
             self._g.dialog.notification(
                 'PrimeVideo error',
@@ -827,8 +858,14 @@ class PrimeVideo(Singleton):
 
         db = self._g.db()
         parent = db.select("folders",("content","title"),"WHERE id='%s'" % (db.escape(path)))
-        items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",("f.id","f.title","f.verb","f.content", "f.synopsis"),
-        "WHERE h.parentid='%s' AND h.active=1 ORDER BY CASE WHEN f.content IN ('search','episode','season') THEN h.ordernr ELSE f.title END" % (db.escape(path)))
+        if len(parent)==0:
+            return
+        if parent[0][0] in ["search","episode","season","series","root"]:
+            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",("f.id","f.title","f.verb","f.content"),
+                "WHERE h.parentid='%s' AND h.active=1 ORDER BY h.ordernr" % (db.escape(path)))
+        else:
+            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",("f.id","f.title","f.verb","f.content"),
+                "WHERE h.parentid='%s' AND h.active=1 ORDER BY f.title" % (db.escape(path)))
         if len(parent)==0:
             return
         if parent[0][0] == "series":
@@ -862,22 +899,26 @@ class PrimeVideo(Singleton):
                         "duration": data[0][3],
                     })
             elif item[3]=="series":
-               data =  db.select("series",("title",),"WHERE id='%s'" % db.escape(item[0],))
-               if len(data)>0: 
-                li.setInfo('video', 
+                data =  db.select("series",("title",),"WHERE id='%s'" % db.escape(item[0],))
+                ## Use plot from last season
+                season =  db.select("series se LEFT JOIN seasons s ON s.seriesid=se.id",
+                    ("s.plot",),
+                    "WHERE se.id='%s' ORDER BY s.seasonnumber DESC LIMIT 1" % db.escape(item[0],))
+                if (len(data)>0) and (len(season)): 
+                    li.setInfo('video', 
                     {
                         'mediatype': "tvshow",
-                        'title': data[0][0]                      
+                        'title': data[0][0],
+                        'plot': season[0][0]                      
                     })
-            elif item[3]=="seasons":
+            elif item[3]=="season":
                 data =  db.select("seasons s LEFT JOIN series se ON s.seriesid=se.id",
                     ("s.seasonnumber","s.releasedate","s.releaseyear","s.plot",'se.title'),
                     "WHERE s.id='%s'" % db.escape(item[0],))
                 if len(data)>0:  
                     li.setInfo('video', 
                     {
-                        'mediatype': "season",
-                        'title': data[0][4],
+                        'mediatype': "season",                    
                         'season': data[0][0],
                         'year': data[0][2],
                         'plot': data[0][3],
@@ -944,12 +985,12 @@ class PrimeVideo(Singleton):
         data = db.select("folders",("detailurl",), "WHERE id='dosearch'")
         if len(data)>0:
             endpoint = data[0][0]
-            db.beginTransaction()
-            ##db.update("folderhierarchy",("ordernr",),("ordernr+1",),"WHERE ordernr>1 AND parentid='search'")
-            db.execute("UPDATE folderhierarchy SET ordernr=ordernr+1 WHERE parentid='search' AND ordernr>1")            
+            db.beginTransaction()            
+            db.execute("UPDATE folderhierarchy SET ordernr=ordernr+1 WHERE parentid='search' AND ordernr>1")  
+            ##only save the last 20 items
+            db.delete("folderhierarchy", "WHERE parentid='search' AND ordernr>20")   
             db_addFolder('search-'+searchid, "search", "pv/browse/search-"+searchid,
                 searchString,endpoint.format(searchString),2,1,"search")
-            db.commit()
-            ##self._catalog['search'] = OrderedDict([('lazyLoadURL', self._catalog['root']['Search']['endpoint'].format(searchString))])
+            db.commit()            
             self.Browse("search-"+searchid)
 
