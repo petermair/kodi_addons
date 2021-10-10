@@ -7,7 +7,7 @@ import os
 import shlex
 import subprocess
 import threading
-##from inputstreamhelper import Helper
+from inputstreamhelper import Helper
 from .network import *
 from .common import Globals, Settings, jsonRPC, sleep
 from .itemlisting import getInfolabels
@@ -15,9 +15,6 @@ try:
     from urllib.parse import quote_plus
 except:
     from urllib import quote_plus
-from slyguy.constants import KODI_VERSION
-from slyguy.drm import is_wv_secure
-from slyguy import inputstream
 
 
 def _playDummyVid():
@@ -306,17 +303,16 @@ def PlayVideo(name, asin, adultstr, streamtype, forcefb=0):
         xbmc.executebuiltin('StartAndroidActivity("%s", "%s", "", "%s")' % (pkg, act, url))
 
     def _IStreamPlayback(asin, name, streamtype, isAdult, extern):
-
-        if KODI_VERSION > 18:
-            ver_required = '2.6.0'
-        else:
-            ver_required = '2.4.5'
-
         from .ages import AgeRestrictions
         vMT = ['Feature', 'Trailer', 'LiveStreaming'][streamtype]
         dRes = 'PlaybackUrls' if streamtype > 1 else 'PlaybackUrls,SubtitleUrls,ForcedNarratives,TransitionTimecodes'
         opt = '&liveManifestType=accumulating,live&playerType=xp&playerAttributes={"frameRate":"HFR"}' if streamtype > 1 else ''
         mpaa_str = AgeRestrictions().GetRestrictedAges() + getString(30171)
+
+        inputstream_helper = Helper('mpd', drm='com.widevine.alpha')
+        if not inputstream_helper.check_inputstream():
+            Log('No Inputstream Addon found or activated')
+            return False
 
         cookie = MechanizeLogin()
         if not cookie:
@@ -342,20 +338,6 @@ def PlayVideo(name, asin, adultstr, streamtype, forcefb=0):
 
         from xbmcaddon import Addon as KodiAddon
         is_version = KodiAddon(g.is_addon).getAddonInfo('version') if g.is_addon else '0'
-        
-
-        ia = inputstream.Widevine(
-            license_key = licURL,
-            manifest_type = 'mpd',
-            ##mimetype = 'application/vnd.apple.mpegurl',
-            mimetype = 'application/dash+xml',
-            wv_secure = is_wv_secure(),
-        )
-
-        if not ia.check() or not inputstream.require_version(ver_required):
-            ##gui.ok(_(_.IA_VER_ERROR, kodi_ver=KODI_VERSION, ver_required=ver_required))
-            g.dialog.notification("Version Error", "Please update your Inputstream-Addon", xbmcgui.NOTIFICATION_ERROR)
-
 
         if (not s.audioDescriptions) and (streamtype != 2):
             mpd = re.sub(r'(~|%7E)', '', mpd)

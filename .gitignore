@@ -3,3 +3,5 @@ _###*
 machine_guid
 /resources/media/Thumbs.db
 repository/create_repository.*
+install/plugin.video.amazon-prime/resources/lib/* copy.py
+install/plugin.video.amazon-prime/resources/lib/*Kopie.py
