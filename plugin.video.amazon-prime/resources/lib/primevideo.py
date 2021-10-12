@@ -933,7 +933,7 @@ class PrimeVideo(Singleton):
         
         if isPlayable==True:
             li.setProperty('IsPlayable', 'true')                
-        if (item[1]=="movie") or (item[1]=="episode"):
+        if (path ==None) and ((item[1]=="movie") or (item[1]=="episode")):
             li.addContextMenuItems([
                 ("Infos", "RunPlugin("+self._g.pluginid +"pv/more/"+item[0]+")")
             ])                            
@@ -1010,7 +1010,7 @@ class PrimeVideo(Singleton):
                     )
             db.commit()
 
-        data = self.GetExtendedInfoFromDB(itemid)                
+        data = self.GetExtendedInfoFromDB(itemid, path)                
         return data[0]
 
 
