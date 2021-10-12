@@ -12,6 +12,7 @@ map_fieldtype = {
   "text": "text",
   "mediumtext": "text",
   "longtext": "text",
+  "float": "real"
 }
 
 class SQLiteDB(BaseDB):    

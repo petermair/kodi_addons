@@ -53,7 +53,7 @@ class MySQLDB(BaseDB):
         sql = sql = 'CREATE TABLE IF NOT EXISTS `'+tablename+'`(' + sql
         if pk != "":
             sql = sql + ", PRIMARY KEY("+pk+")"
-        sql = sql + ')'        
+        sql = sql + ") COLLATE 'utf32_unicode_ci'"        
         self._cursor.execute(sql)
 
     def select(self, tablename, fieldnames, wheresql = ""):

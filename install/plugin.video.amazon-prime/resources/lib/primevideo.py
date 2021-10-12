@@ -389,8 +389,7 @@ class PrimeVideo(Singleton):
                                             catalogdata = res["catalogMetadata"]
                                             content = catalogdata["catalog"]["type"].lower()
                                             if content=="episode": 
-                                                content = "series"  
-                                                warnings.warn(json.dumps(item))
+                                                content = "series"                                                  
                                     except:
                                         ## Bool
                                         pass
@@ -556,8 +555,6 @@ class PrimeVideo(Singleton):
                     compactgti = episode["compactGTI"]
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
-                else:
-                    warnings.warn(json.dumps(episode))
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
                 updateseries = True                          
@@ -892,11 +889,13 @@ class PrimeVideo(Singleton):
                if len(data)>0:
                 li.setInfo('video', 
                     {
+                        'Label': data[0][0],
                         'mediatype': "movie",
                         'title': data[0][0],
                         'year': data[0][1],
                         "plot": data[0][2],
                         "duration": data[0][3],
+                        "art": art
                     })
             elif item[3]=="series":
                 data =  db.select("series",("title",),"WHERE id='%s'" % db.escape(item[0],))
@@ -906,7 +905,7 @@ class PrimeVideo(Singleton):
                     "WHERE se.id='%s' ORDER BY s.seasonnumber DESC LIMIT 1" % db.escape(item[0],))
                 if (len(data)>0) and (len(season)): 
                     li.setInfo('video', 
-                    {
+                    {                        
                         'mediatype': "tvshow",
                         'title': data[0][0],
                         'plot': season[0][0]                      
@@ -932,6 +931,7 @@ class PrimeVideo(Singleton):
                     li.setInfo('video', 
                     {
                         'mediatype': "episode",
+                        'Label': item[1],
                         'title': item[1],
                         'episode': data[0][1],  
                         'season': data[0][0],                                                                   

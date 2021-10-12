@@ -55,8 +55,8 @@ def db_setArt(id, arttype, url):
 
 def db_Setup():
     ADDON_VERSION = Addon().getAddonInfo('version')
-    NEWDBVERSION = 1
-    dbversion = NEWDBVERSION      
+    NEWDBVERSION = 2
+    dbversion = 0      
     version = '0.0.0'
 
     g = Globals()
@@ -77,7 +77,7 @@ def db_Setup():
         dbversion = v[0][1]
         version = v[0][0]       
         
-    if version == ADDON_VERSION:                
+    if dbversion == NEWDBVERSION:                
         return         
 
     
@@ -113,6 +113,7 @@ def db_Setup():
             {"fieldname": "content",    "fieldtype": "varchar", "fieldsize":   20, "notnull": False},
             {"fieldname": "lastsync",   "fieldtype": "bigint",  "fieldsize":    0, "notnull": False},
             {"fieldname": "syncminutes","fieldtype": "int",     "fieldsize":    0, "notnull": False},
+            {"fieldname": "prime",      "fieldtype": "int",     "fieldsize":    0, "notnull": False},
         ),
         ("id",)
     )    
@@ -139,7 +140,7 @@ def db_Setup():
             {"fieldname": "releaseyear",  "fieldtype": "varchar", "fieldsize":   10, "notnull": False},
             {"fieldname": "duration",     "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
             {"fieldname": "plot",         "fieldtype": "longtext","fieldsize":    0, "notnull": False},            
-            {"fieldname": "isprime",      "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
+            {"fieldname": "isplayable",   "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
         ),
         ("id",)
     )
@@ -180,12 +181,70 @@ def db_Setup():
             {"fieldname": "releasedate",  "fieldtype": "varchar", "fieldsize":   50, "notnull": False},
             {"fieldname": "duration",     "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
             {"fieldname": "plot",         "fieldtype": "longtext","fieldsize":    0, "notnull": False},            
-            {"fieldname": "episodenumber", "fieldtype": "int",    "fieldsize":    0, "notnull": False},            
+            {"fieldname": "episodenumber","fieldtype": "int",     "fieldsize":    0, "notnull": False},            
             {"fieldname": "detailurl",    "fieldtype": "varchar", "fieldsize": 1000, "notnull": False},            
+            {"fieldname": "isplayable",   "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
         ),
         ("id",)
     )
 
+    db.createTable(
+        "extendedinfo",
+        (
+            {"fieldname": "id",             "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "releasedate",    "fieldtype": "varchar", "fieldsize":   20, "notnull": True},            
+            {"fieldname": "releaseyear",    "fieldtype": "int",     "fieldsize":    0, "notnull": True},            
+            {"fieldname": "duration",       "fieldtype": "int",     "fieldsize":    0, "notnull": True},            
+            {"fieldname": "rating",         "fieldtype": "float",   "fieldsize":    0, "notnull": False},
+            {"fieldname": "isPrime",        "fieldtype": "int",     "fieldsize":    0, "notnull": False},
+            {"fieldname": "isClosedCaption","fieldtype": "int",     "fieldsize":    0, "notnull": False},            
+            {"fieldname": "isXRay",         "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
+            {"fieldname": "titletype",      "fieldtype": "varchar", "fieldsize":   50, "notnull": False},                        
+        ),
+        ("id",)
+    )
+
+    db.createTable(
+        "genres",
+        (
+            {"fieldname": "id",             "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "text",           "fieldtype": "varchar", "fieldsize":  150, "notnull": True},            
+            {"fieldname": "detailurl",      "fieldtype": "varchar", "fieldsize":  200, "notnull": True},                                               
+        ),
+        ("id",)
+    )
+
+    db.createTable(
+        "moviegenres",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "genresid",        "fieldtype": "varchar", "fieldsize":   50, "notnull": True},                        
+        ),
+        ("mediaid","genresid")
+    )
+
+    db.createTable(
+        "moviestudios",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",           "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                                                                     
+        ),
+        ("mediaid",)
+    )
+
+    
+    db.createTable(
+        "watchlist",
+        (
+            {"fieldname": "id",             "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "tag",            "fieldtype": "varchar", "fieldsize":   20, "notnull": True},            
+            {"fieldname": "returnurl",      "fieldtype": "varchar", "fieldsize":  200, "notnull": True},                                               
+            {"fieldname": "token",          "fieldtype": "varchar", "fieldsize":  200, "notnull": True},                                               
+            {"fieldname": "partialurl",     "fieldtype": "varchar", "fieldsize":  200, "notnull": True},                                               
+            {"fieldname": "titleid",        "fieldtype": "varchar", "fieldsize":   50, "notnull": True},                                               
+        ),
+        ("id",)
+    )
 
     if (int(dbversion)!=NEWDBVERSION) or (version != ADDON_VERSION):
         db.beginTransaction()  

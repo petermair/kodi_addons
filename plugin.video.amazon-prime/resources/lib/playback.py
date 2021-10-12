@@ -384,8 +384,10 @@ def PlayVideo(name, asin, adultstr, streamtype, forcefb=0):
 
         if mpaa_check and not AgeRestrictions().RequestPin():
             return True
-
-        listitem = xbmcgui.ListItem(label=title, path=mpd)
+        if g.UsePrimeVideo:
+            listitem = g.pv.GetExtendedInfo(asin, mpd)            
+        else:
+            listitem = xbmcgui.ListItem(label=title, path=mpd)
 
         if g.KodiVersion < 18 and extern:
             listitem.setInfo('video', getInfolabels(Info))

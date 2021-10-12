@@ -9,7 +9,7 @@ class BaseDB(object):
         self._tablereplace = {}    
     
     def AddTableReplace(self, tablename, replacename):
-        self._tablereplace[tablename] = replacename
+        self._tablereplace[tablename] = replacename        
 
     def ReplaceTableName(self, tablename):        
         for tn in self._tablereplace:
