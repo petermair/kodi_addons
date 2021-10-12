@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.2">
+  <requires>    
+    <import addon="script.module.myconnpy" version="1.0.12"/> <!--MySQL Connector/Python-->
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+  <extension point="xbmc.addon.metadata">
+    <description lang="en">Modules required by all Mair Peter add-ons</description>
+    <description lang="de">Benötigte Module für alle Addons von Mair Peter</description>
+    <description lang="it">Moduli richiesti per tutti i addons di Mair Peter</description>
+    <reuselanguageinvoker>true</reuselanguageinvoker>
+    <license></license>
+    <language></language>
+    <website>https://www.petermair.it/</website>    
+    <assets>
+      <icon>icon.png</icon>
+      <fanart>fanart.jpg</fanart>
+    </assets>
+  </extension>
+</addon>
