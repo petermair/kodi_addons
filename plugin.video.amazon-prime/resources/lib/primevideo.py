@@ -748,20 +748,11 @@ class PrimeVideo(Singleton):
 
     def DeleteCache(self):
         """ Pops up a dialog asking cache purge confirmation """
-        from .dialogs import PV_ClearCache
-        from xbmcvfs import delete
+        
+        self._catalog = {}            
+        Log('Deleting catalog', Log.DEBUG)
 
-        # ClearCache.value returns a boolean bitmask
-        clear = PV_ClearCache()
-        if 0 > clear.value:
-            return
-
-        # Clear catalog (PVCP)
-        if 1 & clear.value:
-            self._catalog = {}            
-            Log('Deleting catalog', Log.DEBUG)
-
-        del clear
+        
 
     def LanguageSelect(self):
         cj = MechanizeLogin()
