@@ -192,9 +192,9 @@ def db_Setup():
         "extendedinfo",
         (
             {"fieldname": "id",             "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
-            {"fieldname": "releasedate",    "fieldtype": "varchar", "fieldsize":   20, "notnull": True},            
-            {"fieldname": "releaseyear",    "fieldtype": "int",     "fieldsize":    0, "notnull": True},            
-            {"fieldname": "duration",       "fieldtype": "int",     "fieldsize":    0, "notnull": True},            
+            {"fieldname": "releasedate",    "fieldtype": "varchar", "fieldsize":   20, "notnull": False},            
+            {"fieldname": "releaseyear",    "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
+            {"fieldname": "duration",       "fieldtype": "int",     "fieldsize":    0, "notnull": False},            
             {"fieldname": "rating",         "fieldtype": "float",   "fieldsize":    0, "notnull": False},
             {"fieldname": "isPrime",        "fieldtype": "int",     "fieldsize":    0, "notnull": False},
             {"fieldname": "isClosedCaption","fieldtype": "int",     "fieldsize":    0, "notnull": False},            

@@ -960,6 +960,12 @@ class PrimeVideo(Singleton):
             else:
                 return 0
         
+        def GetData(b):
+            if b in detail:
+                return detail[b]
+            else:
+                return None
+        
         db = self._g.db()        
         ## movie:
         data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )  
@@ -980,7 +986,7 @@ class PrimeVideo(Singleton):
             db.beginTransaction()        
             db.replace("extendedinfo",
                 ("id","releasedate","releaseyear", "duration","rating","isPrime","isXRay","isClosedCaption","titletype"),
-                (itemid, detail["releaseDate"],detail["releaseYear"], detail["duration"],imdb,
+                (itemid, GetData("releaseDate"),GetData("releaseYear"), GetData("duration"),imdb,
                 Bool2Int("isPrime"), Bool2Int("isXRay"), Bool2Int("isClosedCaption"),detail["titleType"]),
                 "WHERE id='%s'" % (db.escape(itemid), )
             )
