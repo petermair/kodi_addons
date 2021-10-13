@@ -896,12 +896,16 @@ class PrimeVideo(Singleton):
             isFolder=False
             data =  db.select("episodes e LEFT JOIN seasons s ON e.seasonsid=s.id LEFT JOIN series se ON s.seriesid=se.id",
             ("s.seasonnumber","e.episodenumber","e.plot","se.title", "e.duration","s.id","e.isPlayable"),
-            "WHERE e.id='%s'" % db.escape(item[0],))
+            "WHERE e.id='%s'" % db.escape(item[0],))            
             if len(data)>0: 
                 extid = data[0][5]
+                title = item[2]
+                isPlayable = data[0][6]!=0
+                if not isPlayable:
+                    title = "[COLOR FFFF5550]"+title+"*[/COLOR]"                 
                 infolabels = {
                     'mediatype': "episode",
-                    'title': item[2],
+                    'title': title,
                     'episode': data[0][1],  
                     'season': data[0][0],                                                                   
                     'plot': data[0][2],
