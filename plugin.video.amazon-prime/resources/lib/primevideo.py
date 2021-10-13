@@ -181,7 +181,7 @@ class PrimeVideo(Singleton):
         parent = db.select("folders", ("id", "verb", "lastsync","detailurl","syncminutes"),"WHERE id='%s'" % (db.escape(path),))
         data = db.select("folderhierarchy",("*",),"WHERE parentid='%s' LIMIT 1" % (db.escape(path),))        
 
-        dosync = (len(data)==0)
+        dosync = (len(data)==0)        
         
         if dosync==False:
             if len(parent)==0:                
@@ -192,7 +192,8 @@ class PrimeVideo(Singleton):
                 elif parent[0][2]==None or parent[0][4] is None:
                     dosync = True
                 else:
-                    dosync = (((parent[0][2] or 0) +(parent[0][4]*60 or 0)) <dt)                
+                    ## Use value from settings, otherwise from database
+                    dosync = (((parent[0][2] or 0) + (self._s.catalogCacheExpiry or (parent[0][4]*60 or 0))) <dt)                
         if dosync==True:
             
             try:
@@ -392,8 +393,7 @@ class PrimeVideo(Singleton):
                             for res in pbres:
                                 try:
                                     if "catalogMetadata" in res :
-                                        catalogdata = res["catalogMetadata"]
-                                        warnings.warn(json.dumps(catalogdata))
+                                        catalogdata = res["catalogMetadata"]                                        
                                         content = catalogdata["catalog"]["type"].lower()
                                         if content=="episode": 
                                             content = "series"                                              
@@ -528,6 +528,7 @@ class PrimeVideo(Singleton):
                 db.commit()
                 return "movie"      
             else:
+                warnings.warn("NOT MOVIE CATALOG-TYPE!!!")
                 warnings.warn(json.dumps(details))
 
     def parseSeries(self, seriesid):
@@ -850,7 +851,7 @@ class PrimeVideo(Singleton):
         db = self._g.db() 
         data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(itemid)+"'" )  
         item = data[0]
-        
+        watchlist = None
         extid = itemid
         isPlayable = False
         isFolder = True
@@ -922,6 +923,11 @@ class PrimeVideo(Singleton):
                 infolabels["genre"] = []
                 for genre in genres:                                         
                     infolabels["genre"].append(genre[1])
+            
+            watchlistdata = db.select("watchlist",("id", "tag"),"WHERE id='%s'" % extid)
+            if len(watchlistdata)>0:
+                watchlist = watchlistdata[0]
+
 
         title = item[2]                    
         if (item[1]=="movie") or (item[1]=="episode"):
@@ -940,7 +946,16 @@ class PrimeVideo(Singleton):
         if (path ==None) and ((item[1]=="movie") or (item[1]=="episode")):
             li.addContextMenuItems([
                 ("Infos", "RunPlugin("+self._g.pluginid +"pv/more/"+item[0]+")")
-            ])                            
+            ])    
+        if (path==None) and (watchlist != None):
+            if watchlist[1]=="Add":
+                li.addContextMenuItems([
+                    (getString(30180).format(item[2]), "RunPlugin("+self._g.pluginid +"pv/watchlist/"+watchlist[0]+")")
+                ])
+            else:
+                li.addContextMenuItems([
+                    (getString(30181).format(item[2]), "RunPlugin("+self._g.pluginid +"pv/watchlist/"+watchlist[0]+")")
+                ])
         return (li, isFolder, isPlayable)
 
 
@@ -963,8 +978,7 @@ class PrimeVideo(Singleton):
         
         db = self._g.db()        
         ## movie:
-        data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )  
-        warnings.warn(compactgti)
+        data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )          
         if len(data)==0: ## episode:
             ## ?mode=PlayVideo&name=0K66WS6AYTWV042PO8FTCANIH8&asin=B08LXP4PXJ
             data = db.select("folders",("id, content", "title", "detailurl",),"WHERE verb like '%"+db.escape(compactgti)+"%'" )             

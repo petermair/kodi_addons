@@ -392,8 +392,7 @@ class PrimeVideo(Singleton):
                             for res in pbres:
                                 try:
                                     if "catalogMetadata" in res :
-                                        catalogdata = res["catalogMetadata"]
-                                        warnings.warn(json.dumps(catalogdata))
+                                        catalogdata = res["catalogMetadata"]                                        
                                         content = catalogdata["catalog"]["type"].lower()
                                         if content=="episode": 
                                             content = "series"                                              
@@ -528,6 +527,7 @@ class PrimeVideo(Singleton):
                 db.commit()
                 return "movie"      
             else:
+                warnings.warn("Is not a movie?")
                 warnings.warn(json.dumps(details))
 
     def parseSeries(self, seriesid):
@@ -575,7 +575,7 @@ class PrimeVideo(Singleton):
                     compactgti = episode["compactGTI"]
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
-                else:
+                else:                    
                     warnings.warn(json.dumps(episode))
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
@@ -963,8 +963,7 @@ class PrimeVideo(Singleton):
         
         db = self._g.db()        
         ## movie:
-        data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )  
-        warnings.warn(compactgti)
+        data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )          
         if len(data)==0: ## episode:
             ## ?mode=PlayVideo&name=0K66WS6AYTWV042PO8FTCANIH8&asin=B08LXP4PXJ
             data = db.select("folders",("id, content", "title", "detailurl",),"WHERE verb like '%"+db.escape(compactgti)+"%'" )             
