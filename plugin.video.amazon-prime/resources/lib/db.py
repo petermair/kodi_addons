@@ -28,8 +28,11 @@ def db_addFolder(id, parentid, verb, title, detailurl, ordernr = -1, active = 1,
 def db_setSync(id, minutes = 24*60):
   g = Globals()
   db = g.db()
-  dt = time.time()
-  dt = int(dt)
+  if minutes == 0:
+    dt = 0
+  else:
+    dt = time.time()
+    dt = int(dt)  
   db.update("folders",
     ("lastsync", "syncminutes"),
     (dt, minutes),

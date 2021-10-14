@@ -239,6 +239,12 @@ def getURLData(mode, asin, retformat='json', devicetypeid='AOAGZA014O5RE', versi
     except ImportError:
         from urllib import quote_plus
 
+    amzLang = None
+    cj = MechanizeLogin()
+    if cj:
+        amzLang = cj.get('lc-main-av', path='/')
+    amzLang = amzLang if amzLang else 'en_US'
+
     g = Globals()
     url = g.ATVUrl + '/cdp/' + mode
     url += '?asin=' + asin
@@ -246,7 +252,7 @@ def getURLData(mode, asin, retformat='json', devicetypeid='AOAGZA014O5RE', versi
     url += '&firmware=' + firmware
     url += '&deviceID=' + g.deviceID
     url += '&marketplaceID=' + g.MarketID
-    url += '&uxLocale=' + g.userAcceptLanguages.split(',')[0]
+    url += '&uxLocale=' + amzLang
     url += '&format=' + retformat
     url += '&version=' + str(version)
     url += '&gascEnabled=' + str(g.UsePrimeVideo).lower()

@@ -576,7 +576,7 @@ class PrimeVideo(Singleton):
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
                 else:                    
-                    warnings.warn(json.dumps(episode))
+                    pass
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
                 updateseries = True                          

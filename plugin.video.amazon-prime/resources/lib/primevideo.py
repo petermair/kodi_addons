@@ -7,9 +7,7 @@ from copy import deepcopy
 from xbmcvfs import exists
 from kodi_six import xbmcplugin, xbmcgui
 import json
-import pickle
 import re
-import sys
 import time
 import math
 
@@ -17,11 +15,16 @@ from .common import key_exists, return_item, sleep
 from .singleton import Singleton
 from .network import getURL, getURLData, MechanizeLogin, FQify, GrabJSON
 from .logging import Log
-from .itemlisting import setContentAndView
+# from .itemlisting import setContentAndView
 from .l10n import *
 from .users import *
-from .playback import PlayVideo
+# from .playback import PlayVideo
 from .db import *
+
+try:
+    from urllib.parse import quote_plus
+except ImportError:
+    from urllib import quote_plus
 
 import warnings
 
@@ -167,7 +170,14 @@ class PrimeVideo(Singleton):
             title = r[0].sub(r[1], title)
         return title
 
-    def syncContent(self, path):        
+    def RefreshFolder(self, path):
+        db = self._g.db()
+        db.beginTransaction()
+        db_setSync(path)
+        db.commit()
+        self._g.dialog.notification(self._g.addon.getAddonInfo('name'), "Refreshed", time=1000, sound=False)                
+
+    def syncContent(self, path, doRefresh=False):        
         
         dt = time.time()
         dt = int(dt)    
@@ -181,7 +191,7 @@ class PrimeVideo(Singleton):
         parent = db.select("folders", ("id", "verb", "lastsync","detailurl","syncminutes"),"WHERE id='%s'" % (db.escape(path),))
         data = db.select("folderhierarchy",("*",),"WHERE parentid='%s' LIMIT 1" % (db.escape(path),))        
 
-        dosync = (len(data)==0)        
+        dosync = doRefresh or (len(data)==0)        
         
         if dosync==False:
             if len(parent)==0:                
@@ -536,8 +546,9 @@ class PrimeVideo(Singleton):
         # Parse last season
         data = db.select("seasons",("id","detailurl"),"WHERE seriesid='%s' LIMIT 1" % (db.escape(seriesid)))
         cnt = GrabJSON(data[0][1])
-        self.parseSeason(cnt)
+        self.parseSeason(cnt)        
         db.beginTransaction()
+        self.setExtendedInfo(data[0][0],cnt)
         db_setSync(data[0][0])
         db.commit()
         ## parse all other seasons
@@ -546,6 +557,7 @@ class PrimeVideo(Singleton):
             cnt = GrabJSON(series[1])
             self.parseSeason(cnt)
             db.beginTransaction()
+            self.setExtendedInfo(series[0],cnt)
             db_setSync(series[0])
             db.commit()
         db.beginTransaction()
@@ -577,7 +589,7 @@ class PrimeVideo(Singleton):
                     asin = episode["asins"][0]
                     seriesid = self.parseEpisode(detail["catalogId"], gti, compactgti, asin)  
                 else:
-                    warnings.warn(json.dumps(episode))
+                    pass
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
                 updateseries = True                          
@@ -696,6 +708,35 @@ class PrimeVideo(Singleton):
                     }        
             db.commit()
 
+    def WatchList(self, mediaid):
+        cookie = MechanizeLogin()
+        if not cookie:
+            return
+        db = g.db()
+        data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(mediaid)+"'" )              
+        cnt = GrabJSON(data[0][3]) 
+        #em = data["enrichments"]
+        
+        if "state" in cnt:
+            if "watchlist" in cnt["state"]:
+                for wl in cnt["state"]["watchlist"]:
+                    watchlist = cnt["state"]["watchlist"][wl]                    
+                    endp = watchlist["endpoint"]
+                    action = watchlist["tag"]
+                    url = self._g.BaseUrl + endp.get('partialURL')
+                    query = endp.get('query')
+                    query['tag'] = action
+                    data = getURL(url, postdata=query, useCookie=cookie, check=True)
+                    if data=="OK":
+                        self._g.dialog.notification(self._g.addon.getAddonInfo('name'), 'Watchlist updated', time=1000, sound=False)
+                        folders = db.select("folderhierarchy fh LEFT JOIN folders f ON fh.parentid=f.id",("fh.id",),"WHERE f.content='watchlist'")
+                        for folder in folders:
+                            db_setSync(folder[0], 0)
+                        self.GetExtendedInfo(mediaid)
+                        xbmc.executebuiltin('Container.Refresh')
+                    else:
+                        self._g.dialog.notification(self._g.addon.getAddonInfo('name'), 'Error', time=1000, sound=False)
+
     def Route(self, verb, path):        
         if 'search' == verb: g.pv.Search()
         elif 'browse' == verb: g.pv.Browse(path)
@@ -703,7 +744,8 @@ class PrimeVideo(Singleton):
         elif 'profiles' == verb: g.pv.Profile(path)
         elif 'languageselect' == verb: g.pv.LanguageSelect()
         elif 'clearcache' == verb: g.pv.DeleteCache()
-        elif 'more' == verb: g.pv.Info(path)
+        elif 'more' == verb: g.pv.Info(path)        
+        pass
 
     def Profile(self, path):
         """ Profile actions """
@@ -848,6 +890,7 @@ class PrimeVideo(Singleton):
         return True
 
     def GetExtendedInfoFromDB(self, itemid, path=None):
+        tag = None
         db = self._g.db() 
         data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(itemid)+"'" )  
         item = data[0]
@@ -924,9 +967,12 @@ class PrimeVideo(Singleton):
                 for genre in genres:                                         
                     infolabels["genre"].append(genre[1])
             
-            watchlistdata = db.select("watchlist",("id", "tag"),"WHERE id='%s'" % extid)
+            watchlistdata = db.select("watchlist w INNER JOIN folders f ON w.id=f.id",
+                ("w.id", "w.tag","f.title"),
+                "WHERE w.id='%s'" % db.escape(extid)
+            )
             if len(watchlistdata)>0:
-                watchlist = watchlistdata[0]
+                watchlist = watchlistdata[0]                
 
 
         title = item[2]                    
@@ -940,25 +986,82 @@ class PrimeVideo(Singleton):
         li.setContentLookup(False)
         li.setInfo('video', infolabels)
 
-        
+        cmactions = []
         if isPlayable==True:
             li.setProperty('IsPlayable', 'true')                
-        if (path ==None) and ((item[1]=="movie") or (item[1]=="episode")):
-            li.addContextMenuItems([
+        if (path ==None) and ((item[1]=="movie") or (item[1]=="episode")or (item[1]=="season")):
+            cmactions.append(
                 ("Infos", "RunPlugin("+self._g.pluginid +"pv/more/"+item[0]+")")
-            ])    
+            )    
+        if (path ==None) and ((item[1]=="folder") or (item[1]=="series") or (item[1]=="watchlist")):
+            cmactions.append(
+                ("Refresh", "RunPlugin("+self._g.pluginid +"?mode=refreshfolder&foldersid"+item[0]+")")
+            )    
         if (path==None) and (watchlist != None):
-            if watchlist[1]=="Add":
-                li.addContextMenuItems([
-                    (getString(30180).format(item[2]), "RunPlugin("+self._g.pluginid +"pv/watchlist/"+watchlist[0]+")")
-                ])
+            tag = watchlist[1]
+        ## Look in watchlist-folders
+        if(tag==None) and (path==None) and ((item[1]=="movie") or (item[1]=="episode")or (item[1]=="season")):
+            watchlists = db.select("""folders f
+                LEFT JOIN folderhierarchy fh ON fh.id=f.id
+                LEFT JOIN folders fw ON fw.id=fh.parentid
+                LEFT JOIN folderhierarchy fhw ON fhw.id=fw.id
+                LEFT JOIN folders wl ON wl.id=fhw.parentid AND wl.content='watchlist'""",
+                ("f.id","wl.id","f.title"),
+                "WHERE f.id='%s' ORDER by wl.id DESC" % (db.escape(extid),))            
+            if len(watchlists)>0:
+                watchlist = watchlists[0]
+                if watchlist[1] is None:
+                    tag = "Add"
+                else:
+                    tag = "Remove"        
+        if tag != None:
+            if tag=="Add":
+                cmactions.append(
+                    (getString(30180) % (watchlist[2]), "RunPlugin("+self._g.pluginid +"?mode=WatchList&mediaid="+watchlist[0]+")")
+                )
             else:
-                li.addContextMenuItems([
-                    (getString(30181).format(item[2]), "RunPlugin("+self._g.pluginid +"pv/watchlist/"+watchlist[0]+")")
-                ])
+                cmactions.append(
+                    (getString(30181) % (watchlist[2]), "RunPlugin("+self._g.pluginid +"?mode=WatchList&mediaid="+watchlist[0]+")")
+                )                
+
+        if len(cmactions)>0:
+            li.addContextMenuItems(cmactions)
         return (li, isFolder, isPlayable)
 
-
+    def setExtendedInfo(self, itemid, cnt):
+        ## Call inside a transaction!
+        db = self._g.db()
+        details = self.getDetails(cnt)            
+        detail = details[itemid]            
+        if "state" in cnt:
+            if "watchlist" in cnt["state"]:
+                for wl in cnt["state"]["watchlist"]:
+                    watchlist = cnt["state"]["watchlist"][wl]["endpoint"]
+                    db.replace("watchlist",
+                        ("id","tag","returnurl","token","partialurl","titleid"),
+                        (wl, watchlist["query"]["tag"],watchlist["query"]["returnUrl"],watchlist["query"]["token"],watchlist["query"]["titleID"], watchlist["partialURL"]),
+                        "WHERE id='%s'" % (db.escape(wl),)
+                    )
+        if "studios" in detail:
+            for studio in detail["studios"]:
+                db.replace("moviestudios",
+                    ("mediaid","title"),
+                    (itemid,studio),
+                    "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(studio))
+                )
+        if "genres" in detail:
+            db.delete("moviegenres","WHERE mediaid='%s'" % (db.escape(itemid),))
+            for genre in detail["genres"]:
+                db.replace("genres",
+                    ("id","text","detailurl"),
+                    (genre["id"],genre["text"],genre["searchLink"]),
+                    "WHERE id='%s'" % (db.escape(genre["id"]),)
+                )
+                db.replace("moviegenres",
+                    ("mediaid","genresid"),
+                    (itemid, genre["id"]),
+                    "WHERE mediaid='%s' and genresid='%s'" % (itemid, db.escape(genre["id"]),)
+                )                    
 
     def GetExtendedInfo(self, compactgti, path=None):
         def Bool2Int(b):
@@ -981,7 +1084,7 @@ class PrimeVideo(Singleton):
         data = db.select("folders",("id, content", "title", "detailurl",),"WHERE id='"+db.escape(compactgti)+"'" )          
         if len(data)==0: ## episode:
             ## ?mode=PlayVideo&name=0K66WS6AYTWV042PO8FTCANIH8&asin=B08LXP4PXJ
-            data = db.select("folders",("id, content", "title", "detailurl",),"WHERE verb like '%"+db.escape(compactgti)+"%'" )             
+            data = db.select("folders",("id, content", "title", "detailurl",),"WHERE verb like '%"+db.escape(compactgti)+"%'" )                         
         item = data[0]                        
         itemid = item[0]
        
@@ -999,33 +1102,7 @@ class PrimeVideo(Singleton):
                 Bool2Int("isPrime"), Bool2Int("isXRay"), Bool2Int("isClosedCaption"),detail["titleType"]),
                 "WHERE id='%s'" % (db.escape(itemid), )
             )
-            if "watchlist" in cnt["state"]:
-                watchlist = cnt["state"]["watchlist"][itemid]["endpoint"]
-                db.replace("watchlist",
-                    ("id","tag","returnurl","token","partialurl","titleid"),
-                    (itemid, watchlist["query"]["tag"],watchlist["query"]["returnUrl"],watchlist["query"]["token"],watchlist["query"]["titleID"], watchlist["partialURL"]),
-                    "WHERE id='%s'" % (db.escape(itemid),)
-                )
-            if "studios" in detail:
-                for studio in detail["studios"]:
-                    db.replace("moviestudios",
-                        ("mediaid","title"),
-                        (itemid,studio),
-                        "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(studio))
-                    )
-            if "genres" in detail:
-                db.delete("moviegenres","WHERE mediaid='%s'" % (db.escape(itemid),))
-                for genre in detail["genres"]:
-                    db.replace("genres",
-                        ("id","text","detailurl"),
-                        (genre["id"],genre["text"],genre["searchLink"]),
-                        "WHERE id='%s'" % (db.escape(genre["id"]),)
-                    )
-                    db.replace("moviegenres",
-                        ("mediaid","genresid"),
-                        (itemid, genre["id"]),
-                        "WHERE mediaid='%s' and genresid='%s'" % (itemid, db.escape(genre["id"]),)
-                    )
+            self.setExtendedInfo(itemid, cnt)
             db.commit()
 
         data = self.GetExtendedInfoFromDB(itemid, path)                
@@ -1039,11 +1116,11 @@ class PrimeVideo(Singleton):
         return dialog.info(li)
 
 
-    def Browse(self, path, bNoSort=False):
+    def Browse(self, path, doRefresh=False):
         """ Display and navigate the menu for PrimeVideo users """
         if path==None:
             path="root"
-        self.syncContent(path)
+        self.syncContent(path, doRefresh)
 
         db = self._g.db()
         parent = db.select("folders",("content","title"),"WHERE id='%s'" % (db.escape(path)))

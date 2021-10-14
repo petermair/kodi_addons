@@ -81,8 +81,14 @@ def EntryPoint():
         g.amz.getList(args.get('url', ''), int(args.get('export', '0')), args.get('opt'))
     elif mode == 'getListMenu':
         g.amz.getListMenu(args.get('url', ''), int(args.get('export', '0')))
+    elif mode == 'refreshfolder':
+        if g.UsePrimeVideo:
+            g.pv.RefreshFolder(args.get('foldersid', ''))
     elif mode == 'WatchList':
-        g.amz.WatchList(args.get('url', ''), int(args.get('opt', '0')))
+        if g.UsePrimeVideo:
+            g.pv.WatchList(args.get('mediaid', ''))
+        else:
+            g.amz.WatchList(args.get('url', ''), int(args.get('opt', '0')))
     elif mode == 'openSettings':
         aid = args.get('url')
         aid = g.is_addon if aid == 'is' else aid

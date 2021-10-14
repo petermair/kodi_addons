@@ -238,15 +238,21 @@ def getURLData(mode, asin, retformat='json', devicetypeid='AOAGZA014O5RE', versi
         from urllib.parse import quote_plus
     except ImportError:
         from urllib import quote_plus
-
     g = Globals()
+
+    amzLang = None
+    cj = MechanizeLogin()
+    if cj:
+        amzLang = cj.get('lc-main-av', path='/')
+    amzLang = amzLang if amzLang else 'en_US'            
+
     url = g.ATVUrl + '/cdp/' + mode
     url += '?asin=' + asin
     url += '&deviceTypeID=' + devicetypeid
     url += '&firmware=' + firmware
     url += '&deviceID=' + g.deviceID
     url += '&marketplaceID=' + g.MarketID
-    url += '&uxLocale=' + g.userAcceptLanguages.split(',')[0]
+    url += '&uxLocale=' + amzLang
     url += '&format=' + retformat
     url += '&version=' + str(version)
     url += '&gascEnabled=' + str(g.UsePrimeVideo).lower()
@@ -872,10 +878,6 @@ def GrabJSON(url, postData=None):
 
     j = do(url, postData)
     LogJSON(j, url)
-    db = g.db()
-    ##db.beginTransaction()
-    ##db.replace("jsondata",("url","jsondata"),(url, json.dumps(j)),"WHERE url='"+db.escape(url)+"'")
-    ##db.commit()
     return j
 
 
