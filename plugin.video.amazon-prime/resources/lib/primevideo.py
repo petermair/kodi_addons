@@ -170,12 +170,14 @@ class PrimeVideo(Singleton):
             title = r[0].sub(r[1], title)
         return title
 
-    def RefreshFolder(self, path):
+    def RefreshFolder(self, foldersid):
         db = self._g.db()
         db.beginTransaction()
-        db_setSync(path)
+        db_setSync(foldersid,0)
         db.commit()
+        xbmc.executebuiltin('Container.Refresh')
         self._g.dialog.notification(self._g.addon.getAddonInfo('name'), "Refreshed", time=1000, sound=False)                
+        
 
     def syncContent(self, path, doRefresh=False):        
         
@@ -203,7 +205,7 @@ class PrimeVideo(Singleton):
                     dosync = True
                 else:
                     ## Use value from settings, otherwise from database
-                    dosync = (((parent[0][2] or 0) + (self._s.catalogCacheExpiry or (parent[0][4]*60 or 0))) <dt)                
+                    dosync = (((parent[0][2] or 0) + 60 * (self._s.catalogCacheExpiry or (parent[0][4] or 0))) <dt)                
         if dosync==True:
             
             try:
@@ -334,7 +336,7 @@ class PrimeVideo(Singleton):
                         for f in wl['filters']:
                             itemid = self.genID(path+'/'+f["id"])
                             db.beginTransaction()
-                            db_addFolder(itemid,path,'pv/browse/'+itemid,f["text"], f['apiUrl' if 'apiUrl' in f else 'href'], wordernr, 1, "folder")
+                            db_addFolder(itemid,path,'pv/browse/'+itemid,f["text"], f['apiUrl' if 'apiUrl' in f else 'href'], wordernr, 1, "watchlist")
                             db.commit()
                             wordernr = wordernr + 1
                     except KeyError: pass  # Empty watchlist
@@ -1120,18 +1122,44 @@ class PrimeVideo(Singleton):
         """ Display and navigate the menu for PrimeVideo users """
         if path==None:
             path="root"
-        self.syncContent(path, doRefresh)
+        path = path.replace("/page-","#")
+        offset = path.find('#')
+        pagination = self._s.pagination
+        maxresults = self._s.MaxResults
+        limit = ""
+        warnings.warn(path)
+        if offset>-1:
+            page = (int)(path[offset+1:])
+            path = path[:offset]
+        else:
+            page = 1 
 
+        warnings.warn(path)           
+        warnings.warn(str(page))
+        self.syncContent(path, doRefresh)        
+        
         db = self._g.db()
-        parent = db.select("folders",("content","title"),"WHERE id='%s'" % (db.escape(path)))
+        parent = db.select("folders",("content","title","verb"),"WHERE id='%s'" % (db.escape(path)))
         if len(parent)==0:
             return
+        doPaginate = (
+            (pagination["all"]) 
+            or (pagination["search"] and (parent[0][0] == "search"))
+            or (pagination["collections"] and (parent[0][0] == "folder"))
+            or (pagination["watchlist"] and (parent[0][0] == "watchlist")) ## watchlist is grandparent folder?
+            )
+        if doPaginate:
+            limit = " LIMIT %i, %i" %((page-1)*maxresults, maxresults+1)
+            warnings.warn(limit)
+
         if parent[0][0] in ["search","episode","season","series","root"]:
-            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",("f.id","f.title","f.verb","f.content"),
-                "WHERE h.parentid='%s' AND h.active=1 ORDER BY h.ordernr" % (db.escape(path)))
+            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",
+                ("f.id","f.title","f.verb","f.content"),
+                "WHERE h.parentid='%s' AND h.active=1 ORDER BY h.ordernr %s" % (db.escape(path),limit))
         else:
-            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",("f.id","f.title","f.verb","f.content"),
-                "WHERE h.parentid='%s' AND h.active=1 ORDER BY f.title" % (db.escape(path)))
+            items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",
+                ("f.id","f.title","f.verb","f.content"),
+                "WHERE h.parentid='%s' AND h.active=1 ORDER BY f.title %s" % (db.escape(path),limit))
         if len(parent)==0:
             return
         if parent[0][0] == "series":
@@ -1146,18 +1174,21 @@ class PrimeVideo(Singleton):
             xbmcplugin.addSortMethod(self._g.pluginhandle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE)
             ##xbmcplugin.addSortMethod(self._g.pluginhandle, xbmcplugin.SORT_METHOD_LASTPLAYED)
             ##xbmcplugin.addSortMethod(self._g.pluginhandle, xbmcplugin.SORT_METHOD_PLAYCOUNT)
-    
+        itemcount = 0
         for item in items:               
-
-            data = self.GetExtendedInfoFromDB(item[0])
-
-            
-            xbmcplugin.addDirectoryItem(
-                self._g.pluginhandle, 
-                self._g.pluginid + item[2], 
-                data[0], 
-                isFolder = data[1]
-            )
+            itemcount = itemcount +1
+            if (itemcount>maxresults) and (doPaginate):                
+                self._AddDirectoryItem(getString(30242).format(page+1), None, parent[0][2]+'/page-'+str(page+1))                
+            else:
+                data = self.GetExtendedInfoFromDB(item[0])
+                
+                xbmcplugin.addDirectoryItem(
+                    self._g.pluginhandle, 
+                    self._g.pluginid + item[2], 
+                    data[0], 
+                    isFolder = data[1]
+                )
+                
 
         # Add multiuser menu if needed
         if (self._s.multiuser) and ('root' == path) and (1 < len(loadUsers())):
