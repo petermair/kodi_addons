@@ -829,7 +829,9 @@ class PrimeVideo(Singleton):
         # Specify `None` instead of just not empty to avoid multiple queries to the same endpoint
         
         home = GrabJSON(self._g.BaseUrl)
-        self._UpdateProfiles(home)            
+        self._UpdateProfiles(home)      
+
+        warnings.warn(json.dumps(home))      
 
         # Insert the watchlist
         db.beginTransaction()
@@ -847,20 +849,26 @@ class PrimeVideo(Singleton):
         # Insert the main sections, in order
         try:
             navigation = home['mainMenu']['links']
-            cn = 0
-            while navigation:
-                link = navigation.pop(0)
+            
+            for link in navigation:                
                 # Skip watchlist
+                detailurl = link['href']
                 if 'pv-nav-mystuff' == link['id']:
                     continue
-                # Substitute drop-down menu with expanded navigation
-                if 'links' in link:
-                    navigation = link['links'] + navigation
-                    continue
-                cn += 1
                 id = self.genID(self._BeautifyText(link['text']))
+                if "links" in link:
+                    cn = 0
+                    db.update("folderhierarchy",("active",),(0,),"WHERE parentid='%s'" % id)
+                    for sublink in link["links"]:
+                        
+                        cn += 1
+                        subid = id+'/'+self._BeautifyText(sublink['text'])
+                        detailurl = ""
+                        db_addFolder(subid, id, "pv/browse/"+subid, self._BeautifyText(sublink['text']), sublink['href'],cn, 1, "folder")                       
                 ordernr = ordernr +1
-                db_addFolder(id, "root", "pv/browse/"+id, self._BeautifyText(link['text']), link['href'],ordernr, 1, "folder")
+                
+                db_addFolder(id, "root", "pv/browse/"+id, self._BeautifyText(link['text']), detailurl,ordernr, 1, "folder")                
+
         except:
             self._g.dialog.notification(
                 'PrimeVideo error',
@@ -1126,16 +1134,13 @@ class PrimeVideo(Singleton):
         offset = path.find('#')
         pagination = self._s.pagination
         maxresults = self._s.MaxResults
-        limit = ""
-        warnings.warn(path)
+        limit = ""        
         if offset>-1:
             page = (int)(path[offset+1:])
             path = path[:offset]
         else:
             page = 1 
-
-        warnings.warn(path)           
-        warnings.warn(str(page))
+        
         self.syncContent(path, doRefresh)        
         
         db = self._g.db()
@@ -1149,8 +1154,7 @@ class PrimeVideo(Singleton):
             or (pagination["watchlist"] and (parent[0][0] == "watchlist")) ## watchlist is grandparent folder?
             )
         if doPaginate:
-            limit = " LIMIT %i, %i" %((page-1)*maxresults, maxresults+1)
-            warnings.warn(limit)
+            limit = " LIMIT %i, %i" %((page-1)*maxresults, maxresults+1)            
 
         if parent[0][0] in ["search","episode","season","series","root"]:
             items = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.id",
