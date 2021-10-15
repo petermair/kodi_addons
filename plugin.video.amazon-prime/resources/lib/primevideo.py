@@ -909,7 +909,7 @@ class PrimeVideo(Singleton):
                     'mediatype': "movie",
                     'title': data[0][0],
                     'year': data[0][1],
-                    "plot": data[0][2],
+                    "plot": data[0][2] or "-",
                     "duration": data[0][3],                    
                 }
                 isPlayable = data[0][4]!=0
@@ -924,7 +924,7 @@ class PrimeVideo(Singleton):
                 infolabels = {
                     'mediatype': "tvshow",
                     'title': data[0][0],
-                    'plot': season[0][0]                      
+                    'plot': season[0][0] or "-"
                 }
         elif item[1]=="season":
             data =  db.select("seasons s LEFT JOIN series se ON s.seriesid=se.id",
@@ -935,7 +935,7 @@ class PrimeVideo(Singleton):
                     'mediatype': "season",                    
                     'season': data[0][0],
                     'year': data[0][2],
-                    'plot': data[0][3],
+                    'plot': data[0][3] or "-",
                     'tvshowtitle': data[0][4]
                 }
         elif item[1]=="episode":                            
@@ -954,7 +954,7 @@ class PrimeVideo(Singleton):
                     'title': title,
                     'episode': data[0][1],  
                     'season': data[0][0],                                                                   
-                    'plot': data[0][2],
+                    'plot': data[0][2] or "-",
                     'tvshowtitle': data[0][3],
                     'duration': data[0][4]
                 }
