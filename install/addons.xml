@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.7" provider-name="mairpeter">
+<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.8" provider-name="mairpeter">
   <requires>
     <import addon="xbmc.python" version="2.24.0" />
     <import addon="script.module.beautifulsoup4" version="4.6.2" />
@@ -23,9 +23,8 @@
     <description lang="en_GB">Movies and Television Shows for Prime Members</description>
     <description lang="de_DE">Filme und Serien für Amazon Prime Mitglieder</description>
     <disclaimer lang="en_GB">Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing.</disclaimer>
-    <disclaimer lang="de_DE">Möglicherweise sind einge Teile dieses Addons in Ihrem Land illegal, Sie sollten dies unbedingt vor der Installation überprüfen.</disclaimer>
-    <forum>http://www.kodinerds.net/index.php/Thread/44211-Release-Amazon-Prime-Instant-Video</forum>
-    <source>https://github.com/Sandmann79/xbmc</source>
+    <disclaimer lang="de_DE">Möglicherweise sind einge Teile dieses Addons in Ihrem Land illegal, Sie sollten dies unbedingt vor der Installation überprüfen.</disclaimer>    
+    <source>https://github.com/PeterMair/kodi_addons/</source>
     <license>GPL-3.0-or-later</license>
     <assets>
       <icon>icon.png</icon>
@@ -54,9 +53,9 @@ Abbonamento richiesto.</description>
     <description lang="fr">Disney+ est la destination exclusive de vos films et séries TV préférés des univers Disney, Pixar, Marvel, Star Wars et National Geographic.
 
 Abonnement requis.</description>
-    <reuselanguageinvoker>true</reuselanguageinvoker>
-    <license />
-    <language />
+    <reuselanguageinvoker>true</reuselanguageinvoker>    
+    <source>https://github.com/PeterMair/kodi_addons/</source>
+    <license>GPL-3.0-or-later</license>
     <website />
     <news />
     <assets>
@@ -93,8 +92,8 @@ Abonnement requis.</description>
     <disclaimer lang="en">Use at your own risk</disclaimer>
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>https://forums.plex.tv</forum>
-    <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
+    <source>https://github.com/PeterMair/kodi_addons/</source>
+    <license>GPL-3.0-or-later</license>
     <email />  
     <summary lang="nl_NL">Directe integratie van Plex in Kodi</summary>
     <description lang="nl_NL">Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds opgeslagen in de databases voor video en muziek van Kodi (deze plugin wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!</description>
