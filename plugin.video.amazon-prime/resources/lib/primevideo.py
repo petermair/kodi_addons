@@ -668,7 +668,7 @@ class PrimeVideo(Singleton):
     def _AddDirectoryItem(self, title, artmetadata, verb):
         item = xbmcgui.ListItem(title)
         item.setArt(artmetadata)
-        
+        item.setInfo('video', {"plot": "-"})
         xbmcplugin.addDirectoryItem(
             self._g.pluginhandle, 
             self._g.pluginid + verb, 
@@ -908,7 +908,9 @@ class PrimeVideo(Singleton):
         extid = itemid
         isPlayable = False
         isFolder = True
-        infolabels = {}
+        infolabels = {
+            "plot": "-"
+        }
         if item[1]=="movie":
             isFolder=False
             data =  db.select("movies",("title","releaseyear","plot","duration", "isPlayable"),"WHERE id='%s'" % db.escape(item[0],))
