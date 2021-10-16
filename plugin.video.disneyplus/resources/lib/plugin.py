@@ -504,8 +504,7 @@ def _process_rows(folderid, parentid, rows, content_class=None,fullSync = False)
                     type = 'DmcEpisode'
                     item = sync_video(row, fullSync)                    
                 else:
-                    item = sync_video(row, fullSync)                    
-                    ##type = 'DmcSeries'
+                    item = sync_video(row, fullSync)                                        
             else:
                 item = sync_video(row, fullSync)
 
@@ -706,6 +705,22 @@ def _parse_video(row):
         path = _get_play_path(row['contentId']),
         playable = True,
     )
+    directors = []
+    actors = []
+    genres = []
+    if "participant" in row:
+        for director in row["participant"]["Director"]:
+            directors.append(director["displayName"])
+        for actor in row["participant"]["Actor"]:
+            actors.append([actor["displayName"], actor["characterDetails"]["character"]])            
+    if "typedGenres" in row:
+        for genre in row["typedGenres"]:
+            genres.append(genre["name"])
+    item.info.update({
+            'director': directors,
+            "castandrole": actors,
+            "genre": genres
+        })
 
     if row['programType'] == 'episode':
         item.info.update({
@@ -898,8 +913,7 @@ def extras(family_id=None, series_id=None, **kwargs):
         fanart = _get_art(data['video']['image']).get('fanart')
     elif series_id:
         data = api.series_bundle(series_id)
-        fanart = _get_art(data['series']['image']).get('fanart')
-
+        fanart = _get_art(data['series']['image']).get('fanart')    
     folder = plugin.Folder(_.EXTRAS, fanart=fanart)
     items = _process_rows(data['extras']['videos'])
     folder.add_items(items)
@@ -916,8 +930,7 @@ def full_details(family_id=None, series_id=None,**kwargs):
     elif family_id:
         data = api.video_bundle(family_id)
         sync_video(data["video"])
-        item = _parse_video(data['video'])        
-
+        item = _parse_video(data['video'])            
     gui.info(item)
 
 @plugin.route()
