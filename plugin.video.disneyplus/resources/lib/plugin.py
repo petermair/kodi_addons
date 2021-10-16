@@ -362,6 +362,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
 
     db = api.db
     ordernr = 1
+    type = None
     data = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid LEFT JOIN art ON f.id=art.mediaid AND art.arttype='fanart'",
             ("f.id", "f.type", "f.slug", "f.contentclass", "f.title","art.url", "h.ordernr"),
             "WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s' LIMIT 1" % (folderid, parentid,userdata.get('profile_id')) 
@@ -372,7 +373,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
         slug = parentdata[2]
         content_class = parentdata[3]
         title = parentdata[4]
-        ordernr = int(parentdata[6])
+        ordernr = int(parentdata[6])    
     if (type == 'CuratedSet'):
         syncsets(id, parentid, id, content_class, page=1, fullSync="False", ordernr =ordernr)
     elif type == 'StandardCollection':
@@ -709,10 +710,12 @@ def _parse_video(row):
     actors = []
     genres = []
     if "participant" in row:
-        for director in row["participant"]["Director"]:
-            directors.append(director["displayName"])
-        for actor in row["participant"]["Actor"]:
-            actors.append([actor["displayName"], actor["characterDetails"]["character"]])            
+        if "Director" in row["participant"]:
+            for director in row["participant"]["Director"]:
+                directors.append(director["displayName"])
+        if "Actor" in row["participant"]:
+            for actor in row["participant"]["Actor"]:
+                actors.append([actor["displayName"], actor["characterDetails"]["character"]])            
     if "typedGenres" in row:
         for genre in row["typedGenres"]:
             genres.append(genre["name"])
