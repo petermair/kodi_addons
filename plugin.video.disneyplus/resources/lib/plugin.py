@@ -74,30 +74,19 @@ def db_FolderSync(id, parentid, lastsync, syncminutes):
 @plugin.route()
 def InitialSync(**kwargs):    
     db = api.db
-    db.beginTransaction()
+    
     _dialog = xbmcgui.DialogProgress()
     _dialog.create(heading="Synchronize...", line1="Initializing Disney Plus...")
+    db.beginTransaction()
     db_addFolder(DB_ZERO, DB_ZERO, 'none', '', '', 'Disney Plus', 0)
-    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='home', content_class='home', label=_.FEATURED, fullSync=True, ordernr=1, dialog=_dialog)
+    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='home', content_class='home', label=_.FEATURED, fullSync=True, ordernr=1, dialog=_dialog)    
     db.commit()
-    db.beginTransaction()
-    syncsets(folderid=HUBS_SET_ID, parentid=DB_ZERO, set_id=HUBS_SET_ID, set_type=HUBS_SET_TYPE, fullSync=True, ordernr=2, dialog=_dialog)
-    db.commit()
-    db.beginTransaction()
+    syncsets(folderid=HUBS_SET_ID, parentid=DB_ZERO, set_id=HUBS_SET_ID, set_type=HUBS_SET_TYPE, fullSync=True, ordernr=2, dialog=_dialog)        
     synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='movies', content_class='contentType', label=_.MOVIES, fullSync=True, ordernr=3, dialog=_dialog)
-    db.commit()
-    db.beginTransaction()
     synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='series', content_class='contentType', label=_.SERIES, fullSync=True, ordernr=4, dialog=_dialog)
-    db.commit()
-    db.beginTransaction()
     synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='originals', content_class='originals', label=_.ORIGINALS, fullSync=True, ordernr=5, dialog=_dialog)
-    db.commit()
-    db.beginTransaction()
     syncsets(folderid=WATCHLIST_SET_ID, parentid=DB_ZERO, set_id=WATCHLIST_SET_ID, set_type=WATCHLIST_SET_TYPE, fullSync=True, odernr=6, dialog=_dialog)    
-    db.commit()
-    db.beginTransaction()
-    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=True, odernr=7, dialog=_dialog)        
-    db.commit()
+    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=True, odernr=7, dialog=_dialog)            
     _dialog.close
 
 @plugin.route()
@@ -105,8 +94,7 @@ def SyncManually(folderid, parentid,**kwargs):
     
     db = api.db    
     
-    rows = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid", ("f.type","f.slug","f.contentclass","f.title","h.ordernr"),"WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s'" % (folderid, parentid, userdata.get('profile_id')))
-    db.beginTransaction()
+    rows = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid", ("f.type","f.slug","f.contentclass","f.title","h.ordernr"),"WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s'" % (folderid, parentid, userdata.get('profile_id')))    
     for data in rows:
         _dialog = xbmcgui.DialogProgress()
         _dialog.create(heading="Synchronize...", line1=data[3])
@@ -116,8 +104,7 @@ def SyncManually(folderid, parentid,**kwargs):
             synccollection(folderid=folderid, parentid=parentid, slug=data[1], content_class=data[2], label=data[3], fullSync=True, ordernr = data[4], dialog=_dialog)            
         if (data[0] == "DmcSeries"):
             sync_series(folderid, folderid, fullSync="True")
-        _dialog.close()
-    db.commit()    
+        _dialog.close()    
 
 def synccollection(folderid, parentid, slug, content_class, label=None, fullSync=False, ordernr=1, collectionid=DB_ZERO, dialog=None, **kwargs):    
     db = api.db    
@@ -138,15 +125,13 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
         data = api.collection_by_slug(slug, content_class, type)                     
 
         folderid = data["collectionId"]        
-        label = label or _get_text(data['text'], 'title', 'collection')
-        if fullSync==False:
-            db.beginTransaction()
-                
-        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s' AND profileid='%s'" % (slug, parentid,userdata.get('profile_id')))
+        label = label or _get_text(data['text'], 'title', 'collection')        
+        db.beginTransaction()
+        db.update("folderhierarchy",("active",),(0,),"WHERE foldersid IN (SELECT id FROM folders WHERE slug='%s') AND parentid='%s' AND profileid='%s'" % (slug, parentid,userdata.get('profile_id')))        
         db_addFolder(folderid, parentid, type, slug, content_class, label, ordernr)
-        db_FolderSync(folderid, parentid, dt,SYNC_COLLECTION_MINUTES)
-        
+        db_FolderSync(folderid, parentid, dt,SYNC_COLLECTION_MINUTES)                
         db_saveart(folderid, data.get('image', []))        
+        db.commit()
         o = 0
         for row in data['containers']:
             o = o + 1
@@ -181,12 +166,11 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
                     dialog.update(100 * o / len(data), line1=title)
                 except: ## Kodi v.19
                     dialog.update(100 * o / len(data), message=title)
+            db.beginTransaction()
             db_addFolder(set_id, folderid, type, "", ref_type, title, o)                                    
+            db.commit()
             if fullSync == True:
                 syncsets(set_id, folderid, set_id, ref_type, 1, fullSync=True, ordernr=0)
-        if fullSync == False:
-            db.commit()
-
 
 @plugin.route()
 def login(**kwargs):
@@ -300,12 +284,7 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
                 dosync = True  
     if (dosync == True):           
         
-        data = api.set_by_id(set_id, set_type, page=page)    
-                
-        if fullSync == False:            
-            db.beginTransaction()        
-            
-        
+        data = api.set_by_id(set_id, set_type, page=page)                                                
         
         title = _get_text(data['text'], 'title', 'set')        
         if set_id == CONTINUE_WATCHING_SET_ID:
@@ -328,14 +307,13 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
             except: ## Kodi v.19
                 dialog.update(50, message=title)
 
+        db.beginTransaction()
         if data['meta']['offset'] == 0:
-            db.update("folderhierarchy",("active",),(0,),"WHERE parentid='%s' AND profileid='%s'" % (folderid,userdata.get('profile_id')))
-        
+            db.update("folderhierarchy",("active",),(0,),"WHERE parentid='%s' AND profileid='%s'" % (folderid,userdata.get('profile_id')))        
         db_addFolder(folderid, parentid, "CuratedSet", "", set_type,title, ordernr)
         db_FolderSync(folderid, parentid, dt, refresh)
+        db.commit()
         
-        if fullSync == False:
-            db.commit()                        
         ordernr = ordernr + 1
         _process_rows(folderid, parentid, data.get('items', []), data['type'], fullSync=fullSync)
         if set_id == CONTINUE_WATCHING_SET_ID:
@@ -523,15 +501,11 @@ def _process_rows(folderid, parentid, rows, content_class=None,fullSync = False)
             minutes = 7 * 60 * 24
     
         
-        if  (id!="") and not(content_type in ('PersonalizedCollection', 'StandardCollection')):
-            if fullSync == False:
-                db.beginTransaction()
-
+        if  (id!="") and not(content_type in ('PersonalizedCollection', 'StandardCollection')):            
+            db.beginTransaction()
             db_addFolder(id, folderid, type, "", "StandardCollection", title, ordernr)
-            db_FolderSync(id, folderid,SYNC_COLLECTION_MINUTES, dt)
-            
-            if fullSync == False:
-                db.commit()
+            db_FolderSync(id, folderid,SYNC_COLLECTION_MINUTES, dt)                        
+            db.commit()
     
         if not item:
             continue
@@ -560,10 +534,7 @@ def delete_watchlist(content_id, **kwargs):
 
 def _parse_collection(row, parentid, ordernr, fullSync):
     db = api.db    
-    fullSync = (str(fullSync)=='True')
-    
-    if fullSync == False:
-        db.beginTransaction()    
+    fullSync = (str(fullSync)=='True')        
 
     dt = time.time()
     dt = int(dt)
@@ -572,14 +543,10 @@ def _parse_collection(row, parentid, ordernr, fullSync):
     title = _get_text(row['text'], 'title', 'collection')
     slug=row['collectionGroup']['slugs'][0]['value'] 
     content_class=row['collectionGroup']['contentClass']
-    db_saveart(set_id, row['image'])
-    
+    db.beginTransaction()
+    db_saveart(set_id, row['image'])    
     db_addFolder(set_id, parentid, "StandardCollection", slug, content_class, title, ordernr)
-
-    
-
-    if fullSync == False:
-        db.commit()      
+    db.commit()      
 
 def _get_play_path(content_id):
     if not content_id:
@@ -602,13 +569,11 @@ def _parse_series(row, fullSync=False, parentid=DB_ZERO):
     db = api.db
     fullSync = (str(fullSync)=='True')
     title = _get_text(row['text'], 'title', 'series')
-    if fullSync == False:
-        db.beginTransaction()     
+    
+    db.beginTransaction()     
 
     dt = time.time()
     dt = int(dt)
-
-
 
     db.replace("series",
         ("id","title", "plot","mediatype","releaseyear","encodedseriesid"),
@@ -618,11 +583,8 @@ def _parse_series(row, fullSync=False, parentid=DB_ZERO):
         ),
         "WHERE id='"+row['seriesId']+"'"
     )  
-    db_saveart(row["seriesId"], row.get('image'))   
-     
-
-    if fullSync == False:
-        db.commit()
+    db_saveart(row["seriesId"], row.get('image'))            
+    db.commit()
     
 
 def _parse_season(row, series, fullSync=False):
@@ -631,9 +593,8 @@ def _parse_season(row, series, fullSync=False):
 
     db = api.db
 
-    fullSync = (str(fullSync)=='True')
-    if fullSync == False:
-        db.beginTransaction()     
+    fullSync = (str(fullSync)=='True')    
+    db.beginTransaction()     
 
     dt = time.time()
     dt = int(dt)
@@ -650,17 +611,16 @@ def _parse_season(row, series, fullSync=False):
         "WHERE id='"+row['seasonId']+"'"
     )  
     db_saveart(row["seasonId"], row.get('image') or series['image'])       
-
-    if fullSync == False:
-        db.commit()
+    
+    db.commit()
 
 
 def sync_video(row, fullSync = "False"):
     db = api.db
 
     fullSync = (str(fullSync)=='True')
-    if fullSync == False:
-        db.beginTransaction()     
+    
+    db.beginTransaction()     
 
     dt = time.time()
     dt = int(dt)
@@ -685,14 +645,10 @@ def sync_video(row, fullSync = "False"):
         
         )
 
-    db_saveart(row["contentId"], row.get('image'))       
+    db_saveart(row["contentId"], row.get('image'))           
+    db.commit()    
 
-    if fullSync == False:
-        db.commit()    
-
-def _parse_video(row):
-    
-
+def _parse_video(row):    
     item = plugin.Item(
         label = _get_text(row['text'], 'title', 'program'),
         info  = {
@@ -701,7 +657,7 @@ def _parse_video(row):
             'year': row['releases'][0]['releaseYear'],
             'aired': row['releases'][0]['releaseDate'] or row['releases'][0]['releaseYear'],
             'mediatype': 'movie',
-        },
+        },        
         art  = db_saveart(row["contentId"], row['image']),
         path = _get_play_path(row['contentId']),
         playable = True,
@@ -842,8 +798,8 @@ def sync_series(folderid, series_id, fullSync = False):
             sync_season(row["seasonId"],series_id, 1)    
             ordernr = ordernr + 1
             
-        if fullSync == False:
-            db.beginTransaction
+        
+        db.beginTransaction
         if data['extras']['videos']:
             label = (_.EXTRAS)
             db_addFolder(series_id+'-EXT', series_id, 'Extras','','',label, ordernr)
@@ -857,11 +813,8 @@ def sync_series(folderid, series_id, fullSync = False):
             db_saveart(series_id+'-REL', data['series']['image'])
             ordernr = ordernr + 1
 
-
-        db_FolderSync(series_id, folderid, dt, SYNC_SERIES_MINUTES)
-
-        if fullSync == False:
-            db.commit
+        db_FolderSync(series_id, folderid, dt, SYNC_SERIES_MINUTES)        
+        db.commit
 
         for row in data['related']['items']:
             _process_rows(series_id+'-REL', series_id,data['related']['items']) 

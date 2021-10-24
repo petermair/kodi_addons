@@ -5,6 +5,9 @@ import xbmc
 def loadDB(databasename, defaultdb=""):    
         
     _config = advancedsettings.DBConfigFromAdvancedSettings(databasename, defaultdb=defaultdb)        
+    return loadDBFromConfig(_config)
+    
+def loadDBFromConfig(_config):
     _db = None
     
     if  (_config["type"] == "mysql"):                        

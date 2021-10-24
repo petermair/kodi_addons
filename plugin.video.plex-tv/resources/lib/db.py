@@ -78,9 +78,10 @@ def connect(media_type=None):
         conn = load.loadDB("plex")  
         conn.AddTableReplace("show","tvshow")      
     elif media_type == 'plex-copy':        
-        config = advancedsettings.DBConfigFromAdvancedSettings("plex")
+        config = advancedsettings.DBConfigFromAdvancedSettings("plex")        
         if config["type"]=="mysql":
-            conn = load.loadDB("plex")   
+            config["database"] = "plex_copy"
+            conn = load.loadDBFromConfig(config)   
         else:
             conn = load.loadDB("plex_copy")          
         conn.AddTableReplace("show","tvshow")       

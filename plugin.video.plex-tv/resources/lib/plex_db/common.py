@@ -339,7 +339,7 @@ def wipe(table=None):
         if table:
             tables = [table]
         else:
-            data = plexdb.getTableList()
+            data = plexdb.plexconn.TableList()
             tables = [i[0] for i in data]
         for table in tables:            
-            plexdb.execute('DROP table IF EXISTS %s' % table)
+            plexdb.plexconn.execute('DROP table IF EXISTS %s' % table)

@@ -393,13 +393,6 @@ class PrimeVideo(Singleton):
                 ## find type from DB
                 if not db.exists("movies","WHERE id='%s'" %(db.escape(itemid),)):
                     if not db.exists("seasons","WHERE id='%s'" %(db.escape(itemid),)):
-                        ##if "heading" in item: ## Series
-                        ##series = db.select("series",("id",),"WHERE title = '%s'" % (db.escape(title)))
-                        ##if len(series)>0:
-                        ##    seriesid = series[0][0]
-                        ##    content = "series"
-                        ##    verb = "pv/browse/"+seriesid
-                        ##else:
                             pbres = getURLData('catalog/GetPlaybackResources', itemid, silent=True, extra=True, useCookie=True,
                                 opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')
                             for res in pbres:
@@ -415,7 +408,9 @@ class PrimeVideo(Singleton):
                     else:
                         content = "series"
                         data = db.select("seasons",("seriesid",),"WHERE id='%s'" % (db.escape(itemid),))
-                        seriesid = data[0][0]
+                        seriesid = data[0][0]                        
+                        data = db.select("series",("title",),"WHERE id='%s'" % (db.escape(seriesid),))
+                        title = data[0][0]
                         
                 else:
                     content = "movie"
@@ -466,7 +461,8 @@ class PrimeVideo(Singleton):
                             title = tv["catalog"]["title"] 
                     verb = "pv/browse/"+itemid
                 else:
-                    itemid = seriesid            
+                    itemid = seriesid                             
+                    verb = "pv/browse/"+itemid   
             elif content != "folder":
                 warnings.warn("UNKNOWN CATALOG-TYPE!!!")
                 warnings.warn(json.dumps(catalogdata))
@@ -1007,7 +1003,7 @@ class PrimeVideo(Singleton):
             )    
         if (path ==None) and ((item[1]=="folder") or (item[1]=="series") or (item[1]=="watchlist")):
             cmactions.append(
-                ("Refresh", "RunPlugin("+self._g.pluginid +"?mode=refreshfolder&foldersid"+item[0]+")")
+                ("Refresh", "RunPlugin("+self._g.pluginid +"?mode=refreshfolder&foldersid="+item[0]+")")
             )    
         if (path==None) and (watchlist != None):
             tag = watchlist[1]

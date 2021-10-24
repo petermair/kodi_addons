@@ -122,7 +122,7 @@ class KodiMusicDB(common.KodiDBBase):
         """
 
         genres = self.kodiconn.select("album_genre",("idGenre",),"WHERE idAlbum = '%s'", (album_id,))
-        self.kodiconn.delete("album_genre","idAlbum = '%s'",
+        self.kodiconn.delete("album_genre","WHERE idAlbum = '%s'",
                             (album_id, ))
         # Check for orphaned genres in both album_genre and song_genre tables
         for genre in genres:

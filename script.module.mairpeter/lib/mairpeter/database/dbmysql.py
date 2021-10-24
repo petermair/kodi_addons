@@ -5,10 +5,23 @@ class MySQLDB(BaseDB):
     
     def connect(self, config):
         self._dbtype = "mysql"
-        if self._conn == None:                       
-            self._conn = mysql.connector.Connect(
-                **config
-            )
+        if self._conn == None: 
+            try:                  
+                self._conn = mysql.connector.Connect(**config)
+            except:
+                # Try to create database
+                db = config["database"]
+                config["database"] = None
+                conn = mysql.connector.Connect(**config)
+                cursor = conn.cursor()
+                cursor.execute("CREATE DATABASE %s" % (db))
+                cursor.close()
+                conn.close()
+                ## Connect to database
+                config["database"] = db
+                self._conn = mysql.connector.Connect(**config)
+
+
             self._conn.autocommit = False
 
             self._cursor = self._conn.cursor()
@@ -16,6 +29,7 @@ class MySQLDB(BaseDB):
     def disconnect(self):
         self._cursor.close()
         self._conn.close()
+        self._conn = None
 
     
     def beginTransaction(self):        

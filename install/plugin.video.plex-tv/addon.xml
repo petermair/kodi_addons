@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon  id="plugin.video.plex-tv" name="Plex TV" version="0.1.1" provider-name="Mair Peter">
+<addon  id="plugin.video.plex-tv" name="Plex TV" version="0.1.2" provider-name="Mair Peter">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 
@@ -8,7 +8,7 @@
     <import addon="script.module.six" />
     <import addon="plugin.video.plex-tv.movies" version="0.1.0" />
     <import addon="plugin.video.plex-tv.tvshows" version="0.1.0" />
-    <import addon="script.module.mairpeter" version="0.1.0"/>
+    <import addon="script.module.mairpeter" version="0.1.3"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video audio image</provides>
@@ -28,8 +28,8 @@
     <disclaimer lang="en">Use at your own risk</disclaimer>
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <source>https://github.com/PeterMair/kodi_addons/</source>
-    <license>GPL-3.0-or-later</license>
+    <forum>https://forums.plex.tv</forum>
+    <website>https://raw.githubusercontent.com/PeterMair/kodi_addons/master/install/plex-tv</website>
     <email></email>  
     <summary lang="nl_NL">Directe integratie van Plex in Kodi</summary>
     <description lang="nl_NL">Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds opgeslagen in de databases voor video en muziek van Kodi (deze plugin wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!</description>

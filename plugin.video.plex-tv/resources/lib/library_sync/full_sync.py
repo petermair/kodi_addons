@@ -16,6 +16,8 @@ from . import common, sections
 from .. import utils, timing, backgroundthread as bg, variables as v, app
 from .. import plex_functions as PF, itemtypes, path_ops
 
+from mairpeter.database import load, advancedsettings
+
 if common.PLAYLIST_SYNC_ENABLED:
     from .. import playlists
 
@@ -78,8 +80,22 @@ class FullSync(common.LibrarySyncMixin, bg.KillableThread):
         updating items, increasing sync speed tremendously.
         Using the same DB with e.g. WAL mode did not really work out...
         """        
-        if path_ops.exists(v.DB_PLEX_PATH):
-            path_ops.copyfile(v.DB_PLEX_PATH, v.DB_PLEX_COPY_PATH)                
+        config = advancedsettings.DBConfigFromAdvancedSettings("plex")        
+        if config["type"]=="mysql":
+            db = load.loadDBFromConfig(config)            
+            db.execute("CREATE DATABASE IF NOT EXISTS plex_copy")
+            db.execute("select table_name from information_schema.tables where table_type = 'BASE TABLE' and table_schema = 'plex_copy'")
+            tables = db.cursor.fetchall()
+            for table in tables:
+                db.execute("DROP TABLE plex_copy.%s" % (table[0]))
+            tables = db.TableList()
+            for table in tables:
+                db.execute("CREATE TABLE IF NOT EXISTS plex_copy.%s LIKE %s" % (table[0], table[0]))
+                db.execute("INSERT plex_copy.%s SELECT * FROM %s" % (table[0], table[0]))
+            db.disconnect()
+        else:
+            if path_ops.exists(v.DB_PLEX_PATH):
+                path_ops.copyfile(v.DB_PLEX_PATH, v.DB_PLEX_COPY_PATH)                
 
     @utils.log_time
     def process_new_and_changed_items(self, section_queue, processing_queue):
