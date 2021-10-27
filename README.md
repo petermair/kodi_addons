@@ -10,9 +10,17 @@ This addon is not officially commissioned or supported by Amazon, Plex or Disney
 
 ## Features
 * Amazon Prime Video Addon for Kodi Media Center
+  * SQLite3-Database or MySQL
+  * Fast loading of hierarchy, movies and series
+  * Caching of all movies and series per profile
+  * Storage of individual collections & watchlist
+  * Storage of metadata(genres, studios, etc.)
 * Disney+ Video Addon  for Kodi Media Center
+  * SQLite3-Database or MySQL
+  * Fast loading of hierarchy, movies and series
+  * Caching of all movies and series per profile
+  * Storage of metadata (genres, studios, etc.)
 * Plex Addon for Kodi Media Center
-
 
 ## Setup instructions
 * install the repository as described in [these instructions](https://github.com/PeterMair/kodi_addons/blob/master/xbmc/README.md)
