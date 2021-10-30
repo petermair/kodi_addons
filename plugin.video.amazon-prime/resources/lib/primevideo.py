@@ -556,7 +556,7 @@ class PrimeVideo(Singleton):
             self.parseSeason(cnt)
             db.beginTransaction()
             self.setExtendedInfo(series[0],cnt)
-            db_setSync(series[0])
+            db_setSync(series[0])            
             db.commit()
         db.beginTransaction()
         db_setSync(seriesid)
@@ -590,7 +590,9 @@ class PrimeVideo(Singleton):
                     pass
             updateseries = False
             if not db.exists("seasons",("WHERE seriesid='%s'" % (seriesid,))):                
-                updateseries = True                          
+                updateseries = True      
+            else:
+                updateseries = db.exists("folders","WHERE id='%s' AND detailurl IS NOT NULL" % (seriesid,))
 
 
             for season in state["seasons"][state["pageTitleId"]]:

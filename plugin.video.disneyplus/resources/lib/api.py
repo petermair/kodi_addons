@@ -1,6 +1,7 @@
 import json
 import uuid
 from time import time
+from resources.lib.database import InitialDBSetup
 
 from slyguy import userdata, settings, mem_cache
 from slyguy.session import Session
@@ -35,7 +36,8 @@ class API(object):
     def new_session(self):
         self._session = Session(HEADERS, timeout=30)
         self.logged_in = userdata.get('refresh_token') != None
-        self._cache = {}        
+        self._cache = {}  
+        InitialDBSetup(self)      
 
     def  __del__(self):
         self._db.disconnect()

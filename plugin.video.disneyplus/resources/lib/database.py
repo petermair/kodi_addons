@@ -3,7 +3,7 @@ from xbmcaddon import Addon
 
 def InitialDBSetup(api):
     ADDON_VERSION = Addon().getAddonInfo('version')
-    NEWDBVERSION = 2
+    NEWDBVERSION = 3
     dbversion = NEWDBVERSION      
     version = '0.0.0'
 
@@ -22,7 +22,7 @@ def InitialDBSetup(api):
         dbversion = v[0][1]
         version = v[0][0]       
         
-    if version == ADDON_VERSION:                
+    if (version == ADDON_VERSION) and (dbversion == NEWDBVERSION):
         return
 
 
@@ -120,7 +120,35 @@ def InitialDBSetup(api):
         ),
         ("id", )
     )        
-        
+
+    api.db.createTable(
+        "genres",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",           "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                        
+        ),
+        ("mediaid","title")
+    )
+
+    api.db.createTable(
+        "directors",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",            "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                        
+        ),
+        ("mediaid","title")
+    )
+
+    api.db.createTable(
+        "actors",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",            "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                        
+            {"fieldname": "role",       "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                        
+        ),
+        ("mediaid","title")
+    )
+
     if (int(dbversion)!=NEWDBVERSION) or (version != ADDON_VERSION):
         api.db.beginTransaction    
         api.db.replace("version",("version","dbversion"),(ADDON_VERSION, NEWDBVERSION),"WHERE version='%s'" % ADDON_VERSION)

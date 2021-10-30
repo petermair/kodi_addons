@@ -333,7 +333,28 @@ def dbart(id):
 
 @plugin.route()
 def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
-    ##
+    
+
+    def addInfo(mediaid, item):
+        directors = []
+        actors = []
+        genres = []
+        data = api.db.select("directors",("title",),"WHERE mediaid='%s'" % (api.db.escape(mediaid)))        
+        for director in data:
+            directors.append(director[0])
+            
+        data = api.db.select("actors",("title","role"),"WHERE mediaid='%s'" % (api.db.escape(mediaid)))        
+        for actor in data:            
+            actors.append([actor[0], actor[1]])            
+        data = api.db.select("genres",("title",),"WHERE mediaid='%s'" % (api.db.escape(mediaid))) 
+        for genre in data:
+            genres.append(genre[0])
+        item.info.update({
+                'director': directors,
+                "castandrole": actors,
+                "genre": genres
+            })
+
     sync_enabled = settings.getBool('sync_playback', True)
     watchlist_enabled = settings.getBool('sync_watchlist', True)
     title = "Disney+"
@@ -386,6 +407,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
                     },                    
                     playable = True
                 )
+                addInfo(row[0],item)
                 item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=movie[5]))),),
         elif (row[2]=='DmcSeries'):
             _series = db.select("series",("plot","releaseyear","releasedate","mediatype","encodedseriesid"),"WHERE id='%s'" % row[0])
@@ -438,6 +460,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
                     path = _get_play_path(row[0]),
                     playable = True,
                 )
+                addInfo(row[0],item)
         else:
             item = folder.add_item(
                 label = row[1],
@@ -644,8 +667,22 @@ def sync_video(row, fullSync = "False"):
         "WHERE id='"+row["contentId"]+"'"
         
         )
-
     db_saveart(row["contentId"], row.get('image'))           
+    if "participant" in row:
+        if "Director" in row["participant"]:
+            for director in row["participant"]["Director"]:
+                api.db.replace("directors",("mediaid","title"),(row["contentId"],director["displayName"]),
+                    "WHERE mediaid='%s' AND title='%s'" % (api.db.escape(row["contentId"]), api.db.escape(director["displayName"])))
+        if "Actor" in row["participant"]:
+            for actor in row["participant"]["Actor"]:
+                api.db.replace("actors",("mediaid","title","role"),
+                    (row["contentId"],actor["displayName"], actor["characterDetails"]["character"]),
+                    "WHERE mediaid='%s' AND title='%s'" % (api.db.escape(row["contentId"]), api.db.escape(actor["displayName"])))
+
+    if "typedGenres" in row:
+        for genre in row["typedGenres"]:
+            api.db.replace("genres",("mediaid","title"),(row["contentId"],genre["name"]),
+                    "WHERE mediaid='%s' AND title='%s'" % (api.db.escape(row["contentId"]), api.db.escape(genre["name"])))            
     db.commit()    
 
 def _parse_video(row):    
@@ -866,10 +903,10 @@ def suggested(family_id=None, series_id=None, **kwargs):
 def extras(family_id=None, series_id=None, **kwargs):
     if family_id:
         data = api.video_bundle(family_id)
-        fanart = _get_art(data['video']['image']).get('fanart')
+        fanart = db_saveart(family_id, data['video']['image']).get('fanart')
     elif series_id:
         data = api.series_bundle(series_id)
-        fanart = _get_art(data['series']['image']).get('fanart')    
+        fanart = db_saveart(series_id, data['series']['image']).get('fanart')    
     folder = plugin.Folder(_.EXTRAS, fanart=fanart)
     items = _process_rows(data['extras']['videos'])
     folder.add_items(items)
@@ -881,6 +918,7 @@ def extras(family_id=None, series_id=None, **kwargs):
 def full_details(family_id=None, series_id=None,**kwargs):
     if series_id:
         data = api.series_bundle(series_id)        
+        sync_video(data["series"])
         item = _parse_series(data['series'])
 
     elif family_id:
