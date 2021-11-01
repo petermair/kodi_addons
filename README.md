@@ -22,6 +22,11 @@ This addon is not officially commissioned or supported by Amazon, Plex or Disney
   * Storage of metadata (genres, studios, etc.)
 * Plex Addon for Kodi Media Center
 
+## ToDo's
+- [ ] Background synchronisation for Prime Video and Disney+
+- [ ] Support for multiple Plex-Servers
+- [ ] Rework of Plex-Synchronisation (Removing long transaction, multiple servers, better MySQL support for multiple instances/users, ...)
+
 ## Setup instructions
 * install the repository as described in [these instructions](https://github.com/PeterMair/kodi_addons/blob/master/xbmc/README.md)
 * install **Plex, Amazon Prime and Disney+** video addon from MairPeter Repository
