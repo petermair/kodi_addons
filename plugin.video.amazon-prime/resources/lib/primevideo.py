@@ -205,7 +205,7 @@ class PrimeVideo(Singleton):
                     dosync = True
                 else:
                     ## Use value from settings, otherwise from database
-                    dosync = (((parent[0][2] or 0) + 60 * (self._s.catalogCacheExpiry or (parent[0][4] or 0))) <dt)                
+                    dosync = (((parent[0][2] or 0) + 60 * (self._s.catalogCacheExpiry or 0)) <dt)                
         if dosync==True:
             
             try:
@@ -391,8 +391,15 @@ class PrimeVideo(Singleton):
             compactgti = self.ExtractURN(subdetailurl)
             if compactgti != None:
                 ## find type from DB
-                if not db.exists("movies","WHERE id='%s'" %(db.escape(itemid),)):
-                    if not db.exists("seasons","WHERE id='%s'" %(db.escape(itemid),)):
+                doSync = False
+                dt = time.time()
+                dt = int(dt)            
+                data = db.select("folders",("lastsync",), "WHERE id='%s'" %(db.escape(itemid),))
+                if len(data)>0: 
+                    if(data[0][0] is None) or (((data[0][0] or 0) + 60 * (self._s.catalogCacheExpiry or 0)) <dt):
+                        doSync = True
+                if (len(data)==0) or (doSync) or (not db.exists("movies","WHERE id='%s'" %(db.escape(itemid),))):
+                    if doSync or (len(data)==0) or ():
                             pbres = getURLData('catalog/GetPlaybackResources', itemid, silent=True, extra=True, useCookie=True,
                                 opt='&titleDecorationScheme=primary-content', dRes='CatalogMetadata')
                             for res in pbres:
@@ -410,8 +417,7 @@ class PrimeVideo(Singleton):
                         data = db.select("seasons",("seriesid",),"WHERE id='%s'" % (db.escape(itemid),))
                         seriesid = data[0][0]                        
                         data = db.select("series",("title",),"WHERE id='%s'" % (db.escape(seriesid),))
-                        title = data[0][0]
-                        
+                        title = data[0][0]                        
                 else:
                     content = "movie"
                     catalogdata=[]
@@ -613,9 +619,9 @@ class PrimeVideo(Singleton):
                 return seriesid                                                              
             db.beginTransaction()
             db.replace("seasons",
-                ("id","seriesid","seasonnumber","releasedate","releaseyear","plot"),
+                ("id","seriesid","seasonnumber","releasedate","releaseyear","plot","title"),
                 (detail["catalogId"],seriesid,detail["seasonNumber"],detail["releaseDate"],
-                detail["releaseYear"],detail["synopsis"]),
+                detail["releaseYear"],detail["synopsis"],detail["title"]),
                 "WHERE id='%s'" % (detail["catalogId"])
             )            
             db_addFolder(detail["catalogId"],seriesid,"pv/browse/"+detail["catalogId"],detail["title"],
@@ -829,8 +835,6 @@ class PrimeVideo(Singleton):
         home = GrabJSON(self._g.BaseUrl)
         self._UpdateProfiles(home)      
 
-        warnings.warn(json.dumps(home))      
-
         # Insert the watchlist
         db.beginTransaction()
         ordernr = 0
@@ -976,6 +980,33 @@ class PrimeVideo(Singleton):
                 infolabels["genre"] = []
                 for genre in genres:                                         
                     infolabels["genre"].append(genre[1])
+
+            actors = db.select("movieactors",
+            ("title",),
+            "WHERE mediaid='%s' ORDER BY ordernr" % db.escape(extid)
+            )
+            if len(actors)>0:
+                infolabels["cast"] = []
+                for actor in actors:                                         
+                    infolabels["cast"].append(actor[0])
+
+            directors = db.select("moviedirectors",
+            ("title",),
+            "WHERE mediaid='%s' ORDER BY ordernr" % db.escape(extid)
+            )
+            if len(directors)>0:
+                infolabels["director"] = []
+                for director in directors:                                         
+                    infolabels["director"].append(director[0])
+
+            studios = db.select("moviestudios",
+            ("title",),
+            "WHERE mediaid='%s'" % db.escape(extid)
+            )
+            if len(studios)>0:
+                infolabels["studio"] = []
+                for studio in studios:                                         
+                    infolabels["studio"].append(studio[0])
             
             watchlistdata = db.select("watchlist w INNER JOIN folders f ON w.id=f.id",
                 ("w.id", "w.tag","f.title"),
@@ -1041,7 +1072,7 @@ class PrimeVideo(Singleton):
     def setExtendedInfo(self, itemid, cnt):
         ## Call inside a transaction!
         db = self._g.db()
-        details = self.getDetails(cnt)            
+        details = self.getDetails(cnt)                    
         detail = details[itemid]            
         if "state" in cnt:
             if "watchlist" in cnt["state"]:
@@ -1058,7 +1089,7 @@ class PrimeVideo(Singleton):
                     ("mediaid","title"),
                     (itemid,studio),
                     "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(studio))
-                )
+                )                                
         if "genres" in detail:
             db.delete("moviegenres","WHERE mediaid='%s'" % (db.escape(itemid),))
             for genre in detail["genres"]:
@@ -1071,7 +1102,37 @@ class PrimeVideo(Singleton):
                     ("mediaid","genresid"),
                     (itemid, genre["id"]),
                     "WHERE mediaid='%s' and genresid='%s'" % (itemid, db.escape(genre["id"]),)
-                )                    
+                )    
+        if "contributors" in detail:            
+                db.delete("moviedirectors","WHERE mediaid='%s'" % (db.escape(itemid),))
+                db.delete("movieactors","WHERE mediaid='%s'" % (db.escape(itemid),))
+                i = 0                
+                if "directors" in detail["contributors"]:                    
+                    for person in detail["contributors"]["directors"]:
+                        i += 1
+                        db.replace("moviedirectors",
+                            ("mediaid","title","ordernr"),
+                            (itemid,person["name"], (i)),
+                            "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(person["name"]))
+                        )      
+                i = 0                
+                if "starringActors" in detail["contributors"]:                    
+                    for person in detail["contributors"]["starringActors"]:
+                        i += 1
+                        db.replace("movieactors",
+                            ("mediaid","title","ordernr"),
+                            (itemid,person["name"], (i)),
+                            "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(person["name"]))
+                        )        
+                if "supportingActors" in detail["contributors"]:                    
+                    for person in detail["contributors"]["supportingActors"]:
+                        i += 1
+                        db.replace("movieactors",
+                            ("mediaid","title","ordernr"),
+                            (itemid,person["name"], (i)),
+                            "WHERE mediaid='%s' AND title='%s'" % (db.escape(itemid),db.escape(person["name"]))
+                        )   
+        
 
     def GetExtendedInfo(self, compactgti, path=None):
         def Bool2Int(b):
