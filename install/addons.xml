@@ -32,7 +32,7 @@
       <clearlogo>clearlogo.png</clearlogo>
     </assets>
   </extension>
-</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.5">
+</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.6">
   <requires>    
     <import addon="script.module.slyguy" />
     <import addon="script.module.mairpeter" version="0.1.0" />
