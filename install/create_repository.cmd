@@ -1,1 +1,1 @@
-create_repository.py ../plugin.video.amazon-prime ../plugin.video.disneyplus ../plugin.video.plex-tv ../plugin.video.plex-tv.movies ../plugin.video.plex-tv.tvshows ../repository.mairpeter ../script.module.mairpeter
+create_repository.py ../plugin.video.amazon-prime ../plugin.video.disneyplus ../plugin.video.plex-tv ../plugin.video.plex-tv.movies ../plugin.video.plex-tv.tvshows ../repository.mairpeter ../script.module.mairpeter ../script.module.mechanicalsoup

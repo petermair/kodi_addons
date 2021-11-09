@@ -238,4 +238,23 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
+</addon><addon id="script.module.mechanicalsoup" name="MechanicalSoup" version="1.0.0" provider-name="Matthew Hickford, Dan Hemberger, Matthieu Moy">
+	<requires>
+		<import addon="xbmc.python" version="2.25.0" />
+		<import addon="script.module.requests" version="2.0.0" />
+		<import addon="script.module.beautifulsoup4" version="4.4.0" />
+		<import addon="script.module.six" version="1.4.0" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en_GB">A Python library for automating interaction with websites.</summary>
+		<forum />
+		<website>https://mechanicalsoup.readthedocs.io/</website>
+		<license>MIT</license>
+		<platform>all</platform>
+		<source>https://github.com/MechanicalSoup/MechanicalSoup</source>
+        <assets>
+            <icon>icon.png</icon>
+        </assets>
+	</extension>
 </addon></addons>
