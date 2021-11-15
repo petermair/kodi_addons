@@ -26,6 +26,7 @@ This addon is not officially commissioned or supported by Amazon, Plex or Disney
 - [ ] Background synchronisation for Prime Video and Disney+
 - [ ] Support for multiple Plex-Servers
 - [ ] Rework of Plex-Synchronisation (Removing long transaction, multiple servers, better MySQL support for multiple instances/users, ...)
+- [ ] Kodi V.19 Matrix Testing
 
 ## Setup instructions
 * install the repository as described in [these instructions](https://github.com/PeterMair/kodi_addons/blob/master/xbmc/README.md)
