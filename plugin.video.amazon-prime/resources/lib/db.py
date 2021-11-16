@@ -245,6 +245,16 @@ def db_Setup():
         ("mediaid","ordernr")
     )    
 
+    db.createTable(
+        "moviedirectors",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",           "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                                                                     
+            {"fieldname": "ordernr",         "fieldtype": "int",     "fieldsize":    0, "notnull": True}
+        ),
+        ("mediaid","ordernr")
+    )        
+
     
     db.createTable(
         "watchlist",
