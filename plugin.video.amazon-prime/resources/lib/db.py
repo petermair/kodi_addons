@@ -80,7 +80,7 @@ def db_Setup():
         dbversion = v[0][1]
         version = v[0][0]       
         
-    if dbversion == NEWDBVERSION:                
+    if (dbversion == NEWDBVERSION) and (version==ADDON_VERSION):
         return         
 
     
@@ -234,6 +234,16 @@ def db_Setup():
         ),
         ("mediaid",)
     )
+
+    db.createTable(
+        "movieactors",
+        (
+            {"fieldname": "mediaid",         "fieldtype": "varchar", "fieldsize":   50, "notnull": True},            
+            {"fieldname": "title",           "fieldtype": "varchar", "fieldsize":  150, "notnull": True},                                                                     
+            {"fieldname": "ordernr",         "fieldtype": "int",     "fieldsize":    0, "notnull": True}
+        ),
+        ("mediaid","ordernr")
+    )    
 
     
     db.createTable(
