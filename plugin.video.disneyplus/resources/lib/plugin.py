@@ -527,7 +527,7 @@ def _process_rows(folderid, parentid, rows, content_class=None,fullSync = False)
         if  (id!="") and not(content_type in ('PersonalizedCollection', 'StandardCollection')):            
             db.beginTransaction()
             db_addFolder(id, folderid, type, "", "StandardCollection", title, ordernr)
-            db_FolderSync(id, folderid,SYNC_COLLECTION_MINUTES, dt)                        
+            ##db_FolderSync(id, folderid, dt,SYNC_COLLECTION_MINUTES)                        
             db.commit()
     
         if not item:
@@ -623,7 +623,7 @@ def _parse_season(row, series, fullSync=False):
     dt = int(dt)
 
     db_addFolder(row["seasonId"],series["seriesId"],row["type"],"",row["seriesType"],title, row['seasonSequenceNumber'])
-    db_FolderSync(row["seasonId"],series["seriesId"],SYNC_SEASON_MINUTES, dt)
+    db_FolderSync(row["seasonId"],series["seriesId"], dt,SYNC_SEASON_MINUTES)
 
     db.replace("seasons",
         ("id","seriesid","title","seasonsequencenumber", "plot","mediatype", "releasedate","releaseyear"),
@@ -840,7 +840,7 @@ def sync_series(folderid, series_id, fullSync = False):
         if data['extras']['videos']:
             label = (_.EXTRAS)
             db_addFolder(series_id+'-EXT', series_id, 'Extras','','',label, ordernr)
-            db_FolderSync(row["seasonId"],series_id,SYNC_SEASON_MINUTES, dt)
+            db_FolderSync(row["seasonId"],series_id, dt,SYNC_SEASON_MINUTES)
             db_saveart(series_id+'-EXT', data['series']['image'])
             ordernr = ordernr + 1
 

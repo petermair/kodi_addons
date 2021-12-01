@@ -198,21 +198,21 @@ class TVShows(object):
         """
         Returns True if there are episodes left for the season with plex_id
         """
-        _ex = self.plexconn.exists("episode","WHERE season_id = %s", (plex_id,))        
+        _ex = self.plexconn.exists("episode","WHERE season_id = %s" % (plex_id,))        
         return _ex
 
     def show_has_seasons(self, plex_id):
         """
         Returns True if there are seasons left for the show with plex_id
         """
-        _ex = self.plexconn.exists("season","WHERE tvshow_id = %s", (plex_id,))        
+        _ex = self.plexconn.exists("season","WHERE tvshow_id = %s" % (plex_id,))        
         return _ex        
 
     def show_has_episodes(self, plex_id):
         """
         Returns True if there are episodes left for the show with plex_id
         """
-        _ex = self.plexconn.exists("episode","WHERE tvshow_id = %s", (plex_id,))        
+        _ex = self.plexconn.exists("episode","WHERE tvshow_id = %s" % (plex_id,))        
         return _ex        
 
     def episode_by_season(self, plex_id):
@@ -220,7 +220,7 @@ class TVShows(object):
         Returns an iterator for all episodes that have a parent season_id with
         a value of plex_id
         """
-        data = self.plexconn.select("episode",("*",), "WHERE seasons_id=%s", (plex_id,))
+        data = self.plexconn.select("episode",("*",), "WHERE seasons_id=%s" % (plex_id,))
         return (self.entry_to_episode(x) for x in data)
 
     def episode_by_show(self, plex_id):
