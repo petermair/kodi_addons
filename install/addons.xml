@@ -63,7 +63,7 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
-</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.5" provider-name="Mair Peter">
+</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.6" provider-name="Mair Peter">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
 

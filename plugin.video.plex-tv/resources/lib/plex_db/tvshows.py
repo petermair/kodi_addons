@@ -220,7 +220,7 @@ class TVShows(object):
         Returns an iterator for all episodes that have a parent season_id with
         a value of plex_id
         """
-        data = self.plexconn.select("episode",("*",), "WHERE seasons_id=%s" % (plex_id,))
+        data = self.plexconn.select("episode",("*",), "WHERE season_id=%s" % (plex_id,))
         return (self.entry_to_episode(x) for x in data)
 
     def episode_by_show(self, plex_id):
