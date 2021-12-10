@@ -1,15 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.13" provider-name="mairpeter">
-  <requires>
-    <import addon="xbmc.python" version="2.24.0" />
+<addons><addon id="plugin.video.amazon-prime" name="Amazon Prime VOD" version="0.1.14" provider-name="mairpeter">
+  <requires>    
     <import addon="script.module.beautifulsoup4" version="4.6.2" />
-    <import addon="script.module.mechanicalsoup" version="0.12.0" />
+    <import addon="script.module.mechanicalsoup" version="1.0.0" />
     <import addon="script.module.pyxbmct" version="1.1.7" />
     <import addon="script.module.requests" version="2.9.1" />
     <import addon="script.module.kodi-six" version="0.0.5" />
-    <import addon="script.module.pyautogui" version="0.9.49" />
+    <import addon="script.module.pyautogui" version="0.9.51" />
     <import addon="script.module.slyguy" />
-    <import addon="script.module.mairpeter" version="0.1.2" />
+    <import addon="script.module.mairpeter" version="0.1.4" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
 	<provides>video</provides>
@@ -32,10 +31,10 @@
       <clearlogo>clearlogo.png</clearlogo>
     </assets>
   </extension>
-</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.6">
+</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.7">
   <requires>    
     <import addon="script.module.slyguy" />
-    <import addon="script.module.mairpeter" version="0.1.0" />
+    <import addon="script.module.mairpeter" version="0.1.4" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py" provides="video">
     <provides>video</provides>
@@ -63,16 +62,14 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
-</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.6" provider-name="Mair Peter">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0" />
-
+</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.7" provider-name="Mair Peter">
+  <requires>    
     <import addon="script.module.requests" version="2.9.1" />
     <import addon="script.module.defusedxml" version="0.5.0" />
     <import addon="script.module.six" />
-    <import addon="plugin.video.plex-tv.movies" version="0.1.0" />
-    <import addon="plugin.video.plex-tv.tvshows" version="0.1.0" />
-    <import addon="script.module.mairpeter" version="0.1.3" />
+    <import addon="plugin.video.plex-tv.movies" version="0.1.1" />
+    <import addon="plugin.video.plex-tv.tvshows" version="0.1.1" />
+    <import addon="script.module.mairpeter" version="0.1.4" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video audio image</provides>
@@ -158,10 +155,7 @@ Abonnement requis.</description>
 - Fork from PlexKodiConnect (v.2.1.3)
 </news>
   </extension>
-</addon><addon id="plugin.video.plex-tv.movies" name="Plex TV Movies" version="0.1.0" provider-name="Mair Peter">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" />
-    </requires>
+</addon><addon id="plugin.video.plex-tv.movies" name="Plex TV Movies" version="0.1.1" provider-name="Mair Peter">    
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides />
     </extension>
@@ -178,10 +172,7 @@ Abonnement requis.</description>
 - Fork from PlexKodiConnect (v.2.1.3)
 </news>
     </extension>
-</addon><addon id="plugin.video.plex-tv.tvshows" name="Plex TV Series" version="0.1.0" provider-name="Mair Peter">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" />
-    </requires>
+</addon><addon id="plugin.video.plex-tv.tvshows" name="Plex TV Series" version="0.1.1" provider-name="Mair Peter">
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides />
     </extension>
@@ -220,7 +211,7 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets> 
   </extension>
-</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.3">
+</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.4">
   <requires>    
     <import addon="script.module.myconnpy" version="1.0.12" /> 
   </requires>
@@ -239,8 +230,7 @@ Abonnement requis.</description>
     </assets>
   </extension>
 </addon><addon id="script.module.mechanicalsoup" name="MechanicalSoup" version="1.0.0" provider-name="Matthew Hickford, Dan Hemberger, Matthieu Moy">
-	<requires>
-		<import addon="xbmc.python" version="2.25.0" />
+	<requires>		
 		<import addon="script.module.requests" version="2.0.0" />
 		<import addon="script.module.beautifulsoup4" version="4.4.0" />
 		<import addon="script.module.six" version="1.4.0" />
@@ -257,10 +247,7 @@ Abonnement requis.</description>
             <icon>icon.png</icon>
         </assets>
 	</extension>
-</addon><addon id="script.module.pyautogui" name="PyAutoGUI" version="0.9.51" provider-name="Al Sweigart">
-	<requires>
-		<import addon="xbmc.python" version="2.25.0" />
-	</requires>
+</addon><addon id="script.module.pyautogui" name="PyAutoGUI" version="0.9.52" provider-name="Al Sweigart">
 	<extension point="xbmc.python.module" library="lib" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en_GB">PyAutoGUI is a cross-platform GUI automation Python module for human beings. Used to programmatically control the mouse and keyboard.</summary>

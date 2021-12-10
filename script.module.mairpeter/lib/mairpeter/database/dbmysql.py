@@ -1,7 +1,7 @@
-from dbbase import BaseDB
+from . import dbbase
 import mysql.connector
 
-class MySQLDB(BaseDB):
+class MySQLDB(dbbase.BaseDB):
     
     def connect(self, config):
         self._dbtype = "mysql"

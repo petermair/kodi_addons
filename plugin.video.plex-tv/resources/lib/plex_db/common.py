@@ -55,7 +55,7 @@ class PlexDBBase(object):
         """
         FAST method to check whether a plex_id has already been recorded
         """
-        data = self.plexconn.select(plex_type, ("plex_id", ),"WHERE plex_id = %s", (plex_id))
+        data = self.plexconn.select(plex_type, ("plex_id", ),"WHERE plex_id = %s" % (plex_id,))
         return len(data)>0
 
     def item_by_id(self, plex_id, plex_type=None):

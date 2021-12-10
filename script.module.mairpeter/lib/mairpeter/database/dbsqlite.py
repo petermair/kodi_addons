@@ -1,4 +1,4 @@
-from dbbase import BaseDB
+from . import dbbase
 import sqlite3
 import json
 
@@ -15,7 +15,7 @@ map_fieldtype = {
   "float": "real"
 }
 
-class SQLiteDB(BaseDB):    
+class SQLiteDB(dbbase.BaseDB):    
     
     def connect(self, config):                
         self._dbtype = "sqlite"
