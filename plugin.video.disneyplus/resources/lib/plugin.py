@@ -386,7 +386,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
         type = parentdata[1]
         slug = parentdata[2]
         content_class = parentdata[3]
-        ##title = parentdata[4]
+        title = parentdata[4]
         ordernr = int(parentdata[6])        
     try:
         if (type == 'CuratedSet'):
@@ -754,7 +754,7 @@ def _parse_video(row):
             'tvshowtitle': _get_text(row['text'], 'title', 'series'),
         })
     else:                
-        item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=row['family']['encodedFamilyId']))))
+        # item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=row['family']['encodedFamilyId']))))
         item.context.append((_.EXTRAS, "Container.Update({})".format(plugin.url_for(extras, family_id=row['family']['encodedFamilyId']))))
         item.context.append((_.SUGGESTED, "Container.Update({})".format(plugin.url_for(suggested, family_id=row['family']['encodedFamilyId']))))        
 
@@ -942,7 +942,7 @@ def extras(family_id=None, series_id=None, **kwargs):
 
 
 
-@plugin.route()
+##@plugin.route()
 def full_details(family_id=None, series_id=None, fullSync = False, **kwargs):
     if series_id:
         data = api.series_bundle(series_id)        

@@ -2,7 +2,7 @@
 <addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.8">
   <requires>    
     <import addon="script.module.slyguy"/>
-    <import addon="script.module.mairpeter" version="0.1.4"/>
+    <import addon="script.module.mairpeter" version="0.1.5"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py" provides="video">
     <provides>video</provides>
