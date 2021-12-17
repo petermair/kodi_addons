@@ -31,7 +31,7 @@
       <clearlogo>clearlogo.png</clearlogo>
     </assets>
   </extension>
-</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.7">
+</addon><addon id="plugin.video.disneyplus" name="Disney+ VOD" provider-name="mairpeter" version="0.3.8">
   <requires>    
     <import addon="script.module.slyguy" />
     <import addon="script.module.mairpeter" version="0.1.4" />
@@ -211,7 +211,7 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets> 
   </extension>
-</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.4">
+</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.5">
   <requires>    
     <import addon="script.module.myconnpy" version="1.0.12" /> 
   </requires>
