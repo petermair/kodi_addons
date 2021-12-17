@@ -853,6 +853,8 @@ def sync_series(folderid, series_id, fullSync = False):
         serie = db.select("series",("encodedseriesid",),"WHERE id='%s'" % series_id)
         encodedseriesid = serie[0][0]
         data = api.series_bundle(encodedseriesid)
+
+        _parse_series(data['series'])
     
         art = db_saveart(series_id, data['series']['image'])
         title = _get_text(data['series']['text'], 'title', 'series')
