@@ -401,7 +401,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
     folder = plugin.Folder(title)         
     data = db.select("folderhierarchy h INNER JOIN folders f ON h.foldersid=f.id",
        ("f.id", "f.title", "f.type", "f.slug", "f.contentclass", "h.parentid"),
-       "WHERE h.parentid='%s' AND h.foldersid!=h.parentid AND h.active=1 AND h.profileid='%s' ORDER BY h.ordernr" % (folderid,userdata.get('profile_id'))
+       "WHERE h.parentid='%s' AND h.foldersid!=h.parentid AND h.active=1 AND h.profileid='%s' ORDER BY f.title" % (folderid,userdata.get('profile_id'))
     )    
 
     for row in data:        
