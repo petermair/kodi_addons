@@ -43,10 +43,13 @@ class SQLiteDB(dbbase.BaseDB):
 
     def rollback(self):
         self._cursor.execute("ROLLBACK")
+    
 
     def createTable(self, tablename, definition, primarykey):
         sql = ""
-        pk = ""
+        sql2 = ""
+        pk = "" 
+        fields = self.FieldList(tablename)
         for fielddef in definition:
             if sql != "":
                 sql = sql + ","
@@ -56,6 +59,16 @@ class SQLiteDB(dbbase.BaseDB):
             ##   sql = sql + "("+str(fielddef["fieldsize"])+")"            
             if fielddef["notnull"] == True:
                 sql = sql + " NOT NULL"
+            new = len(fields)>0
+            for f in fields:
+                if f[0].lower() == fielddef["fieldname"].lower():
+                    new = False
+            if new:
+                if sql2 != "":
+                    sql2 = sql2 + ','
+                sql2 = sql2 + "ADD COLUMN `"+fielddef["fieldname"]+"`"+' '+map_fieldtype[fielddef["fieldtype"]]
+                if fielddef["notnull"] == True:
+                    sql2 = sql2 + " NOT NULL"
 
         for p in primarykey:
             if pk != "":
@@ -67,6 +80,9 @@ class SQLiteDB(dbbase.BaseDB):
             sql = sql + ", PRIMARY KEY("+pk+")"
         sql = sql + ')'        
         self._cursor.execute(sql)        
+
+        if sql2 != "":
+            self._cursor.execute('ALTER TABLE `'+tablename+'` '+sql2)
 
 
     def select(self, tablename, fieldnames, wheresql = ""):
@@ -118,6 +134,17 @@ class SQLiteDB(dbbase.BaseDB):
     def TableList(self):
         self._cursor.execute("SELECT name FROM sqlite_master WHERE type = 'table'")
         data = self._cursor.fetchall()
+        return data
+
+    def FieldList(self, tablename):
+        ## cid, name, type, notnull, dflt_value, pk  
+        self._cursor.execute("PRAGMA table_info")
+        data = self._cursor.fetchall()
+        return data
+
+    def IndexList(self, tablename):
+        self._cursor.execute("SELECT name FROM sqlite_master WHERE type = 'index' AND tbl_name='%s'" % (tablename,))
+        data = self._cursor.fetchall
         return data
     
     def escape(self, str):

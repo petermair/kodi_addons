@@ -49,7 +49,10 @@ class MySQLDB(dbbase.BaseDB):
 
     def createTable(self, tablename, definition, primarykey):
         sql = ""
-        pk = ""        
+        sql2 = ""
+        pk = "" 
+        fields = self.FieldList(tablename)
+
         for fielddef in definition:
             if sql != "":
                 sql = sql + ","
@@ -58,6 +61,18 @@ class MySQLDB(dbbase.BaseDB):
               sql = sql + "("+str(fielddef["fieldsize"])+")"            
             if fielddef["notnull"] == True:
                 sql = sql + " NOT NULL"
+            new = len(fields)>0
+            for f in fields:
+                if f[0].lower() == fielddef["fieldname"].lower():
+                    new = False
+            if new:
+                if sql2 != "":
+                    sql2 = sql2 + ','
+                sql2 = sql2 + "ADD COLUMN `"+fielddef["fieldname"]+"`"+' '+fielddef["fieldtype"]
+                if fielddef["fieldsize"]>0:
+                    sql2 = sql2 + "("+str(fielddef["fieldsize"])+")"            
+                if fielddef["notnull"] == True:
+                    sql2 = sql2 + " NOT NULL"
 
         for p in primarykey:
             if pk != "":
@@ -69,6 +84,9 @@ class MySQLDB(dbbase.BaseDB):
             sql = sql + ", PRIMARY KEY("+pk+")"
         sql = sql + ") COLLATE 'utf32_unicode_ci'"        
         self._cursor.execute(sql)
+
+        if sql2 != "":
+            self._cursor.execute('ALTER TABLE `'+tablename+'` '+sql2)
 
     def select(self, tablename, fieldnames, wheresql = ""):
         tablename = self.ReplaceTableName(tablename)
@@ -115,6 +133,19 @@ class MySQLDB(dbbase.BaseDB):
 
     def execute(self, cmd):
         self._cursor.execute(cmd)
+
+    def FieldList(self, tablename):
+        ## Field | Type | Null | Key | Default | Extra
+        self._cursor.execute("SHOW COLUMNS FROM %s" %(tablename,))
+        data = self._cursor.fetchall()
+        return data
+
+    def IndexList(self, tablename):
+        ## Table | Non_unique | Key_name | Seq_in_index | Column_name | Collation | 
+        ## Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment
+        self._cursor.execute("SHOW INDEX FROM %s" %(tablename,))
+        data = self._cursor.fetchall
+        return data
 
     def TableList(self):
         self._cursor.execute("show FULL tables where Table_Type != 'VIEW'")

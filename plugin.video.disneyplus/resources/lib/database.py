@@ -3,7 +3,7 @@ from xbmcaddon import Addon
 
 def InitialDBSetup(api):
     ADDON_VERSION = Addon().getAddonInfo('version')
-    NEWDBVERSION = 3
+    NEWDBVERSION = 4
     dbversion = NEWDBVERSION      
     version = '0.0.0'
 
@@ -17,7 +17,7 @@ def InitialDBSetup(api):
             ),
             ("version",)
         )
-    v = api.db.select("version",("version","dbversion"),"ORDER BY version DESC")
+    v = api.db.select("version",("version","dbversion"),"ORDER BY dbversion DESC, version DESC")
     if len(v)>0:
         dbversion = v[0][1]
         version = v[0][0]       
@@ -57,7 +57,8 @@ def InitialDBSetup(api):
             {"fieldname": "parentid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
             {"fieldname": "profileid", "fieldtype": "varchar", "fieldsize": 40, "notnull": True},
             {"fieldname": "ordernr",  "fieldtype": "int",     "fieldsize": 11, "notnull": True},   
-            {"fieldname": "active",   "fieldtype": "int",     "fieldsize":  11, "notnull": False},                     
+            {"fieldname": "active",   "fieldtype": "int",     "fieldsize":  11, "notnull": False},  
+            {"fieldname": "lastsync", "fieldtype": "bigint",  "fieldsize":  20, "notnull": False}, ## Added DB v.4                 
         ),
         ("foldersid","parentid","profileid")
     )

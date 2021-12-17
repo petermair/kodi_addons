@@ -14,6 +14,8 @@ from .language import _
 
 import time
 
+import warnings
+
 api = API()
 
 SYNC_COLLECTION_MINUTES = 7 * 24 * 60
@@ -68,6 +70,11 @@ def db_FolderSync(id, parentid, lastsync, syncminutes):
       (lastsync, syncminutes),
       "WHERE id='"+id+"'"
     )
+    db.replace("folderhierarchy",
+      ("lastsync",),
+      (lastsync, ),
+      "WHERE foldersid='"+id+"' AND parentid='"+parentid+"'"
+    )
     
 
 
@@ -76,17 +83,20 @@ def InitialSync(**kwargs):
     db = api.db
     
     _dialog = xbmcgui.DialogProgress()
-    _dialog.create(heading="Synchronize...", line1="Initializing Disney Plus...")
+    try:
+        _dialog.create(heading="Synchronize...", line1="Initializing Disney Plus...")
+    except:
+        _dialog.create(heading="Synchronize...", message="Initializing Disney Plus...")
     db.beginTransaction()
     db_addFolder(DB_ZERO, DB_ZERO, 'none', '', '', 'Disney Plus', 0)
     db.commit()
-    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='home', content_class='home', label=_.FEATURED, fullSync=True, ordernr=1, dialog=_dialog)        
-    syncsets(folderid=HUBS_SET_ID, parentid=DB_ZERO, set_id=HUBS_SET_ID, set_type=HUBS_SET_TYPE, fullSync=True, ordernr=2, dialog=_dialog)        
-    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='movies', content_class='contentType', label=_.MOVIES, fullSync=True, ordernr=3, dialog=_dialog)
-    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='series', content_class='contentType', label=_.SERIES, fullSync=True, ordernr=4, dialog=_dialog)
-    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='originals', content_class='originals', label=_.ORIGINALS, fullSync=True, ordernr=5, dialog=_dialog)
-    syncsets(folderid=WATCHLIST_SET_ID, parentid=DB_ZERO, set_id=WATCHLIST_SET_ID, set_type=WATCHLIST_SET_TYPE, fullSync=True, odernr=6, dialog=_dialog)    
-    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=True, odernr=7, dialog=_dialog)            
+    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='home', content_class='home', label=_.FEATURED, fullSync=False, ordernr=1, dialog=_dialog)        
+    syncsets(folderid=HUBS_SET_ID, parentid=DB_ZERO, set_id=HUBS_SET_ID, set_type=HUBS_SET_TYPE, fullSync=False, ordernr=2, dialog=_dialog)        
+    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='movies', content_class='contentType', label=_.MOVIES, fullSync=False, ordernr=3, dialog=_dialog)
+    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='series', content_class='contentType', label=_.SERIES, fullSync=False, ordernr=4, dialog=_dialog)
+    synccollection(folderid=DB_ZERO, parentid=DB_ZERO, slug='originals', content_class='originals', label=_.ORIGINALS, fullSync=False, ordernr=5, dialog=_dialog)
+    syncsets(folderid=WATCHLIST_SET_ID, parentid=DB_ZERO, set_id=WATCHLIST_SET_ID, set_type=WATCHLIST_SET_TYPE, fullSync=False, odernr=6, dialog=_dialog)    
+    syncsets(folderid=CONTINUE_WATCHING_SET_ID, parentid=DB_ZERO, set_id=CONTINUE_WATCHING_SET_ID, set_type=CONTINUE_WATCHING_SET_TYPE, fullSync=False, odernr=7, dialog=_dialog)            
     _dialog.close
 
 @plugin.route()
@@ -97,11 +107,14 @@ def SyncManually(folderid, parentid,**kwargs):
     rows = db.select("folderhierarchy h INNER JOIN folders f ON f.id=h.foldersid", ("f.type","f.slug","f.contentclass","f.title","h.ordernr"),"WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s'" % (folderid, parentid, userdata.get('profile_id')))    
     for data in rows:
         _dialog = xbmcgui.DialogProgress()
-        _dialog.create(heading="Synchronize...", line1=data[3])
+        try:
+            _dialog.create(heading="Synchronize...", line1=data[3])
+        except:
+            _dialog.create(heading="Synchronize...", message=data[3])
         if data[0] == "CuratedSet":            
-            syncsets(folderid=folderid, parentid=parentid, set_id=folderid, set_type=data[2], fullSync=True, ordernr=data[4], dialog=_dialog)
+            syncsets(folderid=folderid, parentid=parentid, set_id=folderid, set_type=data[2], fullSync=False, ordernr=data[4], dialog=_dialog)
         if (data[0] == "StandardCollection") or (data[0]=="PersonalizedCollection"):
-            synccollection(folderid=folderid, parentid=parentid, slug=data[1], content_class=data[2], label=data[3], fullSync=True, ordernr = data[4], dialog=_dialog)            
+            synccollection(folderid=folderid, parentid=parentid, slug=data[1], content_class=data[2], label=data[3], fullSync=False, ordernr = data[4], dialog=_dialog)            
         if (data[0] == "DmcSeries"):
             sync_series(folderid, folderid, fullSync="True")
         _dialog.close()    
@@ -114,11 +127,11 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
     dt = time.time()
     dt = int(dt)    
     if dosync == False:        
-        parent = db.select("folders", ("id","lastsync","syncminutes"), "WHERE id='%s'" % folderid)  
-        data = db.select("folderhierarchy",('*',),"WHERE parentid='%s' AND profileid='%s' LIMIT 1" % (parentid,userdata.get('profile_id')))      
+        parent = db.select("folders f LEFT JOIN folderhierarchy fh ON f.id=fh.foldersid AND fh.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes","fh.lastsync"), "WHERE f.id='%s'" % folderid)  
+        data = db.select("folderhierarchy",('*',),"WHERE active=1 AND parentid='%s' AND profileid='%s' LIMIT 1" % (folderid,userdata.get('profile_id')))      
         dosync = (len(data) == 0)
         for p in parent:            
-            if (int(p[1] or 0)+int(p[2] or 0)*60<dt):
+            if ((int(p[1] or 0)+int(p[2] or 0)*60<dt)) or ((int(p[3] or 0)+int(p[2] or 0)*60<dt)):
                 dosync = True    
     if dosync == True:            
         type = 'PersonalizedCollection' if slug == 'home' else 'StandardCollection'
@@ -165,7 +178,7 @@ def synccollection(folderid, parentid, slug, content_class, label=None, fullSync
                 try:
                     dialog.update(100 * o / len(data), line1=title)
                 except: ## Kodi v.19
-                    dialog.update(100 * o / len(data), message=title)
+                    dialog.update(int(100 * o / len(data)), message=title)
             db.beginTransaction()
             db_addFolder(set_id, folderid, type, "", ref_type, title, o)                                    
             db.commit()
@@ -274,13 +287,14 @@ def syncsets(folderid, parentid, set_id, set_type, page=1, fullSync = False, ord
     fullSync = (str(fullSync)=="True")
     dosync = fullSync or (page>1)
     dt = time.time()
-    dt = int(dt)    
-    parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid AND h.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")    
+    dt = int(dt)            
+    ##parent = db.select("folders f INNER JOIN folderhierarchy h ON f.id=h.parentid AND h.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes"), "WHERE id='"+folderid+"' LIMIT 1")    
+    parent = db.select("folders f LEFT JOIN folderhierarchy fh ON f.id=fh.foldersid AND fh.profileid='"+userdata.get('profile_id')+"'", ("f.id","f.lastsync","f.syncminutes","fh.lastsync"), "WHERE f.id='%s'" % folderid)  
     if dosync == False:                        
-        data = db.select("folderhierarchy",('*',),"WHERE parentid='%s' AND profileid='%s' LIMIT 1" % (parentid,userdata.get('profile_id')))      
+        data = db.select("folderhierarchy",('*',),"WHERE active=1 AND parentid='%s' AND profileid='%s' LIMIT 1" % (folderid,userdata.get('profile_id')))      
         dosync = (len(data) == 0)
         for p in parent:
-            if (int(p[1] or 0)+int(p[2] or 0)*60<dt):
+            if ((int(p[1] or 0)+int(p[2] or 0)*60<dt)) or ((int(p[3] or 0)+int(p[2] or 0)*60<dt)):
                 dosync = True  
     if (dosync == True):           
         
@@ -366,27 +380,29 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
             ("f.id", "f.type", "f.slug", "f.contentclass", "f.title","art.url", "h.ordernr"),
             "WHERE h.foldersid='%s' AND h.parentid='%s' AND h.profileid='%s' LIMIT 1" % (folderid, parentid,userdata.get('profile_id')) 
             )
+    
     for parentdata in data:    
         id = parentdata[0]
         type = parentdata[1]
         slug = parentdata[2]
         content_class = parentdata[3]
-        title = parentdata[4]
-        ordernr = int(parentdata[6])    
-    if (type == 'CuratedSet'):
-        syncsets(id, parentid, id, content_class, page=1, fullSync="False", ordernr =ordernr)
-    elif type == 'StandardCollection':
-        synccollection(folderid, parentid, slug, content_class, title, fullSync="False", ordernr =ordernr)  
-    elif type =='DmcSeries':            
-        sync_series(folderid, id, fullSync = "False")
+        ##title = parentdata[4]
+        ordernr = int(parentdata[6])        
+    try:
+        if (type == 'CuratedSet'):
+            syncsets(id, parentid, id, content_class, page=1, fullSync="False", ordernr =ordernr)
+        elif type == 'StandardCollection':
+            synccollection(folderid, parentid, slug, content_class, title, fullSync="False", ordernr =ordernr)  
+        elif type =='DmcSeries':            
+            sync_series(folderid, id, fullSync = "False")
+    except:
+        pass
 
-    folder = plugin.Folder(title)
-
-    
+    folder = plugin.Folder(title)         
     data = db.select("folderhierarchy h INNER JOIN folders f ON h.foldersid=f.id",
        ("f.id", "f.title", "f.type", "f.slug", "f.contentclass", "h.parentid"),
        "WHERE h.parentid='%s' AND h.foldersid!=h.parentid AND h.active=1 AND h.profileid='%s' ORDER BY h.ordernr" % (folderid,userdata.get('profile_id'))
-    )
+    )    
 
     for row in data:        
         content_type = row[2]
@@ -408,7 +424,7 @@ def showfolder(folderid=DB_ZERO, parentid=DB_ZERO, **kwargs):
                     playable = True
                 )
                 addInfo(row[0],item)
-                item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=movie[5]))),),
+                ##item.context.append((_.FULL_DETAILS, 'RunPlugin({})'.format(plugin.url_for(full_details, family_id=movie[5]))),),
         elif (row[2]=='DmcSeries'):
             _series = db.select("series",("plot","releaseyear","releasedate","mediatype","encodedseriesid"),"WHERE id='%s'" % row[0])
             item = folder.add_item(
@@ -504,18 +520,27 @@ def _process_rows(folderid, parentid, rows, content_class=None,fullSync = False)
             if program_type == 'episode':
                 if content_class in ('episode', CONTINUE_WATCHING_SET_TYPE):
                     type = 'DmcEpisode'
-                    item = sync_video(row, fullSync)                    
+                    sync_video(row, fullSync)                    
                 else:
-                    item = sync_video(row, fullSync)                                        
+                    sync_video(row, fullSync)                                        
             else:
-                item = sync_video(row, fullSync)
+                sync_video(row, fullSync)
+                movies = db.select("movies",("COUNT(*)",),"WHERE plot IS NULL AND id='%s'" % id)
+                if movies[0][0]>0: 
+                    full_details(family_id=row['family']['encodedFamilyId'],fullSync=True)
 
         elif content_type == 'DmcSeries':
             id = row["seriesId"]
             item = _parse_series(row, fullSync)
             title = _get_text(row['text'], 'title', 'series')
             type = 'DmcSeries'
-            minutes = 60 * 24
+            ##series = db.select("seasons",("COUNT(*)",),"WHERE seriesid='%s'" % id)
+            ##if series[0][0]==0:             
+            ##    db.beginTransaction()
+            ##    db_addFolder(id, folderid, type, "", "StandardCollection", title, ordernr)
+            ##    db_FolderSync(id, folderid, dt,SYNC_SERIES_MINUTES)                        
+            ##    db.commit()
+            ##    sync_series(folderid=folderid, series_id=id, fullSync=True)                
         elif content_type in ('PersonalizedCollection', 'StandardCollection'):
             id = row["collectionId"]
             item = _parse_collection(row, folderid, ordernr, fullSync)
@@ -606,7 +631,9 @@ def _parse_series(row, fullSync=False, parentid=DB_ZERO):
         ),
         "WHERE id='"+row['seriesId']+"'"
     )  
-    db_saveart(row["seriesId"], row.get('image'))            
+    db_saveart(row["seriesId"], row.get('image'))    
+
+
     db.commit()
     
 
@@ -639,7 +666,7 @@ def _parse_season(row, series, fullSync=False):
 
 
 def sync_video(row, fullSync = "False"):
-    db = api.db
+    db = api.db    
 
     fullSync = (str(fullSync)=='True')
     
@@ -659,6 +686,7 @@ def sync_video(row, fullSync = "False"):
             row['releases'][0]['releaseDate'], row['releases'][0]['releaseYear'], _get_play_path(row['contentId']), row['family']['encodedFamilyId']),
         "WHERE id='%s'" % row['contentId']
     )  
+    
 
     if row['programType'] == 'episode':
         db.replace("episodes",
@@ -683,7 +711,7 @@ def sync_video(row, fullSync = "False"):
         for genre in row["typedGenres"]:
             api.db.replace("genres",("mediaid","title"),(row["contentId"],genre["name"]),
                     "WHERE mediaid='%s' AND title='%s'" % (api.db.escape(row["contentId"]), api.db.escape(genre["name"])))            
-    db.commit()    
+    db.commit()        
 
 def _parse_video(row):    
     item = plugin.Item(
@@ -815,7 +843,7 @@ def sync_series(folderid, series_id, fullSync = False):
     dt = int(dt)
     
     if dosync == False:        
-        parent = db.select("folders f INNER JOIN folderhierarchy h ON h.parentid=f.id AND h.profileid='%s'" % (userdata.get('profile_id'),), 
+        parent = db.select("folders f INNER JOIN folderhierarchy h ON h.active=1 AND h.parentid=f.id AND h.profileid='%s'" % (userdata.get('profile_id'),), 
         ("f.id","f.lastsync","f.syncminutes"), "WHERE id='%s'" % series_id)
         dosync = (len(parent) == 0)
         for p in parent:            
@@ -915,17 +943,18 @@ def extras(family_id=None, series_id=None, **kwargs):
 
 
 @plugin.route()
-def full_details(family_id=None, series_id=None,**kwargs):
+def full_details(family_id=None, series_id=None, fullSync = False, **kwargs):
     if series_id:
         data = api.series_bundle(series_id)        
-        sync_video(data["series"])
+        sync_video(data["series"],fullSync)
         item = _parse_series(data['series'])
 
     elif family_id:
         data = api.video_bundle(family_id)
-        sync_video(data["video"])
-        item = _parse_video(data['video'])            
-    gui.info(item)
+        sync_video(data["video"],fullSync)
+        item = _parse_video(data['video'])  
+    if(not fullSync):
+        gui.info(item)
 
 @plugin.route()
 @plugin.search()

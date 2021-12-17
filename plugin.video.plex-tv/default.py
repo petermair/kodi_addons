@@ -4,7 +4,7 @@
 from __future__ import absolute_import, division, unicode_literals
 import logging
 from sys import argv
-from urlparse import parse_qsl
+from urllib.parse import parse_qsl
 
 import xbmc
 import xbmcgui
