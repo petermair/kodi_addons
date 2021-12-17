@@ -65,12 +65,12 @@ def db_addFolder(id, parentid, type, slug, contentclass, title, ordernr):
 
 def db_FolderSync(id, parentid, lastsync, syncminutes):
     db = api.db
-    db.replace("folders",
+    db.update("folders",
       ("lastsync","syncminutes"),
       (lastsync, syncminutes),
       "WHERE id='"+id+"'"
     )
-    db.replace("folderhierarchy",
+    db.update("folderhierarchy",
       ("lastsync",),
       (lastsync, ),
       "WHERE foldersid='"+id+"' AND parentid='"+parentid+"'"
@@ -856,7 +856,7 @@ def sync_series(folderid, series_id, fullSync = False):
     
         art = db_saveart(series_id, data['series']['image'])
         title = _get_text(data['series']['text'], 'title', 'series')
-        folder = plugin.Folder(title)
+        
         ordernr = 1
         for row in data['seasons']['seasons']:            
             item = _parse_season(row, data['series'])
@@ -868,7 +868,7 @@ def sync_series(folderid, series_id, fullSync = False):
         if data['extras']['videos']:
             label = (_.EXTRAS)
             db_addFolder(series_id+'-EXT', series_id, 'Extras','','',label, ordernr)
-            db_FolderSync(row["seasonId"],series_id, dt,SYNC_SEASON_MINUTES)
+            db_FolderSync(series_id+'-EXT',series_id, dt,SYNC_SEASON_MINUTES)
             db_saveart(series_id+'-EXT', data['series']['image'])
             ordernr = ordernr + 1
 
