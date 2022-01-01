@@ -62,7 +62,7 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets>
   </extension>
-</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.7" provider-name="Mair Peter">
+</addon><addon id="plugin.video.plex-tv" name="Plex TV" version="0.1.8" provider-name="Mair Peter">
   <requires>    
     <import addon="script.module.requests" version="2.9.1" />
     <import addon="script.module.defusedxml" version="0.5.0" />
