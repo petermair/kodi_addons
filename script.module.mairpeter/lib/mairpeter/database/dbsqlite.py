@@ -110,7 +110,7 @@ class SQLiteDB(dbbase.BaseDB):
             val=val + "?"
         sql = "INSERT INTO  `"+tablename+"`("+ins+") VALUES("+val+")"        
         self._cursor.execute(sql, values)
-        self._cursor.lastrowid
+        return self._cursor.lastrowid
 
 
     def update(self, tablename, fieldnames, values, wheresql = ""):

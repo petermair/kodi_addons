@@ -211,7 +211,7 @@ Abonnement requis.</description>
       <fanart>fanart.jpg</fanart>
     </assets> 
   </extension>
-</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.5">
+</addon><addon id="script.module.mairpeter" name="Mair Peter modules" provider-name="Mair Peter" version="0.1.6">
   <requires>    
     <import addon="script.module.myconnpy" version="1.0.12" /> 
   </requires>
